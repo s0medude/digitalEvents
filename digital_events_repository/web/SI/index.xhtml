@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/includes/template/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+    <ui:define name="content">
+        
+        <h:panelGroup layout="block" rendered="#{sessionController.rol.id eq 1}">            
+            <ui:include src="/WEB-INF/includes/dashboard/administrador.xhtml"/>
+        </h:panelGroup>
+        <h:panelGroup layout="block" rendered="#{sessionController.rol.id eq 2}">
+            <ui:include src="/WEB-INF/includes/dashboard/coordinador.xhtml"/>
+        </h:panelGroup>
+        <h:panelGroup layout="block" rendered="#{sessionController.rol.id eq 3}">
+            <ui:include src="/WEB-INF/includes/dashboard/recreador.xhtml"/>
+        </h:panelGroup>         
+        <h:panelGroup layout="block" rendered="#{sessionController.rol.id eq 4}">
+            <ui:include src="/WEB-INF/includes/dashboard/cliente.xhtml"/>
+        </h:panelGroup> 
+        
+    </ui:define>
+</ui:composition>
+

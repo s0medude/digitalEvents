@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/includes/template/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:define name="content">
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12"> 
+                    <h:messages showDetail="true" styleClass="alert" style="list-style: none; padding: 0px; display: block" infoClass="alert-success" errorClass="alert-danger"/>
+                </div>
+                <div>
+                    <ol class="breadcrumb">
+                        <li><a href="solicitud.xhtml">Solicitud</a></li>
+                        <li class="active">/ Nueva Solicitud</li>
+                    </ol>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <h:form>
+                                    <div class="card-header card-header-success colorc">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h4 class="card-title">Formulario Nuevo Solicitud</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h:form id="formNuevaSolicitud" prependId="false" a:novalidate="novalidate" class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <h:inputText id="usuariosId" value="#{solicitudController.nuevaSolicitud.usuariosId}"
+                                                                 a:type="number"
+                                                                 class="form-control"
+                                                                 a:placeholder="ID USuario" required=""/>  
+                                                </div>
+                                                <div class="form-group">
+                                                    <h:selectOneMenu id="tipoEvento" value="#{solicitudController.nuevaSolicitud.tipoEvento}"
+                                                                     class="form-control">
+                                                        <f:selectItem itemValue="" itemLabel="Seleccione un tipo de evento"/>
+                                                        <f:selectItems value="#{solicitudController.tipoEventoList}" var="t" itemLabel="#{t.tipo}"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                                <div class="form-group">
+                                                    <h:inputText id="direccion" value="#{solicitudController.nuevaSolicitud.direccion}"
+                                                                 a:type="text"
+                                                                 class="form-control"
+                                                                 a:placeholder="Ingrese Direccion" required=""/>  
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="fechaReserva" class="control-label mb-1">Fecha y Hora Reserva: </label>
+                                                    <p:calendar id="fechaReserva" value="#{solicitudController.nuevaSolicitud.fechaReserva}" showOn="button"
+                                                                pattern="yyyy-MM-dd HH:mm:ss"/>
+                                                </div>
+                                                <div class="form-group border-1"> 
+                                                    <label for="especificaciones" class="control-label mb-1">Espeficicaciones Cliente</label>
+                                                    <h:inputTextarea id="especificaciones" value="#{solicitudController.nuevaSolicitud.especificaciones}"
+                                                                     a:type="text"
+                                                                     class="form-control border" required=""/>  
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                    <div class="card-footer">                            
+                                        <h:commandLink action="#{solicitudController.registrar()}" class="btn btn-primary btn-block">Agregar Solicitud</h:commandLink> 
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+

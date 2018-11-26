@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/includes/template/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:define name="content">
+        <div class="content">
+            <div class="row">
+                <h:form>
+                    <h:panelGroup>
+                        <div class="col-md-12"> 
+                            <h:messages showDetail="true" styleClass="alert" style="list-style: none; padding: 0px; display: block" infoClass="alert-success" errorClass="alert-danger"/>
+                        </div>
+                    </h:panelGroup>
+                </h:form>    
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <h:form>
+                                <div class="card-header card-header-success colorc">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4 class="card-title">Formulario Nuevo Usuario</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <h:form id="formNuevoUsuario" prependId="false" a:novalidate="novalidate" class="row">
+                                        <h:panelGroup layout="block">
+                                            <div class="form-group row">
+                                                <div class="col-6">
+                                                    <h:inputText id="nombres" value="#{usuarioController.nuevoUsuario.nombres}"
+                                                                 a:type="text" 
+                                                                 class="form-control"  
+                                                                 a:placeholder="Nombres" required="true"/>
+                                                </div>
+                                                <div class="col-6">
+                                                    <h:inputText id="apellidos" value="#{usuarioController.nuevoUsuario.apellidos}" 
+                                                                 a:type="text" 
+                                                                 class="form-control"  
+                                                                 a:placeholder="Apellidos" required="true"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-6">
+                                                    <h:inputText id="fechaNacimiento" value="#{usuarioController.nuevoUsuario.fechaNacimiento}"
+                                                                 class="form-control" required="true"
+                                                                 a:type="date"
+                                                                 a:aria-invalid="false"
+                                                                 a:placeholder="Ingrese su fecha de Nacimiento">
+                                                        <f:convertDateTime pattern="yyyy-MM-dd"/>
+                                                    </h:inputText>                                                     
+                                                </div>
+                                                <div class="col-6">
+                                                    <h:inputText id="direccion" value="#{usuarioController.nuevoUsuario.direccion}" 
+                                                                 a:type="text" 
+                                                                 class="form-control" 
+                                                                 a:placeholder="Direccion" required="true"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-6">
+                                                    <h:selectOneMenu id="tiposDocumento" value="#{usuarioController.nuevoUsuario.tiposDocumento}"
+                                                                     class="form-control">
+                                                        <f:selectItem itemValue="" itemLabel="Seleccione un tipo de documento"/>
+                                                        <f:selectItems value="#{tipoDocumentoController.tiposDocumentoList}" var="t" itemLabel="#{t.nombre}"/>                                            
+                                                    </h:selectOneMenu>                                         
+                                                </div>
+                                                <div class="col-6">
+                                                    <h:inputText id="documento" value="#{usuarioController.nuevoUsuario.documento}" 
+                                                                 a:type="text"
+                                                                 class="form-control" 
+                                                                 a:placeholder="Numero de documento" 
+                                                                 required="true"/>
+                                                </div>                                                
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-5">
+                                                    <label for="correo" class="control-label mb-1">Correo</label>
+                                                    <h:inputText id="correo" value="#{usuarioController.nuevoUsuario.correo}"  
+                                                                 a:type="email" 
+                                                                 class="form-control" 
+                                                                 a:placeholder="usuario@correo.com" required="true"/>
+                                                </div>
+                                                <div class="col-7">
+                                                    <label for="rolList" class="control-label mb-1">Roles</label>
+                                                    <h:selectManyCheckbox id="rolList" value="#{usuarioController.nuevoUsuario.rolList}" class="form-control" converter="rolConverter">
+                                                        <f:selectItems value="#{rolController.rolList}"  var="r" itemLabel="#{r.nombre}&nbsp;&nbsp;"/>
+                                                    </h:selectManyCheckbox>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-6">
+                                                    <h:inputText id="contrasena" value="#{usuarioController.nuevoUsuario.contrasena}" 
+                                                                 a:type="password" 
+                                                                 class="form-control" 
+                                                                 a:placeholder="Contraseña" required="true"/>
+                                                </div>
+                                                <div class="col-6">
+                                                    <h:inputText id="confirmarClave" value="#{usuarioController.confirmarClave}"
+                                                                 a:type="password" 
+                                                                 class="form-control"  
+                                                                 a:placeholder="Confirmar Contraseña" required="true"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-4">
+                                                    <h:inputText id="telefonos" value="#{usuarioController.nuevoUsuario.telefonos}"
+                                                                 a:type="text" 
+                                                                 class="form-control"  
+                                                                 a:placeholder="Ingrese un telefono" required="true"/>
+                                                </div>
+                                                <div class="col-4">
+                                                    <h:selectOneRadio id="genero" value="#{usuarioController.nuevoUsuario.genero}"
+                                                                      class="form-control">
+                                                        <f:selectItem itemValue="1" itemLabel="Masculino&nbsp;&nbsp;"/>
+                                                        <f:selectItem itemValue="2" itemLabel="Femenino&nbsp;&nbsp;"/>
+                                                        <f:selectItem itemValue="3" itemLabel="Otro"/>
+                                                    </h:selectOneRadio>
+                                                </div>
+                                                <div class="col-4">
+                                                    <h:selectOneMenu id="estado" value="#{usuarioController.nuevoUsuario.estado}"
+                                                                     class="form-control">
+                                                        <f:selectItem itemValue="" itemLabel="Seleccione estado"/>
+                                                        <f:selectItems value="#{usuarioController.estadosUsuarioList}" var="e" itemLabel="#{e.estado}"/> 
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>                                                                                     
+                                        </h:panelGroup>
+                                    </h:form>
+                                </div>
+                                <div class="card-footer">                            
+                                    <h:commandLink action="#{usuarioController.registrar()}" class="btn btn-primary btn-block">Añadir Usuario</h:commandLink> 
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+

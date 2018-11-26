@@ -1,12 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    
     <h:head>
-        <title>Facelet Title</title>
+        <ui:include src="/WEB-INF/includes/template/head.xhtml"/>
     </h:head>
+
     <h:body>
-        Hello from Facelets
+        <f:view>
+            <h:form prependId="false">
+                <div class="form-group">
+                    <label>Correo Electronico</label>
+                    <h:inputText a:type="email" class="form-control"
+                                 value="#{sessionController.email}"
+                                 a:placeholder="Ingrese su correo"/>
+                </div>                
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <h:inputSecret class="form-control"
+                                   value="#{sessionController.password}"
+                                   a:placeholder="Ingrese su contraseña"/>
+                </div>
+                <h:commandButton class="btn btn-success" action="#{sessionController.startSession()}"
+                                 value="Iniciar Sesion"></h:commandButton>
+            </h:form>
+        </f:view>
     </h:body>
+
 </html>
 

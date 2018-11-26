@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
+@import url('https://fonts.googleapis.com/css?family=Amita|Padauk');
+@import url('https://fonts.googleapis.com/css?family=Acme');
+
+*{
+
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+
+}
+
+.container-flui{
+	
+	width: 100%;
+	margin: auto;
+	background: #1c4875;
+}
+
+.container {
+	
+	width: 100%;
+	max-width: 1200px;
+	margin: auto;
+}
+
+.nave{
+
+	background: #f0f4f2;
+}
+
+
+.border{
+
+	border: 1px solid #000000!important;
+
+}
+
+.alto{
+
+	height: 100%;
+}
+
+nav{
+
+	height: 50px;
+}
+
+.navegador{
+
+	background: #1c4875;
+	padding-top: 5px;
+	font-family: 'Acme', sans-serif;
+
+}
+
+nav .navegador ul li a{
+
+	color: #fff;
+}
+
+nav ul li a:hover{
+
+	color: #44b8f2;
+	border-bottom: 2px solid #44b8f2;
+	background: rgba(0,0,0,0.5);
+	
+}
+
+nav .navegador i{
+
+	margin-right: 10px;
+}
+
+
+nav .ingreso i{
+
+	margin-left: 10px;
+}
+
+.logo{
+
+	text-align: center;
+}
+
+img{
+
+	height: 100%;
+	width: auto;
+}
+
+.sidebar .logo{
+	padding: 0px !important;
+	height: 60px !important;	
+}
+
+.sidebar .logo:after{
+	
+	height: 2px !important;
+}
+
+.buscar{
+
+	text-align: center;
+	padding-left: 30px;
+	padding-top: 5px;
+	background: #1c4875;
+}
+
+.ingreso{
+
+	font-family: 'Acme', sans-serif;
+	text-align: center;
+	padding-top: 6px;
+}
+
+
+
+.dropdown-toggle {
+	
+	color: #fff;
+	background: #1c4875;
+	border: none;
+}
+
+.dropdown-toggle:hover{
+	
+	color: #44b8f2;
+	border-bottom: 2px solid #44b8f2;
+	background: rgba(0,0,0,0.5);
+
+}
+
+.modal-body form{
+
+	font-family: 'PT Sans Narrow', sans-serif;
+}
+
+.modal-footer .letra-boton{
+
+	font-family: 'PT Sans Narrow', sans-serif;
+}
+
+.lc{
+
+	position: relative;
+	left:100px;
+}
+
+.bc{
+
+	position: relative;
+	left:170px;
+}
+
+.olvido{
+
+	padding-top: 20px;
+}
+
+.titulom{
+	
+	font-family: 'PT Sans Narrow', sans-serif;
+	font-size: 1.5rem;
+}
+
+.descripcion{
+
+	font-family: 'PT Sans Narrow', sans-serif;
+	font-size: 1.2rem;
+}
+
+header{
+	
+	height: 600px;
+}
+
+
+.col1{
+	
+	padding: 0px;
+
+}
+
+.col1 img{
+
+	height: 600px;
+	width: 100%;
+}
+main{
+
+	height: 310px;
+}
+
+.titulo{
+	
+	height: 65px;
+	text-align: center; 	
+	font-family: 'PT Sans Narrow', sans-serif;
+	font-size: 3rem;
+	padding-bottom: 5px;
+}
+
+.subtitulo{
+
+	text-align: center;
+	font-family: 'PT Sans Narrow', sans-serif;
+	font-size: 2.2rem;
+}
+
+.lizquierdo{
+
+	padding: 2px;
+	padding-top: 6px;
+}
+
+main .imagenEventos{
+	
+	height: 250px;
+	width: 100%;
+	text-align: center;
+}
+
+main .imagenEventos img{
+
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	border-radius: 10px;
+}
+
+.animacion{
+
+  position: relative;
+  width: 50%;
+}
+
+/*.anima-derecha {
+  position: absolute;
+  bottom: 0;
+  left: 100%;
+  right: 0;
+  background: rgba(0,0,0,0.8);
+  overflow: hidden;
+  width: 0;
+  height: 100%;
+  transition: .5s ease;
+  border-radius: 10px;
+
+}
+
+.animacion:hover .anima-derecha {
+  width: 100%;
+  left: 0;
+}
+
+.anima-izquierda {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.8);
+  overflow: hidden;
+  width: 0;
+  height: 100%;
+  transition: .5s ease;
+  border-radius: 10px;
+
+}
+
+
+.animacion:hover .anima-izquierda {
+
+  width: 100%;
+  left: 0;
+}*/
+
+.anima-arriba {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.9);
+  overflow: hidden;
+  width: 100%;
+  height:0;
+  transition: .5s ease;
+}
+
+.animacion:hover .anima-arriba {
+  bottom: 0;
+  height: 100%;
+}
+
+.anima-abajo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.9);
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+}
+
+.animacion:hover .anima-abajo {
+  height: 100%;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+section{
+
+	height: 600px;
+}
+
+.h{
+
+	height: 50%;
+}
+
+.ladog{
+
+	padding: 40px;
+}
+
+section .ladog form textarea{
+
+	resize: none;
+}
+
+.ladoa{
+
+	padding: 20px;
+}
+
+section iframe{
+
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+
+footer{
+	
+	height: 70px;
+}
+
+footer .logon{
+
+	text-align: center;
+}
+
+footer .logon img{
+
+	width: auto;
+	height: 100%;
+}
+
+footer .icono{
+
+	text-align: center;
+	padding: 10px;
+}
+
+footer .icono img{
+
+	height: 100%;
+	width: auto;
+}
+
+footer .info{
+
+	text-align: center;
+	font-family: 'Acme', sans-serif;
+	font-size: 1.3rem;
+	padding: 0px;
+	padding-top: 18px;
+}
+
+footer .inf{
+	
+	padding: 0px;
+	padding-left: 15px;
+	padding-top: 5px; 
+}
+
+footer .inf p{
+
+	margin: 0px;
+	padding: 0px;
+	padding-bottom: 5px;
+	font-family: 'Acme', sans-serif;
+	font-size: 1.1rem;
+}

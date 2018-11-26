@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
+@import url('https://fonts.googleapis.com/css?family=Amita|Padauk');
+@import url('https://fonts.googleapis.com/css?family=Acme');
+
+*{
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+.container-flui{
+
+    width: 100%;
+    margin: auto;
+    background: #1c4875;
+}
+
+.border{
+
+    border: 1px solid #000000!important;
+
+}
+
+.alto{
+
+    height: 100%;
+}
+
+
+.logo{
+
+    text-align: center;
+}
+
+img{
+
+    height: 100%;
+    width: auto;
+}
+
+.sidebar .logo{
+    padding: 0px !important;
+    height: 60px !important;
+    padding-top: 3px !important;	
+}
+
+.sidebar .logo:after{
+
+    height: 2px !important;
+    background: #f44336 !important;
+    bottom: -5px !important; 
+}
+
+/*
+        esta clase es para correr el sub boton a la derecha
+*/
+.l{
+
+    padding-left: 30px !important; 
+}
+
+/*
+esta clase "colorc" es para cambiarle el color al head del card de las tablas
+*/
+.colorc{
+
+    background: #43a047 !important;
+}
+
+/*
+esta clase "paddingcorreo" es para mover el label del correo hasta el centro en el formulario de registro
+*/
+.paddingcorreo{
+
+    padding-top: 30px !important;
+}
+
+/*
+esta clase "movericon" es para mover el icono de añadir usuario
+*/
+
+.movericon{
+
+    padding-right: 10px !important;
+}
+
+.navbar .notification{
+
+    background: #4caf50 !important;
+}
+
+.dropdown-menu a:hover{
+
+    background-color: #72ba68!important;
+}

@@ -1,0 +1,262 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/includes/template/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form> 
+            <h:panelGroup>
+                <h:messages showDetail="true" styleClass="alert" style="list-style: none; padding: 0px; display: block" infoClass="alert-success" errorClass="alert-danger"/>
+            </h:panelGroup>
+        </h:form>
+        <div class="content">            
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <h:form>
+                                <div class="card-header card-header-success colorc">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <h4 class="card-title">Usuarios del Sistema</h4>
+                                            <p class="card-category">Aquí encontraras todos los usuarios registrados en el sistema.</p>
+                                            <h:commandLink class="card-category btn btn-danger btn-flat m-b-30 m-t-30" action="#{reportesController.exportPDF()}" value="PDF">
+                                                <i class="fas fa-file-pdf"></i>
+                                            </h:commandLink>&nbsp;&nbsp;
+                                            <h:commandLink class="card-category btn btn-success btn-flat m-b-30 m-t-30" action="#{reportesController.exportarPDF()}" value="EXCEL">
+                                                <i class="fas fa-file-excel"></i>
+                                            </h:commandLink>
+                                        </div>
+                                        <div class="col-3">
+                                            <a class="btn btn-info" href="registrar.xhtml" >                                                     
+                                                <i class="material-icons movericon">person_add</i>
+                                                <span>Añadir Usuario</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <h:form>
+                                            <h:dataTable class="table table-striped text-center" var="u" value="#{usuarioController.usuariosList}" >
+                                                <h:column><f:facet name="header">ID</f:facet>#{u.id}</h:column>
+                                                <h:column><f:facet name="header">TD</f:facet>#{u.tiposDocumento.sigla}</h:column>
+                                                <h:column><f:facet name="header">NOMBRES</f:facet>#{u.nombres}</h:column>
+                                                <h:column><f:facet name="header">APELLIDOS</f:facet>#{u.apellidos}</h:column>
+                                                <h:column><f:facet name="header">CORREO</f:facet>#{u.correo}</h:column>
+                                                <h:column><f:facet name="header">OPCIONES</f:facet>
+                                                    <h:commandLink class="td-actions text-right btn btn-info" actionListener="#{usuarioController.usuarioSeleccionado(u)}"
+                                                                   a:data-toggle="modal" a:data-target="#modalVisualizarUser" a:rel="tooltip" >
+                                                        <f:ajax render=":modalVisualizarUserContent"/>
+                                                        <i class="material-icons">person</i>
+                                                    </h:commandLink>    
+                                                    <h:commandLink class="td-actions text-right btn btn-success" actionListener="#{usuarioController.usuarioSeleccionado(u)}"
+                                                                   a:data-toggle="modal" a:data-target="#modalEditarUser" a:rel="tooltip" >
+                                                        <f:ajax render=":modalEditarUserContent"/>
+                                                        <i class="material-icons">edit</i>
+                                                    </h:commandLink> 
+                                                    <h:commandLink class="td-actions text-right btn btn-danger" actionListener="#{usuarioController.usuarioSeleccionado(u)}"
+                                                                   a:data-toggle="modal" a:data-target="#modalEliminarUser" a:rel="tooltip" >
+                                                        <f:ajax render=":modalEliminarUserContent"/>
+                                                        <i class="material-icons">close</i>
+                                                    </h:commandLink>
+                                                </h:column>
+                                            </h:dataTable>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+    <ui:define name="modals-page">
+
+        
+
+        <!--modal editar-->
+        <div class="modal fade" id="modalEditarUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <h:form prependId="false">
+                    <h:panelGroup id="modalEditarUserContent" class="modal-content" layout="block">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title titulom" id="exampleModalLabel">Actualizar Usuario</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h:form prependId="false">
+                                    <div class="form-group row">
+                                        <div class="col-6">
+                                            <h:inputText id="nombres" value="#{usuarioController.usuarioSeleccionado.nombres}"
+                                                         a:type="text" 
+                                                         class="form-control"  
+                                                         a:placeholder="Nombres" required="true"/>
+                                        </div>
+                                        <div class="col-6">
+                                            <h:inputText id="apellidos" value="#{usuarioController.usuarioSeleccionado.apellidos}" 
+                                                         a:type="text" 
+                                                         class="form-control"  
+                                                         a:placeholder="Apellidos" required="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-4">
+                                            <h:selectOneMenu id="tiposDocumento" value="#{usuarioController.usuarioSeleccionado.tiposDocumento}"
+                                                             class="form-control">
+                                                <f:selectItem itemValue="" itemLabel="Seleccione un tipo de documento"/>
+                                                <f:selectItems value="#{tipoDocumentoController.tiposDocumentoList}" var="t" itemLabel="#{t.nombre}"/>                                            
+                                            </h:selectOneMenu>                                         
+                                        </div>
+                                        <div class="col-4">
+                                            <h:inputText id="documento" value="#{usuarioController.usuarioSeleccionado.documento}" 
+                                                         a:type="text"
+                                                         class="form-control" 
+                                                         a:placeholder="Numero de documento" 
+                                                         required="true"/>
+                                        </div>
+                                        <div class="col-4">
+                                            <h:inputText id="direccion" value="#{usuarioConttoller.usuarioSeleccionado.direccion}" 
+                                                         a:type="text" 
+                                                         class="form-control" 
+                                                         a:placeholder="Direccion" required="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-5">
+                                            <label for="correo" class="control-label mb-1">Correo</label>
+                                            <h:inputText id="correo" value="#{usuarioController.usuarioSeleccionado.correo}"  
+                                                         a:type="email" 
+                                                         class="form-control" 
+                                                         a:placeholder="usuario@correo.com" required="true"/>
+                                        </div>
+                                        <div class="col-7">
+                                            <label for="rol" class="control-label mb-1">Roles</label>
+                                            <h:selectManyCheckbox id="rol" value="#{usuarioController.usuarioSeleccionado.rolList}"
+                                                                  class="form-control">
+                                                <f:selectItems value="#{rolController.rolList}"  var="r" itemLabel="#{r.nombre}&nbsp;&nbsp;"/>
+                                            </h:selectManyCheckbox>
+                                        </div>
+                                    </div>                                    
+                                    <div class="form-group row">
+                                        <div class="col-4">
+                                            <h:inputText id="telefonos" value="#{usuarioController.usuarioSeleccionado.telefonos}"
+                                                         a:type="text" 
+                                                         class="form-control"  
+                                                         a:placeholder="Ingrese un telefono" required="true"/>
+                                        </div>
+                                        <div class="col-4">
+                                            <h:selectOneRadio id="genero" value="#{usuarioController.usuarioSeleccionado.genero}"
+                                                              class="form-control">
+                                                <f:selectItem itemValue="1" itemLabel="Masculino&nbsp;&nbsp;"/>
+                                                <f:selectItem itemValue="2" itemLabel="Femenino&nbsp;&nbsp;"/>
+                                                <f:selectItem itemValue="3" itemLabel="Otro"/>
+                                            </h:selectOneRadio>
+                                        </div>
+                                        <div class="col-4">
+                                            <h:selectOneMenu id="estado" value="#{usuarioController.usuarioSeleccionado.estado}"
+                                                             class="form-control">
+                                                <f:selectItem itemValue="" itemLabel="Seleccione un nuevo estado"/>
+                                                <f:selectItems value="#{usuarioController.estadosUsuarioList}" var="e" itemLabel="#{e.estado}"/> 
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">Cerrar</button>
+                                <h:commandLink actionListener="#{usuarioController.actualizar()}" class="btn btn-primary">Actualizar</h:commandLink> 
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+        </div>
+        <!--modal editar-->
+
+        <!--modal visualizar-->
+        <div class="modal fade" id="modalVisualizarUser" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <h:form prependId="false">
+                    <h:panelGroup id="modalVisualizarUserContent" class="modal-content" layout="block" >
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="mediumModalLabel">Información del usuario seleccionado</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h:form>
+                                <div class="modal-body">
+                                    <label class="control-label mb-1">Nombre:</label>
+                                    <div class="form-group">#{usuarioController.usuarioSeleccionado.nombres}</div>
+                                    <label class="control-label mb-1">Apellidos:</label>
+                                    <div class="form-group">#{usuarioController.usuarioSeleccionado.apellidos}</div>
+                                    <label class="control-label mb-1">Tipo Documento:</label>
+                                    <div class="form-group">#{usuarioController.usuarioSeleccionado.tiposDocumento.nombre}</div>
+                                    <label class="control-label mb-1">Documento:</label>
+                                    <div class="form-group">#{usuarioController.usuarioSeleccionado.documento}</div>
+                                    <label class="control-label mb-1">Fecha Nacimiento:</label>
+                                    <div class="form-group">
+                                        <h:outputText  value="#{usuarioController.usuarioSeleccionado.fechaNacimiento}">
+                                            <f:convertDateTime pattern="yyyy-MM-dd" />
+                                        </h:outputText> 
+                                    </div>
+                                    <label class="control-label mb-1">Correo:</label>
+                                    <div class="form-group">#{usuarioController.usuarioSeleccionado.correo}</div>
+                                    <label class="control-label mb-1">Genero:</label>
+                                    <div class="form-group">#{usuarioController.usuarioSeleccionado.genero}</div>
+                                    <label class="control-label mb-1">Estado:</label>
+                                    <div class="form-group">#{usuarioController.usuarioSeleccionado.estado.estado}</div>
+                                </div>
+                            </h:form>
+                        </div>
+                        <div class="modal-footer">
+                            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>-->
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+        </div>
+        <!--modal visualizar-->
+
+        <!--modal eliminar-->
+        <div class="modal fade" id="modalEliminarUser" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <h:form prependId="false">
+                    <h:panelGroup id="modalEliminarUserContent" class="modal-content" layout="block" >
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="mediumModalLabel">Eliminar el usuario seleccionado</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>¿Está seguro de eliminar el usuario #{usuarioController.usuarioSeleccionado.nombres} 
+                                #{usuarioController.usuarioSeleccionado.apellidos} definitivamente del sistema?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            <h:commandLink class="btn btn-danger" actionListener="#{usuarioController.eliminar()}">Si</h:commandLink>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+        </div>
+        <!--modal eliminar-->
+
+    </ui:define>
+</ui:composition>
+

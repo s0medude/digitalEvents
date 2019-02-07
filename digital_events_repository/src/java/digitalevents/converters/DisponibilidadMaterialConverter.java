@@ -17,7 +17,7 @@ import javax.faces.convert.FacesConverter;
  *
  * @author Nicolas PC
  */
-@FacesConverter(forClass = DisponilidadMaterial.class)
+@FacesConverter(value = "disponilidadConverter")
 public class DisponibilidadMaterialConverter implements Converter {
 
     private final IDisponibilidadMaterialDAO dmDAO;

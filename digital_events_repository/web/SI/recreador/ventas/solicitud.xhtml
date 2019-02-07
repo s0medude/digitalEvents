@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/includes/template/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <h:form>
+                                <div class="card-header card-header-success colorc">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <h4 class="card-title">Nuevas Solicitudes</h4>
+                                            <p class="card-category">Aquí encontraras las nuevas solicitudes de eventos </p>
+                                        </div>
+                                        <div class="col-3">
+                                            <a class="btn btn-info" href="registrar.xhtml">
+                                                <i class="far fa-calendar-plus movericon"></i>
+                                                <span>Añadir Solicitud</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <h:form>
+                                            <h:dataTable class="table table-striped text-center" value="#{solicitudController.solicitudList}" var="s">
+                                                <h:column><f:facet name="header">ID</f:facet>#{s.id}</h:column>
+                                                <h:column><f:facet name="header">USUARIO</f:facet>#{s.usuariosId.nombres}</h:column>                                                
+                                                <h:column><f:facet name="header">TIPO EVENTO</f:facet>#{s.tipoEvento.tipo}</h:column>                                                
+                                                <h:column>
+                                                    <f:facet name="header">FECHA SOLICITUD</f:facet>
+                                                    <h:outputText value="#{s.fechaSolicitud}">
+                                                        <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+                                                    </h:outputText>
+                                                </h:column>                                                
+                                                <h:column>
+                                                    <f:facet name="header">FECHA RESERVA</f:facet>
+                                                    <h:outputText value="#{s.fechaReserva}">
+                                                        <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+                                                    </h:outputText>
+                                                </h:column>                                                
+                                                <h:column><f:facet name="header">DIRECCION</f:facet>#{s.direccion}</h:column>                                                
+                                                <h:column><f:facet name="header">ESTADO</f:facet>#{s.estado.estado}</h:column>                                                 
+                                                <h:column><f:facet name="header">OPCIONES</f:facet>
+                                                    <h:commandLink class="td-actions text-right btn btn-info" actionListener="#{solicitudController.solicitudSeleccionada(s)}"
+                                                                   a:data-toggle="modal" a:data-target="#modalVisualizarSolicitud" rel="tooltip" >
+                                                        <f:ajax render=":modalVisualizarSolicitudContent"/>
+                                                        <i class="material-icons">check</i>
+                                                    </h:commandLink>                            
+                                                </h:column>                                                 
+                                            </h:dataTable>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>      
+    </ui:define>
+    <ui:define name="modals-page">
+
+        <!--modal visualizar-->
+        <div class="modal fade" id="modalVisualizarSolicitud" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <h:form prependId="false">
+                    <h:panelGroup id="modalVisualizarSolicitudContent" class="modal-content" layout="block" >
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="mediumModalLabel">Información de la solicitud seleccionada</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h:form>
+                                <div class="modal-body">
+                                    <label class="control-label mb-1">ID Solicitud:</label>
+                                    <div class="form-group">#{solicitudController.solicitudSeleccionada.id}</div>
+                                    <label class="control-label mb-1">Nombres Usuario:</label>
+                                    <div class="form-group">#{solicitudController.solicitudSeleccionada.usuariosId.nombres}</div>
+                                    <label class="control-label mb-1">Apellidos Usuario:</label>
+                                    <div class="form-group">#{solicitudController.solicitudSeleccionada.usuariosId.apellidos}</div>
+                                    <label class="control-label mb-1">Tipo Evento:</label>
+                                    <div class="form-group">#{solicitudController.solicitudSeleccionada.tipoEvento.tipo}</div>
+                                    <label class="control-label mb-1">Fecha Solicitud:</label>
+                                    <div class="form-group">
+                                        <h:outputText  value="#{solicitudController.solicitudSeleccionada.fechaSolicitud}">
+                                            <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
+                                        </h:outputText> 
+                                    </div>
+                                    <label class="control-label mb-1">Fecha Reserva:</label>
+                                    <div class="form-group">
+                                        <h:outputText  value="#{solicitudController.solicitudSeleccionada.fechaReserva}">
+                                            <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
+                                        </h:outputText> 
+                                    </div>
+                                    <label class="control-label mb-1">Direccion Evento:</label>
+                                    <div class="form-group">#{solicitudController.solicitudSeleccionada.direccion}</div>
+                                    <label class="control-label mb-1">Espeficaciones:</label>
+                                    <div class="form-group">#{solicitudController.solicitudSeleccionada.especificaciones}</div>
+                                    <label class="control-label mb-1">Estado:</label>
+                                    <div class="form-group">#{solicitudController.solicitudSeleccionada.estado.estado}</div>
+                                </div>
+                            </h:form>
+                        </div>
+                        <div class="modal-footer">
+                            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>-->
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+        </div>
+        <!--modal visualizar-->
+
+        <!--modal editar-->
+        <div class="modal fade" id="modalEditarSolicitud" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <h:form prependId="false">
+                    <h:panelGroup id="modalEditarSolicitudContent" class="modal-content" layout="block">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title titulom" id="exampleModalLabel">Actualizar Solicitud</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h:form prependId="false">
+                                    <div class="form-group row">
+                                        <div class="col-3">
+                                            <label class="control-label mb-1">ID Solicitud:</label>
+                                            <div class="form-control">#{solicitudController.solicitudSeleccionada.id}</div>
+                                        </div>
+                                        <div class="col-3">
+                                            <label class="control-label mb-1">Tipo Evento:</label>
+                                            <h:selectOneMenu id="tipoEvento" value="#{solicitudController.solicitudSeleccionada.tipoEvento}"
+                                                             class="form-control">
+                                                <f:selectItem itemValue="" itemLabel="Seleccione un tipo de de evento"/>
+                                                <f:selectItems value="#{solicitudController.tipoEventoList}" var="t" itemLabel="#{t.tipo}"/>                                            
+                                            </h:selectOneMenu>  
+                                        </div>
+                                        <div class="col-3">
+                                            <label class="control-label mb-1">Fecha Reserva:</label>
+                                            <h:inputText id="fechaReserva" value="#{solicitudController.solicitudSeleccionada.fechaReserva}"
+                                                         class="form-control" a:type="datetime">
+                                                <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>                                                
+                                            </h:inputText>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">                                        
+                                        <div class="col-6">
+                                            <label class="control-label mb-1">Direccion:</label>
+                                            <h:inputText id="direccion" value="#{solicitudController.solicitudSeleccionada.direccion}"
+                                                         class="form-control" a:type="text">                                            
+                                            </h:inputText>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="control-label mb-1">Estado Solicitud:</label>
+                                            <h:selectOneMenu id="estado" value="#{solicitudController.solicitudSeleccionada.estado}"
+                                                             class="form-control">
+                                                <f:selectItem itemValue="" itemLabel="Seleccione un nuevo estado de evento"/>
+                                                <f:selectItems value="#{solicitudController.estadoSolicitudList}" var="t" itemLabel="#{t.estado}"/>                                            
+                                            </h:selectOneMenu>  
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">Cerrar</button>
+                                <h:commandLink actionListener="#{solicitudController.actualizar()}" class="btn btn-primary">Actualizar</h:commandLink> 
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+        </div>
+        <!--modal editar-->
+        
+        <!--modal eliminar-->
+        <div class="modal fade" id="modalEliminarSolicitud" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <h:form prependId="false">
+                    <h:panelGroup id="modalEliminarSolicitudContent" class="modal-content" layout="block" >
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="mediumModalLabel">Eliminar la sucursal seleccionada</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>¿Está seguro de eliminar la solictiud definitivamente del sistema?</p>                                                             
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            <h:commandLink class="btn btn-danger" actionListener="#{solicitudController.eliminar()}">Si</h:commandLink>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+        </div>
+        <!--modal eliminar--> 
+
+    </ui:define>
+</ui:composition>
+

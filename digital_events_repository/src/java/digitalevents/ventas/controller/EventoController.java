@@ -22,7 +22,7 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "eventoController")
 @RequestScoped
-public class EventoController {
+public class EventoController implements Serializable {
 
     @EJB
     private IEventoReservadoViewDAO eDAO;

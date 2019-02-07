@@ -26,6 +26,12 @@
                                         <div class="col-9">
                                             <h4 class="card-title">Usuarios del Sistema</h4>
                                             <p class="card-category">Aquí encontraras todos los usuarios registrados en el sistema.</p>
+                                            <h:commandLink class="card-category btn btn-danger btn-flat m-b-30 m-t-30" action="#{reportesController.export()}" value="PDF" >
+                                                <i class="fas fa-file-pdf"></i>
+                                            </h:commandLink>&nbsp;&nbsp;
+                                            <h:commandLink class="card-category btn btn-success btn-flat m-b-30 m-t-30" action="#{reportesController.exportPDF()}" value="EXCEL">
+                                                <i class="fas fa-file-excel"></i>
+                                            </h:commandLink>
                                         </div>
                                         <div class="col-3">
                                             <a class="btn btn-info" href="registrar.xhtml" >                                                     
@@ -46,17 +52,17 @@
                                                 <h:column><f:facet name="header">CORREO</f:facet>#{u.correo}</h:column>
                                                 <h:column><f:facet name="header">OPCIONES</f:facet>
                                                     <h:commandLink class="td-actions text-right btn btn-info" actionListener="#{usuarioController.usuarioSeleccionado(u)}"
-                                                                   a:data-toggle="modal" a:data-target="#modalVisualizarUser" rel="tooltip" >
+                                                                   a:data-toggle="modal" a:data-target="#modalVisualizarUser" a:rel="tooltip" >
                                                         <f:ajax render=":modalVisualizarUserContent"/>
                                                         <i class="material-icons">person</i>
                                                     </h:commandLink>    
                                                     <h:commandLink class="td-actions text-right btn btn-success" actionListener="#{usuarioController.usuarioSeleccionado(u)}"
-                                                                   a:data-toggle="modal" a:data-target="#modalEditarUser" rel="tooltip" >
+                                                                   a:data-toggle="modal" a:data-target="#modalEditarUser" a:rel="tooltip" >
                                                         <f:ajax render=":modalEditarUserContent"/>
                                                         <i class="material-icons">edit</i>
                                                     </h:commandLink> 
                                                     <h:commandLink class="td-actions text-right btn btn-danger" actionListener="#{usuarioController.usuarioSeleccionado(u)}"
-                                                                   a:data-toggle="modal" a:data-target="#modalEliminarUser" rel="tooltip" >
+                                                                   a:data-toggle="modal" a:data-target="#modalEliminarUser" a:rel="tooltip" >
                                                         <f:ajax render=":modalEliminarUserContent"/>
                                                         <i class="material-icons">close</i>
                                                     </h:commandLink>
@@ -74,136 +80,7 @@
     </ui:define>
     <ui:define name="modals-page">
 
-        <!--modal registro
-        <div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <h:form prependId="false">
-                    <h:panelGroup id="modalRegistroContent" class="modal-content" layout="block">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title titulom" id="exampleModalLabel">Registro Nuevo Usuario</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <h:form prependId="false">
-                                    <div class="form-group row">
-                                        <div class="col-3">
-                                            <h:inputText id="id" value="#{usuarioController.nuevoUsuario.id}"
-                                                         a:type="number" 
-                                                         class="form-control"  
-                                                         a:placeholder="ID usuario" required="true" maxlength="1"/>
-                                        </div>
-                                        <div class="col-3">
-                                            <h:inputText id="nombres1" value="#{usuarioController.nuevoUsuario.nombres}"
-                                                         a:type="text" 
-                                                         class="form-control"  
-                                                         a:placeholder="Nombres" required="true"/>
-                                        </div>
-                                        <div class="col-3">
-                                            <h:inputText id="apellidos1" value="#{usuarioController.nuevoUsuario.apellidos}" 
-                                                         a:type="text" 
-                                                         class="form-control"  
-                                                         a:placeholder="Apellidos" required="true"/>
-                                        </div>
-                                        <div class="col-3">
-                                            <h:inputText id="fechaNacimiento1" value="#{usuarioController.nuevoUsuario.fechaNacimiento}"
-                                                         class="form-control" required="true"
-                                                         a:type="date"
-                                                         a:aria-invalid="false"
-                                                         a:placeholder="Ingrese su fecha de Nacimiento">
-                                                <f:convertDateTime pattern="yyyy-MM-dd"/>
-                                            </h:inputText>                                                     
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-4">
-                                            <h:selectOneMenu id="tiposDocumento1" value="#{usuarioController.nuevoUsuario.tiposDocumento}"
-                                                             class="form-control">
-                                                <f:selectItem itemValue="" itemLabel="Seleccione un tipo de documento"/>
-                                                <f:selectItems value="#{tipoDocumentoController.tiposDocumentoList}" var="t" itemLabel="#{t.nombre}"/>                                            
-                                            </h:selectOneMenu>                                         
-                                        </div>
-                                        <div class="col-4">
-                                            <h:inputText id="documento1" value="#{usuarioController.nuevoUsuario.documento}" 
-                                                         a:type="text"
-                                                         class="form-control" 
-                                                         a:placeholder="Numero de documento" 
-                                                         required="true"/>
-                                        </div>
-                                        <div class="col-4">
-                                            <h:inputText id="direccion1" value="#{usuarioConttoller.nuevoUsuario.direccion}" 
-                                                         a:type="text" 
-                                                         class="form-control" 
-                                                         a:placeholder="Direccion" required="true"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-5">
-                                            <label for="correo1" class="control-label mb-1">Correo</label>
-                                            <h:inputText id="correo1" value="#{usuarioController.nuevoUsuario.correo}"  
-                                                         a:type="email" 
-                                                         class="form-control" 
-                                                         a:placeholder="usuario@correo.com" required="true"/>
-                                        </div>
-                                        <div class="col-7">
-                                            <label for="rol1" class="control-label mb-1">Roles</label>
-                                            <h:selectManyCheckbox id="rol1" value="#{usuarioController.nuevoUsuario.rolList}"
-                                                                  class="form-control">
-                                                <f:selectItems value="#{rolController.rolList}"  var="r" itemLabel="#{r.nombre}&nbsp;&nbsp;"/>
-                                            </h:selectManyCheckbox>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-6">
-                                            <h:inputText id="contrasena1" value="#{usuarioController.nuevoUsuario.contrasena}" 
-                                                         a:type="password" 
-                                                         class="form-control" 
-                                                         a:placeholder="Contraseña" required="true"/>
-                                        </div>
-                                        <div class="col-6">
-                                            <h:inputText id="confirmarClave1" value="#{usuarioController.confirmarClave}"
-                                                         a:type="password" 
-                                                         class="form-control"  
-                                                         a:placeholder="Confirmar Contraseña" required="true"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-4">
-                                            <h:inputText id="telefonos1" value="#{usuarioController.nuevoUsuario.telefonos}"
-                                                         a:type="text" 
-                                                         class="form-control"  
-                                                         a:placeholder="Ingrese un telefono" required="true"/>
-                                        </div>
-                                        <div class="col-4">
-                                            <h:selectOneRadio id="genero1" value="#{usuarioController.nuevoUsuario.genero}"
-                                                              class="form-control">
-                                                <f:selectItem itemValue="1" itemLabel="Masculino&nbsp;&nbsp;"/>
-                                                <f:selectItem itemValue="2" itemLabel="Femenino&nbsp;&nbsp;"/>
-                                                <f:selectItem itemValue="3" itemLabel="Otro"/>
-                                            </h:selectOneRadio>
-                                        </div>
-                                        <div class="col-4">
-                                            <h:selectOneMenu id="estado1" value="#{usuarioController.nuevoUsuario.estado}"
-                                                             class="form-control">
-                                                <f:selectItem itemValue="" itemLabel="Seleccione estado"/>
-                                                <f:selectItems value="#{usuarioController.estadosUsuarioList}" var="e" itemLabel="#{e.estado}"/> 
-                                            </h:selectOneMenu>
-                                        </div>
-                                    </div>
-                                </h:form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">Cerrar</button>                                
-                                <h:commandLink actionListener="#{usuarioController.registrar()}" class="btn btn-primary">Añadir Usuario</h:commandLink> 
-                            </div>
-                        </div>
-                    </h:panelGroup>
-                </h:form>
-            </div>
-        </div>
-        modal registro-->
+        
 
         <!--modal editar-->
         <div class="modal fade" id="modalEditarUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

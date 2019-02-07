@@ -13,13 +13,15 @@
     <ui:define name="content">
         <div class="content">
             <div class="row">
-                <h:form>
-                    <h:panelGroup>
-                        <div class="col-md-12"> 
-                            <h:messages showDetail="true" styleClass="alert" style="list-style: none; padding: 0px; display: block" infoClass="alert-success" errorClass="alert-danger"/>
-                        </div>
-                    </h:panelGroup>
-                </h:form>    
+                <div class="col-md-6">
+                    <ol class="breadcrumb">
+                        <li><a href="index.xhtml">Usuarios /</a></li>
+                        <li class="active">/ Nuevo Usuario</li>
+                    </ol>
+                </div>
+                <div class="col-md-6"> 
+                    <h:messages showDetail="true" styleClass="alert" style="list-style: none; padding: 0px; display: block" infoClass="alert-success" errorClass="alert-danger"/>
+                </div>
             </div>
             <div class="container-fluid">
                 <div class="row">
@@ -41,19 +43,19 @@
                                                     <h:inputText id="nombres" value="#{usuarioController.nuevoUsuario.nombres}"
                                                                  a:type="text" 
                                                                  class="form-control"  
-                                                                 a:placeholder="Nombres" required="true"/>
+                                                                 a:placeholder="Nombres" a:required="s"/>
                                                 </div>
                                                 <div class="col-6">
                                                     <h:inputText id="apellidos" value="#{usuarioController.nuevoUsuario.apellidos}" 
                                                                  a:type="text" 
                                                                  class="form-control"  
-                                                                 a:placeholder="Apellidos" required="true"/>
+                                                                 a:placeholder="Apellidos" a:required=""/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-6">
                                                     <h:inputText id="fechaNacimiento" value="#{usuarioController.nuevoUsuario.fechaNacimiento}"
-                                                                 class="form-control" required="true"
+                                                                 class="form-control" a:required=""
                                                                  a:type="date"
                                                                  a:aria-invalid="false"
                                                                  a:placeholder="Ingrese su fecha de Nacimiento">
@@ -64,7 +66,7 @@
                                                     <h:inputText id="direccion" value="#{usuarioController.nuevoUsuario.direccion}" 
                                                                  a:type="text" 
                                                                  class="form-control" 
-                                                                 a:placeholder="Direccion" required="true"/>
+                                                                 a:placeholder="Direccion" a:required=""/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -80,20 +82,20 @@
                                                                  a:type="text"
                                                                  class="form-control" 
                                                                  a:placeholder="Numero de documento" 
-                                                                 required="true"/>
+                                                                 a:required=""/>
                                                 </div>                                                
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-5">
+                                                <div class="col-6">
                                                     <label for="correo" class="control-label mb-1">Correo</label>
                                                     <h:inputText id="correo" value="#{usuarioController.nuevoUsuario.correo}"  
                                                                  a:type="email" 
                                                                  class="form-control" 
-                                                                 a:placeholder="usuario@correo.com" required="true"/>
+                                                                 a:placeholder="usuario@correo.com" a:required=""/>
                                                 </div>
-                                                <div class="col-7">
+                                                <div class="col-6">
                                                     <label for="rolList" class="control-label mb-1">Roles</label>
-                                                    <h:selectManyCheckbox id="rolList" value="#{usuarioController.nuevoUsuario.rolList}" class="form-control" converter="rolConverter">
+                                                    <h:selectManyCheckbox id="rolList" value="#{usuarioController.nuevoUsuario.setRolList(rolList)}" class="form-control" converter="rolConverter">
                                                         <f:selectItems value="#{rolController.rolList}"  var="r" itemLabel="#{r.nombre}&nbsp;&nbsp;"/>
                                                     </h:selectManyCheckbox>
                                                 </div>
@@ -103,13 +105,13 @@
                                                     <h:inputText id="contrasena" value="#{usuarioController.nuevoUsuario.contrasena}" 
                                                                  a:type="password" 
                                                                  class="form-control" 
-                                                                 a:placeholder="Contraseña" required="true"/>
+                                                                 a:placeholder="Contraseña" a:required=""/>
                                                 </div>
                                                 <div class="col-6">
                                                     <h:inputText id="confirmarClave" value="#{usuarioController.confirmarClave}"
                                                                  a:type="password" 
                                                                  class="form-control"  
-                                                                 a:placeholder="Confirmar Contraseña" required="true"/>
+                                                                 a:placeholder="Confirmar Contraseña" a:required=""/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -117,7 +119,7 @@
                                                     <h:inputText id="telefonos" value="#{usuarioController.nuevoUsuario.telefonos}"
                                                                  a:type="text" 
                                                                  class="form-control"  
-                                                                 a:placeholder="Ingrese un telefono" required="true"/>
+                                                                 a:placeholder="Ingrese un telefono" a:required=""/>
                                                 </div>
                                                 <div class="col-4">
                                                     <h:selectOneRadio id="genero" value="#{usuarioController.nuevoUsuario.genero}"

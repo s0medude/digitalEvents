@@ -60,8 +60,12 @@
                             </p>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cuenta">
-                            <h:commandLink class="dropdown-item" actionListener="#{sessionController.closeSession()}">
-                                <i class="fa fa-power -off"></i>Cerrar Sesion</h:commandLink>
+                            <h:form>
+                                <h:commandLink class="dropdown-item" actionListener="#{sessionController.closeSession()}">
+                                    <i class="fa fa-power -off"></i>
+                                    <span>Cerrar Sesion</span>
+                                </h:commandLink>
+                            </h:form>
                         </div>
                     </li>
                 </ul>

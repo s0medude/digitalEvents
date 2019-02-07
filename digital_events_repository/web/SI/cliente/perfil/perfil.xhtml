@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/includes/template/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:define name="content">
+        <div class="content">
+            <div class="row">
+                <h:form>
+                    <h:panelGroup>
+                        <div class="col-md-12"> 
+                            <h:messages showDetail="true" styleClass="alert" style="list-style: none; padding: 0px; display: block" infoClass="alert-success" errorClass="alert-danger"/>
+                        </div>
+                    </h:panelGroup>
+                </h:form>    
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <h:form>
+                                <div class="card-header card-header-success colorc">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4 class="card-title">Formulario Actualizar Perfil</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <h:form id="formPerfilUsuario" prependId="false" a:novalidate="novalidate" class="row">
+                                        <ui:repeat value="#{usuarioController.getUsuarioSessionList(u)}" var="u">
+                                            <div class="form-group">
+                                                <label for="id" class="control-label mb-1">ID Usuario</label>
+                                                <h:outputText id="id" value="#{u.id}" a:type="number" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tipoDocumento" class="control-label mb-1">Tipo Documento</label>
+                                                <h:selectOneMenu id="tiposDocumento" value="#{u.tiposDocumento}" class="form-control">
+                                                    <f:selectItem itemValue="" itemLabel="Seleccione un tipo de documento"/>
+                                                    <f:selectItems value="#{tipoDocumentoController.tiposDocumentoList}" var="t" itemLabel="#{t.nombre}"/>                                            
+                                                </h:selectOneMenu> 
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="documento" class="control-label mb-1">Numero Documento</label>
+                                                <h:inputText id="documento" value="#{u.documento}" class="form-control" a:type="number" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nombres" class="control-label mb-1">Nombres</label>
+                                                <h:inputText id="nombres" value="#{u.nombres}" class="form-control" a:type="text" a:required=""/>                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="apellidos" class="control-label mb-1">Apellidos</label>                                                
+                                                <h:inputText id="apellidos" value="#{u.apellidos}" class="form-control" a:type="text" a:required=""/>                                                   
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="direccion" class="control-label mb-1">Direccion</label>                                                
+                                                <h:inputText id="direccion" value="#{u.direccion}" class="form-control" a:type="text" a:required=""/>   
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="fechaNacimiento" class="control-label mb-1">FEcha Nacimiento</label>
+                                                <h:inputText id="fechaNacimiento" value="#{u.fechaNacimiento}" class="form-control" a:type="date" a:required="">
+                                                    <f:convertDateTime pattern="yyyy-MM-dd"/>
+                                                </h:inputText>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="correo" class="control-label mb-1">Correo</label>                                                             
+                                                <h:inputText id="correo" value="#{u.correo}" class="form-control" a:type="email" a:required=""/> 
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="contrasena" class="control-label mb-1">Contrasena</label>                                                                                
+                                                <h:inputSecret id="contrasena" value="#{u.contrasena}" class="form-control" a:required=""/> 
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="telefonos" class="control-label mb-1">Telefonos</label>                                                                                
+                                                <h:inputText id="telefonos" value="#{u.telefonos}" class="form-control" a:type="number" a:required=""/> 
+                                            </div>                                            
+                                            <div class="form-group">
+                                                <label for="genero" class="control-label mb-1">Genero</label>
+                                                <h:selectOneRadio id="genero" value="#{u.genero}" class="form-control">
+                                                    <f:selectItem itemValue="1" itemLabel="Masculino&nbsp;&nbsp;"/>
+                                                    <f:selectItem itemValue="2" itemLabel="Femenino&nbsp;&nbsp;"/>
+                                                    <f:selectItem itemValue="3" itemLabel="Otro"/>
+                                                </h:selectOneRadio>
+                                            </div>                                            
+                                            <div class="form-group">
+                                                <label for="estado" class="control-label mb-1">Estado</label>
+                                                <h:selectOneMenu id="estado" value="#{u.estado}" class="form-control">
+                                                    <f:selectItem itemValue="" itemLabel="Seleccione un nuevo estado"/>
+                                                    <f:selectItems value="#{usuarioController.estadosUsuarioList}" var="e" itemLabel="#{e.estado}"/> 
+                                                </h:selectOneMenu>
+                                            </div>                                            
+                                        </ui:repeat>                                                     
+                                    </h:form>
+                                </div>
+                                <div class="card-footer">                            
+                                    <h:commandLink action="#{usuarioController.actualizar()}" class="btn btn-primary btn-block">Actualizar Informacion</h:commandLink> 
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+

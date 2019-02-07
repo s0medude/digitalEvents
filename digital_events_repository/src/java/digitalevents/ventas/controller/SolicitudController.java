@@ -146,7 +146,7 @@ public class SolicitudController implements Serializable {
 
     public void eliminar() {
         try {
-            sDAO.delete(nuevaSolicitud);
+            sDAO.delete(solicitudSeleccionada);
             MessageUtil.addInfoMessage(null, "Eliminación exitosa", "Los datos de la solicitud se han eliminado correctamente,", false);
         } catch (Exception e) {
             e.printStackTrace();

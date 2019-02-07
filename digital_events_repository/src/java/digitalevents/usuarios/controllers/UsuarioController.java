@@ -5,6 +5,8 @@
  */
 package digitalevents.usuarios.controllers;
 
+import digitalevents.login.controllers.SessionController;
+import digitalevents.utils.Mail;
 import edu.digitalEvents.modelo.dao.IEstadoUsuarioDAO;
 import edu.digitalEvents.modelo.dao.ITipoDocumentoDAO;
 import edu.digitalEvents.modelo.dao.IUsuarioDAO;
@@ -43,7 +45,11 @@ public class UsuarioController implements Serializable {
     private Usuario nuevoUsuario;
     private Usuario usuarioSeleccionado;
     private List<Usuario> usuariosList;
+    private List<Usuario> usuarioSessionList;
     private List<EstadoUsuario> estadosUsuarioList;
+    private Usuario user;
+    private SessionController session;
+    private Mail mail;
 
     /**
      * Creates a new instance of UsuarioController
@@ -83,6 +89,19 @@ public class UsuarioController implements Serializable {
         return usuariosList;
     }
     
+    public Usuario sessionUser() {
+        session = new SessionController();
+        user = session.usuarioSession();
+        return user;
+    }
+    
+    public List<Usuario> getUsuarioSessionList(Usuario u) {
+        if (usuarioSessionList == null || usuarioSessionList.isEmpty()) {
+            usuarioSessionList = uDAO.findById(sessionUser());
+        }
+        return usuarioSessionList;
+    }
+    
     public List<EstadoUsuario> getEstadosUsuarioList() {
         if (estadosUsuarioList ==  null || estadosUsuarioList.isEmpty()) {
             estadosUsuarioList = euDAO.findAll();
@@ -96,11 +115,13 @@ public class UsuarioController implements Serializable {
         usuarioSeleccionado = u;
     }
 
-    public String registrar() {
-        String rta = "";
+    public void registrar() {
+        session = new SessionController();
         try {
             if (confirmarClave != null && confirmarClave.trim().length() > 5 && confirmarClave.equals(nuevoUsuario.getContrasena())) {
                 uDAO.register(nuevoUsuario);
+                String cuerpo = "SE HA REGISTRADO EXITOSAMENTE EN NUESTRO SISTEMA. Ahora puedes ingresar con tu correo: " + nuevoUsuario.getCorreo() + "y contrasena: " + nuevoUsuario.getContrasena() + "Recuerda que estos datos son personales e intrasferibles";
+                Mail.sendMail(nuevoUsuario.getCorreo(), "BIENVENIDO - DIGITAL EVENTS", cuerpo );
                 MessageUtil.addInfoMessage(null, "REGISTRO EXITOSO", "", false);
             } else {
                 MessageUtil.addErrorMessage(null, "Error de validación", "Las claves no son identicas verifique y vuelva a intentarlo.", false);
@@ -108,7 +129,6 @@ public class UsuarioController implements Serializable {
         } catch (Exception e) {
             MessageUtil.addErrorMessage(null, "Error al registrar el usuario", e.getMessage(), false);
         }
-        return rta;
     }
 
     public void actualizar() {

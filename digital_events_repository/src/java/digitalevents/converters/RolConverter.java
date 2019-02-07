@@ -31,7 +31,7 @@ public class RolConverter implements Converter {
         try {
             System.out.println("fgdfsaghdhafgsdashfdghasfdgfaghsdhafghsdafdhasd - ROL asObject");
             return rDAO.findByPK(Integer.valueOf(value));
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return null;
         }
     }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package digitalevents.grafrico.controller;
+package digitalevents.grafico.controller;
 
 import edu.digitalEvents.modelo.dao.IEventoDAO;
 import edu.digitalEvents.modelo.dao.IEventoReservadoViewDAO;
@@ -23,9 +23,9 @@ import javax.faces.view.ViewScoped;
  *
  * @author Aprendiz
  */
-@Named(value = "grafricoReservasController")
+@Named(value = "graficoReservasController")
 @ViewScoped
-public class GrafricoReservasController implements  Serializable{
+public class GraficoReservasController implements  Serializable{
 
     /**
      * Creates a new instance of GrafricoReservasController
@@ -34,11 +34,12 @@ public class GrafricoReservasController implements  Serializable{
     private IEventoReservadoViewDAO IER;
     @EJB
     private ISolicitudDAO solicituadDao;
+    
     private ArrayList<String> fechaReserva = new ArrayList<String>();
     private ArrayList<Integer> numeroEventos = new ArrayList<Integer>();
     private ArrayList<EventoReservadoView> eventoreserva;
 
-    public GrafricoReservasController() {
+    public GraficoReservasController() {
 
     }
 

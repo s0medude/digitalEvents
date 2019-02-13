@@ -5,8 +5,8 @@
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              xmlns:p="http://primefaces.org/ui">
     <script>
-        var fechaReserva = [#{grafricoReservasController.graficoReserva(grafricoReservasController.fechaReserva, ",")}];
-        var numeroEventos = [#{grafricoReservasController.graficoReserva(grafricoReservasController.numeroEventos, ",")}];
+        var fechaReserva = [#{graficoReservasController.graficoReserva(graficoReservasController.fechaReserva, ",")}];
+        var numeroEventos = [#{graficoReservasController.graficoReserva(graficoReservasController.numeroEventos, ",")}];
         window.onload = function ()
         {
             zingchart.render
@@ -19,7 +19,7 @@
                                     "type": "bar",
                                     "title":
                                             {
-                                                "text": "Grafrico "
+                                                "text": "Grafico "
                                             },
                                     "scale-x":
                                             {
@@ -39,6 +39,9 @@
                     });
         };
     </script>
-    <div id="myChart"></div>
+    
+    <div class="container-row">
+        <div id="myChart" class="col-md-6"></div>
+    </div>
 </ui:fragment>
 

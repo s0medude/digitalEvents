@@ -15,7 +15,8 @@
                 <h:messages showDetail="true" styleClass="alert" style="list-style: none; padding: 0px; display: block" infoClass="alert-success" errorClass="alert-danger"/>
             </h:panelGroup>
         </h:form>
-        <div class="content">            
+        <div class="content">  
+
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
@@ -26,13 +27,13 @@
                                         <div class="col-6">
                                             <h4 class="card-title">Usuarios del Sistema</h4>
                                             <p class="card-category">Aquí encontraras todos los usuarios registrados en el sistema.</p>
-                                            
+
                                         </div>
                                         <div class="col-6">                                          
-                                            <h:commandLink class="card-category btn btn-danger btn-flat m-b-30 m-t-30" action="#{reportesController.export()}" value="PDF" >
+                                            <h:commandLink class="card-category btn btn-danger btn-flat m-b-30 m-t-30" action="#" value="PDF" >
                                                 <i class="fas fa-file-pdf"></i>
                                             </h:commandLink>&nbsp;&nbsp;
-                                            <h:commandLink class="card-category btn btn-primary btn-flat m-b-30 m-t-30" action="#{reportesController.exportPDF()}" value="EXCEL">
+                                            <h:commandLink class="card-category btn btn-primary btn-flat m-b-30 m-t-30" action="#" value="EXCEL">
                                                 <i class="fas fa-file-excel"></i>
                                             </h:commandLink>&nbsp;&nbsp;
                                             <a class="btn btn-info" href="registrar.xhtml" >                                                     
@@ -65,7 +66,7 @@
                                                     <h:commandLink class="td-actions text-right btn btn-danger" actionListener="#{usuarioController.usuarioSeleccionado(u)}"
                                                                    a:data-toggle="modal" a:data-target="#modalEliminarUser" a:rel="tooltip" >
                                                         <f:ajax render=":modalEliminarUserContent"/>
-                                                        <i class="material-icons">close</i>
+                                                        <i class="material-icons">delete</i>
                                                     </h:commandLink>
                                                 </h:column>
                                             </h:dataTable>
@@ -77,11 +78,89 @@
                     </div>
                 </div>
             </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <h:form>
+                                <div class="card-header card-header-success colorc">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h4 class="card-title">Roles de Usuario</h4>                                            
+                                        </div>
+                                        <div class="col-6">
+                                            <a class="btn btn-info" href="registrar.xhtml">                                                     
+                                                <i class="material-icons movericon">person_add</i>
+                                                <span>Añadir Rol</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <h:form>
+                                            <h:dataTable class="table table-striped text-center" var="u" value="#{rolController.rolList}" >
+                                                <h:column><f:facet name="header">ID</f:facet>#{u.id}</h:column>
+                                                <h:column><f:facet name="header">NOMBRE</f:facet>#{u.nombre}</h:column>
+                                                <h:column><f:facet name="header">OPCIONES</f:facet>                                                    
+                                                    <h:commandLink class="td-actions text-right btn btn-danger" actionListener="#{usuarioController.usuarioSeleccionado(u)}"
+                                                                   a:data-toggle="modal" a:data-target="#modalEliminarUser" a:rel="tooltip" >
+                                                        <f:ajax render=":modalEliminarUserContent"/>
+                                                        <i class="material-icons">delete</i>
+                                                    </h:commandLink>
+                                                </h:column>
+                                            </h:dataTable>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>                        
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <h:form>
+                                <div class="card-header card-header-success colorc">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h4 class="card-title">Tipos Documento</h4>                                            
+                                        </div>
+                                        <div class="col-6">
+                                            <a class="btn btn-info" href="registrar.xhtml">                                                     
+                                                <i class="material-icons movericon">person_add</i>
+                                                <span>Añadir T.D</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <h:form>
+                                            <h:dataTable class="table table-striped text-center" var="u" value="#{tipoDocumentoController.tiposDocumentoList}" >
+                                                <h:column><f:facet name="header">ID</f:facet>#{u.id}</h:column>
+                                                <h:column><f:facet name="header">SIGLA</f:facet>#{u.sigla}</h:column>
+                                                <h:column><f:facet name="header">NOMBRE</f:facet>#{u.nombre}</h:column>
+                                                <h:column><f:facet name="header">OPCIONES</f:facet>                                                    
+                                                    <h:commandLink class="td-actions text-right btn btn-danger" actionListener="#"
+                                                                   a:data-toggle="modal" a:data-target="#modalEliminarUser" a:rel="tooltip" >
+                                                        <f:ajax render=":modalEliminarUserContent"/>
+                                                        <i class="material-icons">delete</i>
+                                                    </h:commandLink>
+                                                </h:column>
+                                            </h:dataTable>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
         </div>
     </ui:define>
     <ui:define name="modals-page">
 
-        
+
 
         <!--modal editar-->
         <div class="modal fade" id="modalEditarUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -143,7 +222,7 @@
                                         </div>
                                         <div class="col-7">
                                             <label for="rol" class="control-label mb-1">Roles</label>
-                                            <h:selectManyCheckbox id="rol" value="#{usuarioController.usuarioSeleccionado.rolList}"
+                                            <h:selectManyCheckbox id="rol" value="#{usuarioController.usuarioSeleccionado.rol}"
                                                                   class="form-control">
                                                 <f:selectItems value="#{rolController.rolList}"  var="r" itemLabel="#{r.nombre}&nbsp;&nbsp;"/>
                                             </h:selectManyCheckbox>
@@ -219,6 +298,8 @@
                                     <div class="form-group">#{usuarioController.usuarioSeleccionado.genero}</div>
                                     <label class="control-label mb-1">Estado:</label>
                                     <div class="form-group">#{usuarioController.usuarioSeleccionado.estado.estado}</div>
+                                    <label class="control-label mb-1">Rol:</label>
+                                    <div class="form-group">#{usuarioController.usuarioSeleccionado.rol.nombre}</div>
                                 </div>
                             </h:form>
                         </div>

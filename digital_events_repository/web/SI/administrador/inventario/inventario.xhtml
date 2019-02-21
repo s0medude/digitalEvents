@@ -49,6 +49,11 @@
                                                     <f:ajax render=":modalEliminarMaterialContent"/>
                                                     <i class="material-icons">close</i>
                                                 </h:commandLink>
+                                                <h:commandLink class="td-actions text-right btn btn-info" actionListener="#{inventarioController.materialSeleccionado(m)}"
+                                                               a:data-toggle="modal" a:data-target="#modalImagenMaterial" rel="tooltip" >
+                                                    <f:ajax render=":modalImagenContent"/>
+                                                    <i class="fas fa-file-image"></i>
+                                                </h:commandLink>
                                             </h:column>                                                 
                                         </h:dataTable>
                                     </h:form>
@@ -111,7 +116,7 @@
                                                 <f:selectItems value="#{inventarioController.estadoMaterialList}" var="t" itemLabel="#{t.estado}"/>                                            
                                             </h:selectOneMenu>  
                                         </div>
-                                    </div>
+                                    </div>                                    
                                 </h:form>
                             </div>
                             <div class="modal-footer">
@@ -148,6 +153,45 @@
             </div>
         </div>
         <!--modal eliminar--> 
+
+        <!--modal imagen-->
+        <div class="modal fade" id="modalImagenMaterial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <h:form prependId="false" enctype="multipart/form-data">
+                    <h:panelGroup id="modaImagenContent" class="modal-content" layout="block">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title titulom" id="exampleModalLabel">Actualizar Imagen Material</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+<!--                                <p:dataTable value="#{inventarioController.materialSeleccionado}" var="item">
+                                    <p:column>
+                                        <p:graphicImage value="#">
+                                            <f:param name="id" value="#{inventarioController.materialSeleccionado.id}" />
+                                        </p:graphicImage>
+                                    </p:column>
+                                </p:dataTable>-->
+                                <p:messages showDetail="true"/>
+                                <p:fileUpload value="#{inventarioController.file}"
+                                              update="messages"
+                                              mode="simple"
+                                              sizeLimit="1048576"
+                                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                                <p:growl id="messages" showDetail="true"/>                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">Cerrar</button>
+                                <p:commandButton class="btn btn-success letra-boton" value="Subir" ajax="false" actionListener="#{inventarioController.uploadFile()}"/>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+        </div>
+        <!--modal imagen-->
 
     </ui:define>
 

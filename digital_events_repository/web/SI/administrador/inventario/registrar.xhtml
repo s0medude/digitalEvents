@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <h:form>
+                            <h:form enctype="multipart/form-data">
                                 <div class="card-header card-header-success colorc">
                                     <div class="row">
                                         <div class="col-12">
@@ -38,45 +38,55 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <h:form id="formNuevoMaterial" prependId="false" a:novalidate="novalidate" class="row">
-                                        <h:panelGroup layout="block">
-                                            <div class="form-group row">
-                                                <div class="col-6">
-                                                    <label class="control-label mb-1">Tipo Material:</label>
-                                                    <h:inputText id="tipoMaterial" value="#{inventarioController.nuevoMaterial.tipoMaterial}"
-                                                                 class="form-control" a:type="text"/>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label class="control-label mb-1">Cantidad:</label>
-                                                    <h:inputText id="cantidad" value="#{inventarioController.nuevoMaterial.cantidad}"
-                                                                 class="form-control" a:type="number" maxlength="100" />
-                                                </div>
+                                    <h:panelGroup layout="block">
+                                        <div class="form-group row">
+                                            <div class="col-6">
+                                                <label class="control-label mb-1">Tipo Material:</label>
+                                                <h:inputText id="tipoMaterial" value="#{inventarioController.nuevoMaterial.tipoMaterial}"
+                                                             class="form-control" a:type="text"/>
                                             </div>
-                                            <div class="form-group row">
-                                                <div class="col-6">
-                                                    <label class="control-label mb-1">Estado:</label>
-                                                    <h:selectOneRadio id="estado" value="#{inventarioController.nuevoMaterial.estado}"
-                                                                      class="form-control">
-                                                        <f:selectItem itemValue="BUENO" itemLabel="Bueno&nbsp;&nbsp;"/>
-                                                        <f:selectItem itemValue="MALO" itemLabel="Malo&nbsp;&nbsp;"/>
-                                                    </h:selectOneRadio>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="disponilidad" class="control-label mb-1">Disponibilidad:</label>
-                                                    <h:selectOneMenu id="disponilidad" value="#{inventarioController.nuevoMaterial.disponilidad}"
-                                                                     class="form-control" converter="disponilidadConverter">
-                                                        <f:selectItem itemValue="" itemLabel="Seleccione si se encuentra disponible"/>
-                                                        <f:selectItems value="#{inventarioController.estadoMaterialList}" var="t" itemLabel="#{t.estado}"/>                                            
-                                                    </h:selectOneMenu>  
-                                                </div>
+                                            <div class="col-6">
+                                                <label class="control-label mb-1">Cantidad:</label>
+                                                <h:inputText id="cantidad" value="#{inventarioController.nuevoMaterial.cantidad}"
+                                                             class="form-control" a:type="number" maxlength="100" />
                                             </div>
-
-
-                                        </h:panelGroup>
-                                    </h:form>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-6">
+                                                <label class="control-label mb-1">Estado:</label>
+                                                <h:selectOneRadio id="estado" value="#{inventarioController.nuevoMaterial.estado}"
+                                                                  class="form-control">
+                                                    <f:selectItem itemValue="BUENO" itemLabel="Bueno&nbsp;&nbsp;"/>
+                                                    <f:selectItem itemValue="MALO" itemLabel="Malo&nbsp;&nbsp;"/>
+                                                </h:selectOneRadio>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="disponilidad" class="control-label mb-1">Disponibilidad:</label>
+                                                <h:selectOneMenu id="disponilidad" value="#{inventarioController.nuevoMaterial.disponilidad}"
+                                                                 class="form-control">
+                                                    <f:selectItem itemValue="" itemLabel="Seleccione si se encuentra disponible"/>
+                                                    <f:selectItems value="#{inventarioController.estadoMaterialList}" var="t" itemLabel="#{t.estado}"/>                                            
+                                                </h:selectOneMenu>  
+                                            </div>
+                                        </div>
+                                        <!--
+                                        <div class="form-group row">
+                                            <label for="image" class="control-label mb-1">Seleccione Imagen:</label>
+                                            <div class="col-6">
+                                                <h:inputFile value="#{inventarioController.image}" />
+                                                <h:commandButton value="upload" action="#{inventarioController.doUpload()}">
+                                                    <f:ajax execute="@form" render="@form"/>
+                                                </h:commandButton>
+                                            </div>
+                                        </div>
+                                        -->                                        
+                                    </h:panelGroup>
                                 </div>
                                 <div class="card-footer">                            
-                                    <h:commandLink action="#{inventarioController.registrar()}" class="btn btn-primary btn-block">Añadir Material</h:commandLink> 
+                                    <h:commandLink value="Añadir Material"                                                     
+                                                   action="#{inventarioController.registrar()}"
+                                                   hreflang="inventario.xhmtl"
+                                                   class="btn btn-primary btn-block"/>                                    
                                 </div>
                             </h:form>
                         </div>

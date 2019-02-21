@@ -10,12 +10,23 @@ import edu.digitalEvents.modelo.dao.IDisponibilidadMaterialDAO;
 import edu.digitalEvents.modelo.dao.IMaterialDAO;
 import edu.digitalEvents.modelo.entities.DisponilidadMaterial;
 import edu.digitalEvents.modelo.entities.Material;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.servlet.http.Part;
+import org.apache.poi.util.IOUtils;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -32,10 +43,14 @@ public class InventarioController implements Serializable {
 
     private Material nuevoMaterial;
     private Material materialSeleccionado;
+    private Material current;
     private List<Material> materialList;
 
     private DisponilidadMaterial dispMaterial;
     private List<DisponilidadMaterial> estadoMaterialList;
+
+    private UploadedFile file;
+    private Part image;
 
     /**
      * Creates a new instance of inventarioController
@@ -71,13 +86,29 @@ public class InventarioController implements Serializable {
         }
         return estadoMaterialList;
     }
-    
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
+
+    public Part getImage() {
+        return image;
+    }
+
+    public void setImage(Part image) {
+        this.image = image;
+    }
+
     public void materialSeleccionado(Material m) {
         System.out.println("Se selecciono el articulo: ");
         System.out.println(m);
         materialSeleccionado = m;
     }
-    
+
     public void actualizar() {
         try {
             mDAO.update(materialSeleccionado);
@@ -87,20 +118,20 @@ public class InventarioController implements Serializable {
             MessageUtil.addErrorMessage(null, "Error al actualizar el material", e.getMessage(), false);
         }
     }
-    
-    public String registrar() {
-        String rta = "";
+
+    public void registrar() {
         try {
-            if (nuevoMaterial.getId() != null || nuevoMaterial.getDisponilidad().equals(dispMaterial.getId())) {
+            if (nuevoMaterial.getCantidad() > 0) {
                 mDAO.register(nuevoMaterial);
-                MessageUtil.addInfoMessage(null, "REGISTRO EXITOSO", "", false);
+                MessageUtil.addInfoMessage(null, "REGISTRO EXITOSO", "El material se inserto correctamente", false);
+
             } else {
-                MessageUtil.addErrorMessage(null, "Error de validación", "", false);
+                MessageUtil.addErrorMessage(null, "Error de validación", "Fallo algo al resgistrar", false);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             MessageUtil.addErrorMessage(null, "Error al registrar el material", e.getMessage(), false);
         }
-        return rta;
     }
 
     public void eliminar() {
@@ -113,5 +144,50 @@ public class InventarioController implements Serializable {
 
         }
     }
-    
+
+    public void upload(FileUploadEvent event) {
+        UploadedFile uploadedFile = event.getFile();
+        String filename = uploadedFile.getFileName();
+        String contentType = uploadedFile.getContentType();
+        byte[] contents = uploadedFile.getContents();
+    }
+
+    public void doUpload() {
+        try {
+            InputStream in = image.getInputStream();
+            File f = new File("/Users/Usuario/Desktop/CopiaProyecto/" + image.getSubmittedFileName());
+            f.createNewFile();
+            FileOutputStream out = new FileOutputStream(f);
+
+            byte[] buffer = new byte[1024];
+            int length;
+
+            while ((length = in.read(buffer)) > 0) {
+                out.write(buffer, 0, length);
+            }
+
+            out.close();
+            in.close();
+
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+    }
+
+    public void uploadFile() {
+        if (file != null) {
+            try {
+                byte[] data = file.getContents();
+                mDAO.udpateByImage(data, materialSeleccionado.getId());
+                MessageUtil.addInfoMessage(null, "Actualización exitosa", "La imagen ha sido cargada correctamente", false);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                MessageUtil.addInfoMessage(null, "ERROR", "INTENTALO D ENUEVO PENDEJO", false);
+            }
+
+        }
+
+    }
+
 }

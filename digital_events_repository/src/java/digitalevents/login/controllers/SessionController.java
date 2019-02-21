@@ -79,8 +79,7 @@ public class SessionController implements Serializable {
             user = uDAO.findByCorreoAndContra(email, password);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("session", user);
             if (user != null) {
-                if (user.getRolList() != null && !user.getRolList().isEmpty()) {
-                    rol = user.getRolList().get(0);
+                if (user.getRol() != null) {
                     url = "/SI/index.xhtml";
                 } else {
                     user = null;

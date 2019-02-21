@@ -43,7 +43,7 @@
                                                     <h:inputText id="nombres" value="#{usuarioController.nuevoUsuario.nombres}"
                                                                  a:type="text" 
                                                                  class="form-control"  
-                                                                 a:placeholder="Nombres" a:required="s"/>
+                                                                 a:placeholder="Nombres" a:required=""/>
                                                 </div>
                                                 <div class="col-6">
                                                     <h:inputText id="apellidos" value="#{usuarioController.nuevoUsuario.apellidos}" 
@@ -94,10 +94,11 @@
                                                                  a:placeholder="usuario@correo.com" a:required=""/>
                                                 </div>
                                                 <div class="col-6">
-                                                    <label for="rolList" class="control-label mb-1">Roles</label>
-                                                    <h:selectManyCheckbox id="rolList" value="#{usuarioController.nuevoUsuario.setRolList(rolList)}" class="form-control" converter="rolConverter">
-                                                        <f:selectItems value="#{rolController.rolList}"  var="r" itemLabel="#{r.nombre}&nbsp;&nbsp;"/>
-                                                    </h:selectManyCheckbox>
+                                                    <label for="rol" class="control-label mb-1">Roles</label>
+                                                    <h:selectOneMenu id="rol" value="#{usuarioController.nuevoUsuario.rol}" class="form-control">
+                                                        <f:selectItem itemValue="" itemLabel="Seleccione un rol"/>
+                                                        <f:selectItems value="#{rolController.rolList}"  var="r" itemLabel="#{r.nombre}"/>
+                                                    </h:selectOneMenu>
                                                 </div>
                                             </div>
                                             <div class="form-group row">

@@ -142,8 +142,8 @@
                                                          a:placeholder="usuario@correo.com" required="true"/>
                                         </div>
                                         <div class="col-7">
-                                            <label for="rol1" class="control-label mb-1">Roles</label>
-                                            <h:selectManyCheckbox id="rol1" value="#{usuarioController.nuevoUsuario.rolList}"
+                                            <label for="rol" class="control-label mb-1">Roles</label>
+                                            <h:selectManyCheckbox id="rol" value="#{usuarioController.nuevoUsuario.rol}"
                                                                   class="form-control">
                                                 <f:selectItems value="#{rolController.rolList}"  var="r" itemLabel="#{r.nombre}&nbsp;&nbsp;"/>
                                             </h:selectManyCheckbox>

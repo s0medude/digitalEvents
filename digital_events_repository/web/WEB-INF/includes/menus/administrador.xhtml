@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:fragment xmlns="http://www.w3.org/1999/xhtml"
              xmlns:h="http://xmlns.jcp.org/jsf/html"
-             xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             xmlns:a="http://java.sun.com/jsf/passthrough">
 
     
 
@@ -26,6 +27,14 @@
             </p>
         </a>
         <div class="collapse" id="ventas">
+            <ul class="nav">
+                <li class="nav-item ">
+                    <a class="nav-link l" href="#{request.contextPath}/SI/administrador/ventas/indexVentas.xhtml">
+                        <i class="far fa-calendar-plus"></i>
+                        <span class="sidebar-normal">Eventos</span>
+                    </a>
+                </li>
+            </ul>
             <ul class="nav">
                 <li class="nav-item ">
                     <a class="nav-link l" href="#{request.contextPath}/SI/administrador/ventas/solicitud.xhtml">
@@ -66,5 +75,6 @@
             <p>Inventario</p>
         </a>
     </li>
+  
 </ui:fragment>
 

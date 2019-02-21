@@ -17,7 +17,7 @@ import javax.faces.convert.FacesConverter;
  *
  * @author Nicolas PC
  */
-@FacesConverter(value = "disponilidadConverter")
+@FacesConverter(forClass = DisponilidadMaterial.class)
 public class DisponibilidadMaterialConverter implements Converter {
 
     private final IDisponibilidadMaterialDAO dmDAO;
@@ -29,8 +29,9 @@ public class DisponibilidadMaterialConverter implements Converter {
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         try {
+            System.out.println("dadefsdfdgdgeefeknhyug - DispMaterial asObject");
             return dmDAO.findByPK(Integer.valueOf(value));
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return null;
         }
     }
@@ -38,6 +39,7 @@ public class DisponibilidadMaterialConverter implements Converter {
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object obj) {
         try {
+            System.out.println("asdfghjkloiuytrehbhb- DispoMaterial asString");
             return ((DisponilidadMaterial) obj).getId().toString();
         } catch (Exception e) {
             return "";

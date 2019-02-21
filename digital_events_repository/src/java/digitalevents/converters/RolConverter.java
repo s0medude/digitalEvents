@@ -17,7 +17,7 @@ import edu.digitalEvents.modelo.dao.IRolDAO;
  *
  * @author Nicolas PC
  */
-@FacesConverter(value = "rolConverter")
+@FacesConverter(forClass = Rol.class)
 public class RolConverter implements Converter {
 
     private final IRolDAO rDAO;

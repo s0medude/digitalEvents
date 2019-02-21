@@ -3,10 +3,11 @@
 <ui:fragment xmlns="http://www.w3.org/1999/xhtml"
              xmlns:h="http://xmlns.jcp.org/jsf/html"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-             xmlns:f="http://xmlns.jcp.org/jsf/core">
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:a="http://java.sun.com/jsf/passthrough">
 
-
-    <div class="sidebar" data-color="danger" data-background-color="white" data-image="../../img/sidebar-1.jpg">
+    
+    <div id="sidebar" class="sidebar" data-color="danger" data-background-color="white">        
         <div class="logo">
             <img src="#{request.contextPath}/resources/img/logoNegro.png" alt="" class=""/>
         </div>        
@@ -14,35 +15,34 @@
             <div style="color: #FFFFFF;">
                 <h:form prependId="false">
                     <div class="form-group">
-                        <h:selectOneMenu class="form-control text-center"
-                                         value="#{sessionController.rol}" onchange="submit();">
-                            <f:selectItems class="form-control" value="#{sessionController.user.rolList}" var="r" itemLabel="#{r.nombre}"/>
-                        </h:selectOneMenu>
+                        <h:outputText class="form-control text-center" value="#{sessionController.user.rol.nombre}">
+                        </h:outputText>
                     </div>
                 </h:form>
             </div>
-            <ul class="nav">
+            <ul class="nav navbar-nav">
                 <li class="nav-item active" >
                     <a class="nav-link" href="#{request.contextPath}/SI/index.xhtml">
                         <i class="material-icons">dashboard</i>
                         <p>Inicio</p>
                     </a>
                 </li>
-                <h:panelGroup rendered="#{sessionController.rol.id eq 1}" layout="block">
+                <h:panelGroup rendered="#{sessionController.user.rol.id eq 1}" layout="block">
                     <ui:include src="/WEB-INF/includes/menus/administrador.xhtml"/>
                 </h:panelGroup>
-                <h:panelGroup rendered="#{sessionController.rol.id eq 2}" layout="block">
+                <h:panelGroup rendered="#{sessionController.user.rol.id eq 2}" layout="block">
                     <ui:include src="/WEB-INF/includes/menus/coordinador.xhtml"/>
                 </h:panelGroup>
-                <h:panelGroup rendered="#{sessionController.rol.id eq 3}" layout="block">
+                <h:panelGroup rendered="#{sessionController.user.rol.id eq 3}" layout="block">
                     <ui:include src="/WEB-INF/includes/menus/recreador.xhtml"/>
                 </h:panelGroup>
-                <h:panelGroup rendered="#{sessionController.rol.id eq 4}" layout="block">
+                <h:panelGroup rendered="#{sessionController.user.rol.id eq 4}" layout="block">
                     <ui:include src="/WEB-INF/includes/menus/cliente.xhtml"/>
                 </h:panelGroup>
             </ul>
         </div>
     </div>
+
 
 </ui:fragment>
 

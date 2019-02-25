@@ -43,14 +43,9 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @Named(value = "reportesController")
 @ViewScoped
 public class ReportesController implements Serializable {
-    
     @EJB
-    IUsuarioDAO uDAO;
-    
+    private IUsuarioDAO uDAO;
     private List<Usuario> usuarioList;
-    
-
- 
 
     /**
      * Creates a new instance of ReportesController
@@ -63,18 +58,15 @@ public class ReportesController implements Serializable {
     }
 
     public List<Usuario> getUsuarioList() {
-        if (usuarioList ==  null || usuarioList.isEmpty()) {
-            usuarioList = uDAO.findAll();
+        if(usuarioList==null || usuarioList.isEmpty()){
+            usuarioList=uDAO.findAll();
+            System.out.println("Jsds");
         }
+        
+            
         return usuarioList;
     }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
-    }
     
-    
-
 
 
 //    public void exportarPDF() {
@@ -143,24 +135,22 @@ public class ReportesController implements Serializable {
 //        fc.responseComplete();
 //    }
 
-    public void export() throws JRException {
+    public void export(){
         try {
             System.out.println("VAMOS A IMPRIMIR EL REPORTE");
-            
             FacesContext fc = FacesContext.getCurrentInstance();
             ExternalContext ec = fc.getExternalContext();
-            File jasper = new File(ec.getRealPath("/SI/reportes/reporteUsuarios.jasper"));          
+            File jasper = new File(ec.getRealPath("/WEB-INF/classes/reportes/Reporte.jasper"));          
             //JRBeanCollectionDataSource jasperDS = new JRBeanCollectionDataSource(usuarioList);
-            //Map<String, Object> params = new HashMap<>();
-            JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), null, new JRBeanCollectionDataSource(usuarioList, false));
+            Map<String, Object> params = new HashMap<>();
+            JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), params, new JRBeanCollectionDataSource(getUsuarioList(), false));
             HttpServletResponse hsr = (HttpServletResponse) ec.getResponse();
             hsr.addHeader("Content-disposition", "attachment; filename=reporte.pdf");
             OutputStream os = hsr.getOutputStream();
             JasperExportManager.exportReportToPdfStream(jp, os);
             os.flush();
             os.close();
-            fc.responseComplete();            
-            MessageUtil.addInfoMessage(null, "EL ARCHIVO HA SIDO GENERADO", "EL REPORTE SE GUARDARA EN MOMENTOS", true);
+            fc.responseComplete();           
         } catch (JRException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {

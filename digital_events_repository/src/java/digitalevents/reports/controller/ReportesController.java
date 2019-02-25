@@ -6,14 +6,16 @@
 package digitalevents.reports.controller;
 
 //import edu.digitalEvents.modelo.dao.IReporteUsuariosViewDAO;
+import digitalevents.utils.MessageUtil;
+import edu.digitalEvents.modelo.dao.IMaterialDAO;
 import edu.digitalEvents.modelo.dao.IUsuarioDAO;
-//import edu.digitalEvents.modelo.entities.ReporteUsuariosView;
+import edu.digitalEvents.modelo.entities.Material;
 import edu.digitalEvents.modelo.entities.Usuario;
+//import edu.digitalEvents.modelo.entities.ReporteUsuariosView;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +27,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.mail.Message;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
@@ -40,35 +43,40 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @Named(value = "reportesController")
 @ViewScoped
 public class ReportesController implements Serializable {
-
+    
     @EJB
-    private IUsuarioDAO uDAO;
-    //@EJB
-  //  private IReporteUsuariosViewDAO rDAO;
+    IUsuarioDAO uDAO;
+    
+    private List<Usuario> usuarioList;
+    
 
-//    private List<ReporteUsuariosView> usuariosList;
-//    private JasperPrint jasper;
-//    Collection collection;
-//
-//    /**
-//     * Creates a new instance of ReportesController
-//     */
-//    public ReportesController() {
-//    }
-//
-//   
-//    @PostConstruct
-//    public void init() {
-//        collection = usuariosList;
-//    }
-//
-//    public List<ReporteUsuariosView> getUsuariosList() {
-//        if (usuariosList == null || usuariosList.isEmpty()) {
-//            usuariosList = rDAO.findAll();
-//        }
-//        return usuariosList;
-//    }
-//
+ 
+
+    /**
+     * Creates a new instance of ReportesController
+     */
+    public ReportesController() {
+    }
+
+    @PostConstruct
+    public void init() {
+    }
+
+    public List<Usuario> getUsuarioList() {
+        if (usuarioList ==  null || usuarioList.isEmpty()) {
+            usuarioList = uDAO.findAll();
+        }
+        return usuarioList;
+    }
+
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
+    }
+    
+    
+
+
+
 //    public void exportarPDF() {
 //        try {
 //            FacesContext fc = FacesContext.getCurrentInstance();
@@ -134,28 +142,30 @@ public class ReportesController implements Serializable {
 //        out.close();
 //        fc.responseComplete();
 //    }
-//    
-//    public void export() throws JRException {        
-//        try {            
-//            System.out.println("VAMOS A IMPRIMIR EL REPORTE");
-//            FacesContext fc = FacesContext.getCurrentInstance();
-//            ExternalContext ec = fc.getExternalContext();
-//            File jasperF = new File(ec.getRealPath("/WEB-INF/includes/reportes/usuariosReport.jasper"));
-//            //Map<String, Object> params = new HashMap<>();
-//            JasperPrint jp = JasperFillManager.fillReport(jasperF.getPath(), null, new JRBeanCollectionDataSource(usuariosList, false));
-//            HttpServletResponse hsr = (HttpServletResponse) ec.getResponse();
-//            hsr.addHeader("Content-disposition", "attachment; filename=reporte.pdf");
-//            try (OutputStream os = hsr.getOutputStream()) {
-//                JasperExportManager.exportReportToPdfStream(jp, os);
-//                os.flush();
-//            }
-//            fc.responseComplete();
-//        } catch (JRException ex) {
-//            ex.printStackTrace();
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
-//        
-//    }
 
+    public void export() throws JRException {
+        try {
+            System.out.println("VAMOS A IMPRIMIR EL REPORTE");
+            
+            FacesContext fc = FacesContext.getCurrentInstance();
+            ExternalContext ec = fc.getExternalContext();
+            File jasper = new File(ec.getRealPath("/SI/reportes/reporteUsuarios.jasper"));          
+            //JRBeanCollectionDataSource jasperDS = new JRBeanCollectionDataSource(usuarioList);
+            //Map<String, Object> params = new HashMap<>();
+            JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), null, new JRBeanCollectionDataSource(usuarioList, false));
+            HttpServletResponse hsr = (HttpServletResponse) ec.getResponse();
+            hsr.addHeader("Content-disposition", "attachment; filename=reporte.pdf");
+            OutputStream os = hsr.getOutputStream();
+            JasperExportManager.exportReportToPdfStream(jp, os);
+            os.flush();
+            os.close();
+            fc.responseComplete();            
+            MessageUtil.addInfoMessage(null, "EL ARCHIVO HA SIDO GENERADO", "EL REPORTE SE GUARDARA EN MOMENTOS", true);
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+    }
 }

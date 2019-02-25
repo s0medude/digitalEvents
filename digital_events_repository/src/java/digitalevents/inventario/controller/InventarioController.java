@@ -10,6 +10,7 @@ import edu.digitalEvents.modelo.dao.IDisponibilidadMaterialDAO;
 import edu.digitalEvents.modelo.dao.IMaterialDAO;
 import edu.digitalEvents.modelo.entities.DisponilidadMaterial;
 import edu.digitalEvents.modelo.entities.Material;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,11 +22,15 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseId;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.servlet.http.Part;
 import org.apache.poi.util.IOUtils;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -185,9 +190,24 @@ public class InventarioController implements Serializable {
                 e.printStackTrace();
                 MessageUtil.addInfoMessage(null, "ERROR", "INTENTALO D ENUEVO PENDEJO", false);
             }
-
         }
-
     }
 
+    public StreamedContent imageStream() {
+        try {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            if (fc.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+                // Renderizamos el html retornando un espacio con el contenido de la imagen obteniendo el correcto URL.   
+                return new DefaultStreamedContent();
+            } else {
+                // El navegador requiere la imagen. Retorna un StramedContent real con la imgen byte
+                String imageId = fc.getExternalContext().getRequestParameterMap().get("imageId");
+                Material image = mDAO.findByPK(Integer.valueOf(imageId));
+                return new DefaultStreamedContent(new ByteArrayInputStream(image.getImage()));
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

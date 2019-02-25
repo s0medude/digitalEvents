@@ -15,50 +15,55 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header card-header-success colorc">
-                                <div class="row">
-                                    <div class="col-9">
-                                        <h4 class="card-title">Inventario</h4>
-                                        <p class="card-category">Aquí encontraras los materiales que se encuentran en el almacen.</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <a class="btn btn-info" href="registrar.xhtml">
-                                            <i class="material-icons movericon">inventory</i>
-                                            <span>Añadir Material</span>
-                                        </a>
+                            <h:form>
+                                <div class="card-header card-header-success colorc">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h4 class="card-title">Inventario</h4>
+                                            <p class="card-category">Aquí encontraras los materiales que se encuentran en el almacen.</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <h:commandLink class="card-category btn btn-danger btn-flat m-b-30 m-t-30" action="#{reportesController.export()}" value="PDF">
+                                                <i class="fas fa-file-pdf"></i>
+                                            </h:commandLink>&nbsp;&nbsp;
+                                            <a class="btn btn-info" href="registrar.xhtml">
+                                                <i class="material-icons movericon">inventory</i>
+                                                <span>Añadir Material</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <h:form prependId="false">
-                                        <h:dataTable class="table table-striped text-center" value="#{inventarioController.materialList}" var="m">
-                                            <h:column><f:facet name="header">ID</f:facet>#{m.id}</h:column>
-                                            <h:column><f:facet name="header">TIPO MATERIAL</f:facet>#{m.tipoMaterial}</h:column>                                                
-                                            <h:column><f:facet name="header">CANTIDAD</f:facet>#{m.cantidad}</h:column>                                                
-                                            <h:column><f:facet name="header">ESTADO</f:facet>#{m.estado}</h:column>                                                 
-                                            <h:column><f:facet name="header">DISPONIBILIDAD</f:facet>#{m.disponilidad.estado}</h:column>                                                 
-                                            <h:column><f:facet name="header">OPCIONES</f:facet>
-                                                <h:commandLink class="td-actions text-right btn btn-success" actionListener="#{inventarioController.materialSeleccionado(m)}"
-                                                               a:data-toggle="modal" a:data-target="#modalEditarMaterial" rel="tooltip" >
-                                                    <f:ajax render=":modalEditarMaterialContent"/>
-                                                    <i class="material-icons">edit</i>
-                                                </h:commandLink> 
-                                                <h:commandLink class="td-actions text-right btn btn-danger" actionListener="#{inventarioController.materialSeleccionado(m)}"
-                                                               a:data-toggle="modal" a:data-target="#modalEliminarMaterial" rel="tooltip" >
-                                                    <f:ajax render=":modalEliminarMaterialContent"/>
-                                                    <i class="material-icons">close</i>
-                                                </h:commandLink>
-                                                <h:commandLink class="td-actions text-right btn btn-info" actionListener="#{inventarioController.materialSeleccionado(m)}"
-                                                               a:data-toggle="modal" a:data-target="#modalImagenMaterial" rel="tooltip" >
-                                                    <f:ajax render=":modalImagenContent"/>
-                                                    <i class="fas fa-file-image"></i>
-                                                </h:commandLink>
-                                            </h:column>                                                 
-                                        </h:dataTable>
-                                    </h:form>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <h:form prependId="false">
+                                            <h:dataTable class="table table-striped text-center" value="#{inventarioController.materialList}" var="m">
+                                                <h:column><f:facet name="header">ID</f:facet>#{m.id}</h:column>
+                                                <h:column><f:facet name="header">TIPO MATERIAL</f:facet>#{m.tipoMaterial}</h:column>                                                
+                                                <h:column><f:facet name="header">CANTIDAD</f:facet>#{m.cantidad}</h:column>                                                
+                                                <h:column><f:facet name="header">ESTADO</f:facet>#{m.estado}</h:column>                                                 
+                                                <h:column><f:facet name="header">DISPONIBILIDAD</f:facet>#{m.disponilidad.estado}</h:column>                                                 
+                                                <h:column><f:facet name="header">OPCIONES</f:facet>
+                                                    <h:commandLink class="td-actions text-right btn btn-success" actionListener="#{inventarioController.materialSeleccionado(m)}"
+                                                                   a:data-toggle="modal" a:data-target="#modalEditarMaterial" rel="tooltip" >
+                                                        <f:ajax render=":modalEditarMaterialContent"/>
+                                                        <i class="material-icons">edit</i>
+                                                    </h:commandLink> 
+                                                    <h:commandLink class="td-actions text-right btn btn-danger" actionListener="#{inventarioController.materialSeleccionado(m)}"
+                                                                   a:data-toggle="modal" a:data-target="#modalEliminarMaterial" rel="tooltip" >
+                                                        <f:ajax render=":modalEliminarMaterialContent"/>
+                                                        <i class="material-icons">close</i>
+                                                    </h:commandLink>
+                                                    <h:commandLink class="td-actions text-right btn btn-info" actionListener="#{inventarioController.materialSeleccionado(m)}"
+                                                                   a:data-toggle="modal" a:data-target="#modalImagenMaterial" rel="tooltip" >
+                                                        <f:ajax render=":modalImagenContent"/>
+                                                        <i class="fas fa-file-image"></i>
+                                                    </h:commandLink>
+                                                </h:column>                                                 
+                                            </h:dataTable>
+                                        </h:form>
+                                    </div>
                                 </div>
-                            </div>
+                            </h:form>
                         </div>
                     </div>
                 </div>
@@ -167,7 +172,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-<!--                                <p:dataTable value="#{inventarioController.materialSeleccionado}" var="item">
+                                <!--<p:dataTable value="#{inventarioController.materialSeleccionado}" var="item">
                                     <p:column>
                                         <p:graphicImage value="#">
                                             <f:param name="id" value="#{inventarioController.materialSeleccionado.id}" />

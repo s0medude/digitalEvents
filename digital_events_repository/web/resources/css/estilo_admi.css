@@ -95,3 +95,53 @@ esta clase "movericon" es para mover el icono de añadir usuario
 
     background-color: #72ba68!important;
 }
+
+#contenedor-carga{
+    background-color: rgba(250,240,245,0.9);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    z-index: 10000;
+
+}
+
+#carga{
+    border: 15px solid #ccc;
+    border-top-color: #216C3D;
+    border-top-style: groove;
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    animation: girar 1.5s linear infinite;
+    -webkit-animation: girar 1.5s linear infinite;
+    -o-animation: girar 1.5s linear infinite;
+
+}
+
+#bajar-login {
+    position: relative;
+    top: 70px;
+}
+
+.bg-red {
+    background-color: #e7828233 !important;
+}
+
+.bg-wh {
+    background-color: #ffffffe6 !important;
+}
+
+@keyframes girar{
+    from{ transform: rotate(0deg); }
+    to{ transform: rotate(360deg); }
+}

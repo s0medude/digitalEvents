@@ -23,21 +23,6 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <h:form prependId="false" enctype="multiPart/form-data">
-                            <div style="text-align: left; padding-left: 13px" class="btn-light">
-                                <div class="form-group">
-                                    <label for="fileS" class="subir">Cargar CSV <i  style="font-size: 15px" class="fa fa-upload"></i></label>
-                                    <h:inputFile id="fileS"  value="#{cargaUsuariosCSVController.multipart}"> </h:inputFile>
-                                    <div id="info"></div>
-                                </div>
-                                <div class="form-group">
-                                    <h:commandLink style="font-size: 12px" class="btn btn-primary" value="Cargar" action="#{cargaUsuariosCSVController.fileUploadCsv()}">
-                                        <f:ajax render="mesagescsv" execute="fileS"/>
-                                        <i class="fa fa-save"></i>
-                                    </h:commandLink>
-                                </div>
-                            </div>
-                        </h:form>
                         <div class="card">
                             <h:form>
                                 <div class="card-header card-header-success colorc">
@@ -45,14 +30,15 @@
                                         <div class="col-6">
                                             <h4 class="card-title">Usuarios del Sistema</h4>
                                             <p class="card-category">Aquí encontraras todos los usuarios registrados en el sistema.</p>
-
                                         </div>
                                         <div class="col-6">                                          
                                             <h:commandLink class="card-category btn btn-danger btn-flat m-b-30 m-t-30" action="#{reportesController.export()}" value="PDF" >
                                                 <i class="fas fa-file-pdf"></i>
                                             </h:commandLink>&nbsp;&nbsp;
-                                            <h:commandLink class="card-category btn btn-primary btn-flat m-b-30 m-t-30" action="#" value="EXCEL">
-                                                <i class="fas fa-file-excel"></i>
+                                            <h:commandLink class="card-category btn btn-primary btn-flat m-b-30 m-t-30" action="#" 
+                                                           a:data-toggle="modal" a:data-target="#modalCSV" value="Carga CSV">
+                                                <f:ajax render=":modalCSVContent"/>
+                                                <i class="fas fa-upload"></i>
                                             </h:commandLink>&nbsp;&nbsp;
                                             <a class="btn btn-info" href="registrar.xhtml" >                                                     
                                                 <i class="material-icons movericon">person_add</i>
@@ -356,6 +342,39 @@
             </div>
         </div>
         <!--modal eliminar-->
+
+        <!--modal CSV-->
+        <div class="modal fade" id="modalCSV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <h:form prependId="false" enctype="multipart/form-data">
+                    <h:panelGroup id="modalCSVContent" class="modal-content" layout="block">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title titulom" id="exampleModalLabel">Cargar Archivos Masivamente</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="fileS" class="subir">Cargar CSV <i  style="font-size: 15px" class="fas fa-upload"></i></label>
+                                    <h:inputFile id="fileS"  value="#{cargaUsuariosCSVController.multipart}"> </h:inputFile>
+                                    <div id="info"></div>
+                                </div>                               
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">Cerrar</button>
+                                <h:commandLink style="font-size: 12px" class="btn btn-primary letra-boton" value="Cargar" action="#{cargaUsuariosCSVController.fileUploadCsv()}">
+                                    <f:ajax render="mesagescsv" execute="fileS"/>
+                                    <i class="fas fa-save"></i>
+                                </h:commandLink>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+        </div>
+        <!--modal CSV-->
 
     </ui:define>
 </ui:composition>

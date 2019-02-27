@@ -2,7 +2,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+
     <h:head>
         <ui:include src="/WEB-INF/includes/template/head.xhtml"/>
         <f:metadata>
@@ -10,18 +10,23 @@
         </f:metadata>
     </h:head>
     <h:body>
+<!--        <div id="contenedor-carga">
+            <div id="carga"></div>
+        </div>-->
         <div class="container-fluid wrapper">
             <!-- Left-panel-->
             <ui:include src="/WEB-INF/includes/template/left-panel.xhtml"/>
             <!-- Left-panel-->
-            
+
             <!-- Right-panel-->
             <ui:include src="/WEB-INF/includes/template/right-panel.xhtml"/>
             <!-- Right-panel-->
-            
+
             <ui:insert name="modals-page"></ui:insert>
         </div>
         <ui:include src="/WEB-INF/includes/template/scripts.xhtml"/>
     </h:body>
+
+    
 </html>
 

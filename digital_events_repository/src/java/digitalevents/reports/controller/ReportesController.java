@@ -58,82 +58,12 @@ public class ReportesController implements Serializable {
     }
 
     public List<Usuario> getUsuarioList() {
-        if(usuarioList==null || usuarioList.isEmpty()){
-            usuarioList=uDAO.findAll();
+        if (usuarioList == null || usuarioList.isEmpty()) {
+            usuarioList = uDAO.findAll();
             System.out.println("Jsds");
         }
-        
-            
         return usuarioList;
     }
-    
-
-
-//    public void exportarPDF() {
-//        try {
-//            FacesContext fc = FacesContext.getCurrentInstance();
-//            ExternalContext ec = fc.getExternalContext();
-//            File fileJasper = new File(ec.getRealPath("C:\\Users\\Nicolas PC\\Documents\\NetBeansProjects\\digitalevents\\web\\WEB-INF\\includes\\reportes\\usuariosReport.jasper"));
-//            Map<String, Object> params = new HashMap<>();
-//            jasper = JasperFillManager.fillReport(fileJasper.getPath(), params, new JRBeanCollectionDataSource(usuariosList, false));
-//            HttpServletResponse hsr = (HttpServletResponse) ec.getResponse();
-//            hsr.addHeader("Content-disposition", "attachment; filename=reporte.pdf");
-//            OutputStream out = hsr.getOutputStream();
-//            JasperExportManager.exportReportToPdfStream(jasper, out);
-//            out.flush();
-//            out.close();
-//            fc.responseComplete();
-//        } catch (JRException ex) {
-//            ex.printStackTrace();
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
-//    }
-//
-//    public void loadConfig() {
-//        try {
-//            JRBeanCollectionDataSource bods = new JRBeanCollectionDataSource(usuariosList, false);
-//            String reportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/WEB-INF/includes/reportes/usuariosReport.jasper");
-//            System.out.println(reportPath);
-//            jasper = JasperFillManager.fillReport(reportPath, null, bods);
-//        } catch (JRException e) {
-//            Logger.getLogger(ReportesController.class.getName()).log(Level.SEVERE, null, e);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public void exportPDF() throws IOException, JRException {
-//        loadConfig();
-//        ServletOutputStream out;
-//        String contextType = "application/pdf";
-//        FacesContext fc = FacesContext.getCurrentInstance();
-//        ExternalContext ec = fc.getExternalContext();
-//        HttpServletResponse servlet = (HttpServletResponse) ec.getResponse();
-//        out = servlet.getOutputStream();
-//        servlet.setContentType(contextType);
-//        servlet.addHeader("Content-disposition", "attachment; filename=ReporteUsuarios.pdf");
-//        JasperExportManager.exportReportToPdfStream(jasper, out);
-//        out.flush();
-//        out.close();
-//        fc.responseComplete();
-//    }
-//
-//    public void exportXLS() throws IOException, JRException {
-//        loadConfig();
-//        ServletOutputStream out;
-//        String contextType = "application/xls";
-//        FacesContext fc = FacesContext.getCurrentInstance();
-//        ExternalContext ec = fc.getExternalContext();
-//        HttpServletResponse servlet = (HttpServletResponse) ec.getResponse();
-//        out = servlet.getOutputStream();
-//        servlet.setContentType(contextType);
-//        servlet.addHeader("Content-disposition", "attachment; filename=ReporteUsuarios.xls");
-//        JasperExportManager.exportReportToPdfStream(jasper, out);
-//        out.flush();
-//        out.close();
-//        fc.responseComplete();
-//    }
 
     public void export(){
         try {

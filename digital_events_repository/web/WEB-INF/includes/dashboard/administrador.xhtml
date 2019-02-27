@@ -4,8 +4,8 @@
              xmlns:h="http://xmlns.jcp.org/jsf/html"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              xmlns:p="http://primefaces.org/ui">
-   
-    
+
+
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -84,15 +84,15 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    
+
                 </div>                    
             </div>
         </div>     
     </div>  
-    
-    
-        
-        <script>
+
+
+
+    <script>
         var fechaReserva = [#{graficoReservasController.graficoReserva(graficoReservasController.fechaReserva, ",")}];
         var numeroEventos = [#{graficoReservasController.graficoReserva(graficoReservasController.numeroEventos, ",")}];
         window.onload = function ()
@@ -126,6 +126,7 @@
                                 }
                     });
         };
+
     </script>
 </ui:fragment>
 

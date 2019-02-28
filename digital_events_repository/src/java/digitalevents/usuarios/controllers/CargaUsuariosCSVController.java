@@ -6,6 +6,7 @@
 package digitalevents.usuarios.controllers;
 
 import digitalevents.utils.MensajesUtilCSV;
+import digitalevents.utils.MessageUtil;
 import edu.digitalEvents.modelo.dao.IUsuarioDAO;
 import edu.digitalEvents.modelo.entities.UsuarioCSV;
 import java.io.BufferedReader;
@@ -194,6 +195,7 @@ public class CargaUsuariosCSVController implements Serializable {
         BufferedReader bf = null;
         SimpleDateFormat s = new SimpleDateFormat("yyyy/MM/dd");
         Date fechaNacimientoUsuario = null;
+        Date fecha_actual=new Date();
         try {
             MensajesUtilCSV.infoMensaje(null, "Carga de datos exitosa", "");
             bf = new BufferedReader(new FileReader(r));
@@ -206,7 +208,7 @@ public class CargaUsuariosCSVController implements Serializable {
                 UsuarioCSV uCsv = new UsuarioCSV(idUsuario, Integer.parseInt(val[0]), Integer.parseInt(val[1]), val[2], val[3], val[4], fechaNacimientoUsuario, val[6], val[7], val[8], val[9], Integer.parseInt(val[10]), Integer.parseInt(val[11]));
                 uDao.cragaMasivaUsuarios(uCsv);
                 linea = bf.readLine();
-                MensajesUtilCSV.infoMensaje(null, "Carga de datos exitosa", "");
+                MessageUtil.addInfoMessage(null, "Carga de datos exitosa", "Los datos del usuario se han cargado correctamente,", false);
                 loadConfig();
                 sendMail(val[6], "Sus datos han cargado correctamente desde el sistema DigitalEvents", "Se ha realizado la carga con los datos:\n id:" + "\n Tipo de Identificacion:" + val[1] + "\n Numero de Idntificacion: " + val[2] + "\n Fecha:" + val[4] + "En la fecha de hoy: " + new Date().toString());
                 System.out.println("Carga de datos exitosa con los datos");

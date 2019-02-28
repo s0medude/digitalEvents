@@ -8,9 +8,77 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:p="http://primefaces.org/ui">
+       <ui:define name="scripts-grafricos">
+        
+        <script>
+            var mesesEventos = [#{grafricoEventosController.graficoEventos(grafricoEventosController.mesesEvento, ",")}];
+            var cuentaEventos = [#{grafricoEventosController.graficoEventos(grafricoEventosController.cuentaEventos, ",")}];
+            var tipoEventos = [#{grafricoEventosController.graficoEventos(grafricoEventosController.tipoEvento, ",")}];
+            window.onload = function ()
+            {
+                zingchart.render
+                        ({
+                            id: "myChartInventarios",
+                            width: "100%",
+                            height: 300,
+                            data:
+                                    {
+                                        "type": "bar",
+                                        "title":
+                                                {
+                                                    "text": "Grafico Inventarios"
+                                                },
+                                        "scale-x":
+                                                {
+                                                    "labels": mesesEventos
+                                                },
+                                        "plot":
+                                                {
+                                                    "value-box": {
+                                                        "text": tipoEventos
+                                                    },
+                                                    "line-width": 1
+                                                },
 
+                                        "tooltip": {
+                                            "text": tipoEventos
+                                        },
+                                        "series":
+                                                [
+                                                    {
+                                                        "values": cuentaEventos
+                                                    }
+                                                ]
+                                    }
+                        });
+            };
+
+        </script>
+    </ui:define>
     <ui:define name="content">
         <div class="content">
+                        <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <h:form>
+                                <div class="card-header card-header-success colorc">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h4 class="card-title">Grafrico Estadistico Inventario</h4>
+                                            <p class="card-category">Aquí encontraras un grafrico estadistico en el cual se muestra la cantidad de materiales que se encuentran en buen estado.</p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="card-body card-header card-chart card-header-success">
+                                    <div class="ct-chart" id="myChartInventarios"></div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">

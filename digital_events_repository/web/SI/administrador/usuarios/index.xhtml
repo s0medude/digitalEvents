@@ -8,6 +8,52 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:p="http://primefaces.org/ui">
+    <ui:define name="scripts-grafricos">
+        <script>
+            var meses = [#{grafricoUsuariosController.graficoUsuario(grafricoUsuariosController.mesActualizacion, ",")}];
+            var cuenta = [#{grafricoUsuariosController.graficoUsuario(grafricoUsuariosController.cuentasUsuarios, ",")}];
+            var estado = [#{grafricoUsuariosController.graficoUsuario(grafricoUsuariosController.estadoUsuario, ",")}];
+            window.onload = function ()
+            {
+                zingchart.render
+                        ({
+                            id: "myChart",
+                            width: "100%",
+                            height: 300,
+                            data:
+                                    {
+                                        "type": "bar",
+                                        "title":
+                                                {
+                                                    "text": "Grafico Usuarios"
+                                                },
+                                        "scale-x":
+                                                {
+                                                    "labels": meses
+                                                },
+                                        "plot":
+                                                {
+                                                    "value-box": {
+                                                        "text": estado
+                                                    },
+                                                    "line-width": 1
+                                                },
+
+                                        "tooltip": {
+                                            "text": estado
+                                        },
+                                        "series":
+                                                [
+                                                    {
+                                                        "values": cuenta
+                                                    }
+                                                ]
+                                    }
+                        });
+            };
+
+        </script>
+    </ui:define>
 
     <ui:define name="content">
         <h:form>
@@ -19,12 +65,29 @@
             </h:panelGroup>
         </h:form>
         <div class="content">  
-
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <h:form>
+                                <div class="card-header card-chart card-header-success">
+                                    <div class="ct-chart" id="myChart"></div>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title">Gráfico Estadistico Usuarios</h4>
+                                    <p class="card-category">Aqui encontraras el reporte de la fecha en que fue modificada ordenada por el mes.</p>                                                                 
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <h:form>
+
                                 <div class="card-header card-header-success colorc">
                                     <div class="row">
                                         <div class="col-6">

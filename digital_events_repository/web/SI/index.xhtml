@@ -6,7 +6,44 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
+        <ui:define name="scripts-grafricos">
+        <script>
+        var fechaReserva = [#{graficoReservasController.graficoReserva(graficoReservasController.fechaReserva, ",")}];
+        var numeroEventos = [#{graficoReservasController.graficoReserva(graficoReservasController.numeroEventos, ",")}];
+        window.onload = function ()
+        {
+            zingchart.render
+                    ({
+                        id: "myChartAdministrador",
+                        width: "100%",
+                        height: 300,
+                        data:
+                                {
+                                    "type": "bar",
+                                    "title":
+                                            {
+                                                "text": "Grafico "
+                                            },
+                                    "scale-x":
+                                            {
+                                                "labels": fechaReserva
+                                            },
+                                    "plot":
+                                            {
+                                                "line-width": 1
+                                            },
+                                    "series":
+                                            [
+                                                {
+                                                    "values": numeroEventos
+                                                }
+                                            ]
+                                }
+                    });
+        };
 
+    </script>
+    </ui:define>
     <ui:define name="content">
         
         <!--HOLA ESTE ES UN TEXTO DE PRUEBA REPOSITORIO-->

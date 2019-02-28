@@ -83,6 +83,24 @@ public class GrafricoEventosController implements Serializable{
             mesesEvento.add(mesesEs);
         }
     }
+    public String graficoEventos(ArrayList<?> lista, String delimitador) {
+
+        StringBuilder output = new StringBuilder();
+        for (int i = 0; i < lista.size(); i++) {
+            if (i > 0) {
+                output.append(delimitador);
+            }
+            // --- Quote strings, only, for JS syntax
+            if (lista.get(i) instanceof String) {
+                output.append("\"");
+            }
+            output.append(lista.get(i));
+            if (lista.get(i) instanceof String) {
+                output.append("\"");
+            }
+        }
+        return output.toString();
+    }
 
     public ArrayList<Long> getCuentaEventos() {
         return cuentaEventos;

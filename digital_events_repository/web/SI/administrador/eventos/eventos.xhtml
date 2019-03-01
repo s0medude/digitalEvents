@@ -8,8 +8,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:p="http://primefaces.org/ui">
-    <ui:define name="scripts-grafricos">
-        
+    <ui:define name="scripts-grafricos">    
         <script>
             var mesesEventos = [#{grafricoEventosController.graficoEventos(grafricoEventosController.mesesEvento, ",")}];
             var cuentaEventos = [#{grafricoEventosController.graficoEventos(grafricoEventosController.cuentaEventos, ",")}];

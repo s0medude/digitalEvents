@@ -9,49 +9,86 @@
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:p="http://primefaces.org/ui">
     <ui:define name="scripts-grafricos">
-        <script>
-            var meses = [#{grafricoUsuariosController.graficoUsuario(grafricoUsuariosController.mesActualizacion, ",")}];
-            var cuenta = [#{grafricoUsuariosController.graficoUsuario(grafricoUsuariosController.cuentasUsuarios, ",")}];
-            var estado = [#{grafricoUsuariosController.graficoUsuario(grafricoUsuariosController.estadoUsuario, ",")}];
-            window.onload = function ()
-            {
-                zingchart.render
-                        ({
-                            id: "myChart",
-                            width: "100%",
-                            height: 300,
-                            data:
-                                    {
-                                        "type": "bar",
-                                        "title":
-                                                {
-                                                    "text": "Grafico Usuarios"
-                                                },
-                                        "scale-x":
-                                                {
-                                                    "labels": meses
-                                                },
-                                        "plot":
-                                                {
-                                                    "value-box": {
-                                                        "text": estado
-                                                    },
-                                                    "line-width": 1
-                                                },
+       <script type="text/javascript">
+            var chart;
 
-                                        "tooltip": {
-                                            "text": estado
-                                        },
-                                        "series":
-                                                [
-                                                    {
-                                                        "values": cuenta
-                                                    }
-                                                ]
-                                    }
-                        });
-            };
+            function updateDatos(cuentasCDT) {
+                chart.options.data[0].dataPoints = cuentasCDT;
+                chart.render();
+            }
+            function toggleDataSeries(e) {
+                if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                } else {
+                    e.dataSeries.visible = true;
+                }
+                e.chart.render();
+            }
+            $(document).ready(function () {
+                chart = new CanvasJS.Chart("myChart", {
+                    animationEnabled: true,
+                    exportEnabled: true, 
+                    toolTip: {
+                        shared: true
+                    },
+                    legend: {
+                        cursor: "pointer",
+                        itemclick: toggleDataSeries
+                    }});
+                chart.options.axisY = {
+                    suffix: "",
+                    lineThickness: 2,
+                    title: 'ESTADOS USUARIOS',
 
+                    scaleBreaks: {
+                        type: "wavy",
+                        customBreaks: [{
+                                startValue: 3,
+                                endValue: 4
+                            },
+                            {
+                                startValue: 3,
+                                endValue: 4
+                            }
+                        ]}
+
+                };
+                chart.options.title = {
+                   
+                };
+                seriesEstadoActivo = {
+                    /*** Change type "column" to "bar", "area", "line" or "pie"***/
+                    type: "column",
+                    showInLegend: true,
+                    name: "{label}",
+                    indexLabel: "{labelDatos}",
+                    isIntermediateSum: true
+                };
+                seriesEstadoBloqueado = {
+                    /*** Change type "column" to "bar", "area", "line" or "pie"***/
+                    type: "column",
+                    showInLegend: true,
+                    name: "{label}",
+                    indexLabel: "{labelDatos}",
+                    isIntermediateSum: true
+                };
+                chart.options.data = [];
+                chart.options.data.push(seriesEstadoActivo);
+                chart.options.data.push(seriesEstadoBloqueado);
+                seriesEstadoActivo.dataPoints = #{grafricoUsuariosController.datosJsonUsuariosActivos};
+                seriesEstadoBloqueado.dataPoints = #{grafricoUsuariosController.datosJsonUsuariosBloqueados};
+                chart.render();
+            });
+            function convertCanvasToImage(canvas) {
+                var $canvas = $("#container-canvas-1 canvas");
+                var data = $canvas[0].toDataURL("image/jpg");
+                console.log(data);
+                alert(data);
+                $("#imgPrb").attr("src", data);
+                var image = new Image();
+                image.src = data;
+                document.body.appendChild(image);
+            }
         </script>
     </ui:define>
 
@@ -71,7 +108,7 @@
                         <div class="card">
                             <h:form>
                                 <div class="card-header card-chart card-header-success">
-                                    <div class="ct-chart" id="myChart"></div>
+                                     <div class="ct-chart" id="myChart" style="width: 100%; height: 300px;"></div>
                                 </div>
                                 <div class="card-body">
                                     <h4 class="card-title">Gráfico Estadistico Usuarios</h4>

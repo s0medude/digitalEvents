@@ -5,14 +5,17 @@
  */
 package digitalevents.grafico.controller;
 
+import com.google.gson.Gson;
 import edu.digitalEvents.modelo.dao.IEventoDAO;
 import edu.digitalEvents.modelo.entities.GrafricoEventosView;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import edu.digitalEvents.modelo.entities.EntityGrafricoGlobal;
 
 /**
  *
@@ -21,108 +24,184 @@ import javax.faces.view.ViewScoped;
 @Named(value = "grafricoEventosController")
 @ViewScoped
 public class GrafricoEventosController implements Serializable{
-
+    
     /**
-     * Creates a new instance of GrafricoEventosController
+     * Creates a new instance of GraficoEventosController
      */
     @EJB
-    private IEventoDAO eDao;     
-    private ArrayList<Long> cuentaEventos=new ArrayList<Long>();
-    private ArrayList<String> mesesEvento = new ArrayList<String>();
-    private ArrayList<String> tipoEvento=new ArrayList<String>();
-    
-    
-    public GrafricoEventosController() {
-    }
+    private IEventoDAO eDao;
+    private List<EntityGrafricoGlobal> datosGrafricoEmpresarial;
+    private List<EntityGrafricoGlobal> datosGrafricoInfantil;
+    private List<EntityGrafricoGlobal> datosGrafricoFiestaTematica;
+
     @PostConstruct
-    public void init(){
-       String mesesEs=null;
-        for (GrafricoEventosView grafrico : eDao.findAllEventosGrafrico()) {
-            switch (grafrico.getMeses()) {
+    public void init() {
+
+    }
+
+    public List<EntityGrafricoGlobal> getDatosGrafricoEmpresarial() {
+        datosGrafricoEmpresarial =new ArrayList<>();
+        int contador = 1;
+        String mesUsuario = null;
+        for (GrafricoEventosView e : eDao.findAllEventosGrafricoEMPRESARIAL()) {
+            switch (e.getMeses()) {
                 case "January":
-                    mesesEs = "Enero";
+                    mesUsuario = "Enero";
                     break;
                 case "February":
-                     mesesEs = "Febrero";
+                    mesUsuario = "Febrero";
                     break;
                 case "March":
-                    mesesEs = "Marzo";
+                    mesUsuario = "Marzo";
                     break;
                 case "April":
-                     mesesEs = "Abril";
+                    mesUsuario = "Abril";
                     break;
                 case "May":
-                     mesesEs = "Mayo";
+                    mesUsuario = "Mayo";
                     break;
                 case "June":
-                    mesesEs = "Junio";
+                    mesUsuario = "Junio";
                     break;
                 case "July":
-                     mesesEs = "Julio";
+                    mesUsuario = "Julio";
                     break;
                 case "August":
-                     mesesEs = "Agosto";
+                    mesUsuario = "Agosto";
                     break;
                 case "September":
-                    mesesEs = "Septiembre";
+                    mesUsuario = "Septiembre";
                     break;
                 case "October":
-                    mesesEs = "Octubre";
+                    mesUsuario = "Octubre";
                     break;
                 case "November":
-                    mesesEs = "Noviembre";
+                    mesUsuario = "Noviembre";
                     break;
                 case "December":
-                    mesesEs = "Diciembre";
+                    mesUsuario = "Diciembre";
                     break;
                 default:
                     throw new AssertionError();
             }
-            cuentaEventos.add(grafrico.getCuentaEventos());
-            tipoEvento.add(grafrico.getTipoevento());
-            mesesEvento.add(mesesEs);
+            EntityGrafricoGlobal cuen = new EntityGrafricoGlobal(contador++, e.getCuentaEventos(), e.getTipoevento(), mesUsuario);
+            datosGrafricoEmpresarial.add(cuen);
         }
+        return datosGrafricoEmpresarial;
     }
-    public String graficoEventos(ArrayList<?> lista, String delimitador) {
 
-        StringBuilder output = new StringBuilder();
-        for (int i = 0; i < lista.size(); i++) {
-            if (i > 0) {
-                output.append(delimitador);
+    public List<EntityGrafricoGlobal> getDatosGrafricoInfantil() {
+        datosGrafricoInfantil =new ArrayList<>();
+        int contador = 1;
+        String mesUsuario = null;
+        for (GrafricoEventosView e : eDao.findAllEventosGrafricoINFANTILES()) {
+            switch (e.getMeses()) {
+                case "January":
+                    mesUsuario = "Enero";
+                    break;
+                case "February":
+                    mesUsuario = "Febrero";
+                    break;
+                case "March":
+                    mesUsuario = "Marzo";
+                    break;
+                case "April":
+                    mesUsuario = "Abril";
+                    break;
+                case "May":
+                    mesUsuario = "Mayo";
+                    break;
+                case "June":
+                    mesUsuario = "Junio";
+                    break;
+                case "July":
+                    mesUsuario = "Julio";
+                    break;
+                case "August":
+                    mesUsuario = "Agosto";
+                    break;
+                case "September":
+                    mesUsuario = "Septiembre";
+                    break;
+                case "October":
+                    mesUsuario = "Octubre";
+                    break;
+                case "November":
+                    mesUsuario = "Noviembre";
+                    break;
+                case "December":
+                    mesUsuario = "Diciembre";
+                    break;
+                default:
+                    throw new AssertionError();
             }
-            // --- Quote strings, only, for JS syntax
-            if (lista.get(i) instanceof String) {
-                output.append("\"");
-            }
-            output.append(lista.get(i));
-            if (lista.get(i) instanceof String) {
-                output.append("\"");
-            }
+            EntityGrafricoGlobal cuen = new EntityGrafricoGlobal(contador++, e.getCuentaEventos(), e.getTipoevento(), mesUsuario);
+            datosGrafricoInfantil.add(cuen);
         }
-        return output.toString();
+        return datosGrafricoInfantil;
     }
 
-    public ArrayList<Long> getCuentaEventos() {
-        return cuentaEventos;
-    }
+    public List<EntityGrafricoGlobal> getDatosGrafricoFiestaTematica() {
+        datosGrafricoFiestaTematica =new ArrayList<>();
+        int contador = 1;
+        String mesUsuario = null;
+        for (GrafricoEventosView e : eDao.findAllEventosGrafrico()) {
+            switch (e.getMeses()) {
+                case "January":
+                    mesUsuario = "Enero";
+                    break;
+                case "February":
+                    mesUsuario = "Febrero";
+                    break;
+                case "March":
+                    mesUsuario = "Marzo";
+                    break;
+                case "April":
+                    mesUsuario = "Abril";
+                    break;
+                case "May":
+                    mesUsuario = "Mayo";
+                    break;
+                case "June":
+                    mesUsuario = "Junio";
+                    break;
+                case "July":
+                    mesUsuario = "Julio";
+                    break;
+                case "August":
+                    mesUsuario = "Agosto";
+                    break;
+                case "September":
+                    mesUsuario = "Septiembre";
+                    break;
+                case "October":
+                    mesUsuario = "Octubre";
+                    break;
+                case "November":
+                    mesUsuario = "Noviembre";
+                    break;
+                case "December":
+                    mesUsuario = "Diciembre";
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+            EntityGrafricoGlobal cuen = new EntityGrafricoGlobal(contador++, e.getCuentaEventos(), e.getTipoevento(), mesUsuario);
+            datosGrafricoFiestaTematica.add(cuen);
+        }
 
-    public void setCuentaEventos(ArrayList<Long> cuentaEventos) {
-        this.cuentaEventos = cuentaEventos;
+        return datosGrafricoFiestaTematica;
     }
-
-    public ArrayList<String> getMesesEvento() {
-        return mesesEvento;
+     public String getDatosJsonEmpresarial() {
+        Gson gson = new Gson();
+        return gson.toJson(getDatosGrafricoEmpresarial());
     }
-
-    public void setMesesEvento(ArrayList<String> mesesEvento) {
-        this.mesesEvento = mesesEvento;
+     public String getDatosJsonInfantil() {
+        Gson gson = new Gson();
+        return gson.toJson(getDatosGrafricoInfantil());
     }
-
-    public ArrayList<String> getTipoEvento() {
-        return tipoEvento;
-    }
-
-    public void setTipoEvento(ArrayList<String> tipoEvento) {
-        this.tipoEvento = tipoEvento;
+     public String getDatosJsonTematica() {
+        Gson gson = new Gson();
+        return gson.toJson(getDatosGrafricoFiestaTematica());
     }
 }

@@ -9,50 +9,77 @@
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:p="http://primefaces.org/ui">
        <ui:define name="scripts-grafricos">
-        
-        <script>
-            var mesesEventos = [#{grafricoEventosController.graficoEventos(grafricoEventosController.mesesEvento, ",")}];
-            var cuentaEventos = [#{grafricoEventosController.graficoEventos(grafricoEventosController.cuentaEventos, ",")}];
-            var tipoEventos = [#{grafricoEventosController.graficoEventos(grafricoEventosController.tipoEvento, ",")}];
-            window.onload = function ()
-            {
-                zingchart.render
-                        ({
-                            id: "myChartInventarios",
-                            width: "100%",
-                            height: 300,
-                            data:
-                                    {
-                                        "type": "bar",
-                                        "title":
-                                                {
-                                                    "text": "Grafico Inventarios"
-                                                },
-                                        "scale-x":
-                                                {
-                                                    "labels": mesesEventos
-                                                },
-                                        "plot":
-                                                {
-                                                    "value-box": {
-                                                        "text": tipoEventos
-                                                    },
-                                                    "line-width": 1
-                                                },
+           <script type="text/javascript">
+            var chart;
 
-                                        "tooltip": {
-                                            "text": tipoEventos
-                                        },
-                                        "series":
-                                                [
-                                                    {
-                                                        "values": cuentaEventos
-                                                    }
-                                                ]
-                                    }
-                        });
-            };
+            function updateDatos(cuentasCDT) {
+                chart.options.data[0].dataPoints = cuentasCDT;
+                chart.render();
+            }
+            function toggleDataSeries(e) {
+                if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                } else {
+                    e.dataSeries.visible = true;
+                }
+                e.chart.render();
+            }
+            $(document).ready(function () {
+                chart = new CanvasJS.Chart("myChartInventarios", {
+                    animationEnabled: true,
+                    exportEnabled: true, 
+                    toolTip: {
+                        shared: true
+                    },
+                    legend: {
+                        cursor: "pointer",
+                        itemclick: toggleDataSeries
+                    }});
+                chart.options.axisY = {
+                    suffix: "",
+                    lineThickness: 2,
+                    title: 'TIPOS MATERIALES',
 
+                    scaleBreaks: {
+                        type: "wavy",
+                        customBreaks: [{
+                                startValue: 3,
+                                endValue: 4
+                            },
+                            {
+                                startValue: 3,
+                                endValue: 4
+                            }
+                        ]}
+
+                };
+                chart.options.title = {
+                   
+                };
+                seriesBuena = {
+                    /*** Change type "column" to "bar", "area", "line" or "pie"***/
+                    type: "line",
+                    showInLegend: true,
+                    name: "{label}",
+                    indexLabel: "{labelDatos}",
+                    isIntermediateSum: true
+                };
+                seriesMala = {
+                    /*** Change type "column" to "bar", "area", "line" or "pie"***/
+                    type: "column",
+                    showInLegend: true,
+                    name: "{label}",
+                    indexLabel: "{labelDatos}",
+                    isIntermediateSum: true
+                };
+                chart.options.data = [];
+                chart.options.data.push(seriesBuena);
+                chart.options.data.push(seriesMala);
+                seriesBuena.dataPoints = #{grafricoInventarioController.datosJsonBuenaCalidad};
+                seriesMala.dataPoints = #{grafricoInventarioController.datosJsonMalaCalidad};
+                chart.render();
+            });
+            
         </script>
     </ui:define>
     <ui:define name="content">
@@ -72,7 +99,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body card-header card-chart card-header-success">
-                                    <div class="ct-chart" id="myChartInventarios"></div>
+                                    <div class="ct-chart" id="myChartInventarios" style="width: 100%; height: 300px;"></div>
                                 </div>
                             </h:form>
                         </div>

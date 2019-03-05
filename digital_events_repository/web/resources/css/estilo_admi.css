@@ -86,6 +86,10 @@ esta clase "movericon" es para mover el icono de añadir usuario
     padding-right: 10px !important;
 }
 
+/*.modal-lx {
+    max-height: 80vh !important;
+}*/
+
 .navbar .notification{
 
     background: #f44336 !important;

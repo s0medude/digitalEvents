@@ -8,16 +8,7 @@
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:define name="content">
-        
-        <div class="card card-nav-tabs text-center">
-            <div class="card-header card-header-info">
-                <h4 class="card-title"><strong>TENEMOS LOS MEJORES SHOWS | PERSONAJES PARA CADA OCASIÓN</strong></h4>
-            </div>
-            <div class="card-body">
-                <p class="card-text">Diseñados especialmente para eventos infantiles de integración y final de año, día del niño, fiestas temáticas infantiles, atracciones mecánicas, show´s musicales, mundoIinflable, eventos navideños entre otros.</p>
-            </div>
-        </div>
+    <ui:define name="content">      
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -173,8 +164,25 @@
                     </div>
                 </div>
             </div>
-        </div>        
-        
+        </div>
+
+        <div class="card card-nav-tabs text-center">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title"><strong>TENEMOS LOS MEJORES SHOWS Y PERSONAJES PARA CADA OCASIÓN</strong></h4>
+            </div>
+            <div class="card-body">
+                <h:form>
+                    <p class="card-text">Diseñados especialmente para eventos infantiles de integración y final de año, día del niño, fiestas temáticas infantiles, atracciones mecánicas, show´s musicales, mundoIinflable, eventos navideños entre otros.</p>
+                    <h:commandLink class="td-actions text-right btn btn-danger" actionListener="#"
+                                   a:data-toggle="modal" a:data-target="#modalGaleria" rel="tooltip" >
+                        <f:ajax render=":modalGaleriaContent"/>
+                        <i class="material-icons movericon">collections</i>
+                        <span>VER GALERIA</span>
+                    </h:commandLink>
+                </h:form>
+            </div>
+        </div>
+
 
 
         <h:panelGroup layout="block" rendered="#{sessionController.user.rol.id eq 1}">            
@@ -235,8 +243,12 @@
                             <div class="modal-body">
 
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary letra-boton" data-dismiss="modal">ENTENDIDO</button>
+                            <div class="modal-footer">                                
+                                <a href="#0" class="btn btn-success">
+                                    <i class="material-icons movericon">event</i>
+                                    <span>Reservar Tu Evento</span>
+                                </a>
+                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">ENTENDIDO</button>
                             </div>
                         </div>
                     </h:panelGroup>
@@ -244,6 +256,32 @@
             </div>
         </div>
         <!--modal infantil-->
+
+        <!--modal galeria-->
+
+        <style>
+            .modalXL {width: 1250px;}
+        </style>
+        <div class="modal fade" id="modalGaleria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class= "modal-dialog modal-xl" role="document">
+                <h:form prependId="false">
+                    <h:panelGroup id="modalGaleriaContent" class="modal-content" layout="block">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title titulom" id="exampleModalLabel">GALERIA PERSONAJES | SHOWS MUSICALES</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+        </div>
+        <!--modal galeria-->
 
 
     </ui:define>

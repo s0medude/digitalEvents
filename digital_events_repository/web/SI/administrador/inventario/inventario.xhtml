@@ -8,8 +8,8 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:p="http://primefaces.org/ui">
-       <ui:define name="scripts-grafricos">
-           <script type="text/javascript">
+    <ui:define name="scripts-grafricos">
+        <script type="text/javascript">
             var chart;
 
             function updateDatos(cuentasCDT) {
@@ -27,7 +27,7 @@
             $(document).ready(function () {
                 chart = new CanvasJS.Chart("myChartInventarios", {
                     animationEnabled: true,
-                    exportEnabled: true, 
+                    exportEnabled: true,
                     toolTip: {
                         shared: true
                     },
@@ -54,7 +54,7 @@
 
                 };
                 chart.options.title = {
-                   
+
                 };
                 seriesBuena = {
                     /*** Change type "column" to "bar", "area", "line" or "pie"***/
@@ -75,16 +75,16 @@
                 chart.options.data = [];
                 chart.options.data.push(seriesBuena);
                 chart.options.data.push(seriesMala);
-                seriesBuena.dataPoints = #{grafricoInventarioController.datosJsonBuenaCalidad};
-                seriesMala.dataPoints = #{grafricoInventarioController.datosJsonMalaCalidad};
+                   seriesBuena.dataPoints = #{grafricoInventarioController.datosJsonBuenaCalidad};
+                   seriesMala.dataPoints = #{grafricoInventarioController.datosJsonMalaCalidad};
                 chart.render();
             });
-            
+
         </script>
     </ui:define>
     <ui:define name="content">
         <div class="content">
-                        <div class="container-fluid">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -92,10 +92,10 @@
                                 <div class="card-header card-header-success colorc">
                                     <div class="row">
                                         <div class="col-6">
-                                            <h4 class="card-title">Grafrico Estadistico Inventario</h4>
+                                            <h4 class="card-title">Grafico Estadistico Inventario</h4>
                                             <p class="card-category">Aquí encontraras un grafrico estadistico en el cual se muestra la cantidad de materiales que se encuentran en buen estado.</p>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                                 <div class="card-body card-header card-chart card-header-success">
@@ -272,13 +272,6 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <!--<p:dataTable value="#{inventarioController.materialSeleccionado}" var="item">
-                                    <p:column>
-                                        <p:graphicImage value="#">
-                                            <f:param name="id" value="#{inventarioController.materialSeleccionado.id}" />
-                                        </p:graphicImage>
-                                    </p:column>
-                                </p:dataTable>-->
                                 <p:messages showDetail="true"/>
                                 <p:fileUpload value="#{inventarioController.file}"
                                               update="messages"
@@ -297,8 +290,8 @@
             </div>
         </div>
         <!--modal imagen-->
-        
-         <!--modal CSV-->
+
+        <!--modal CSV-->
         <div class="modal fade" id="modalCSV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <h:form prependId="false" enctype="multipart/form-data">
@@ -332,8 +325,8 @@
         <!--modal CSV-->
 
     </ui:define>
-    
-    
+
+
 
 </ui:composition>
 

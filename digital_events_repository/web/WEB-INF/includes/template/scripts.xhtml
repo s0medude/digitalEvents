@@ -45,13 +45,31 @@
         });
     </script>
 
-<!--    <script type="text/javascript">
-        window.onload = function () {
-            var contenedor = document.getElementById('contenedor-carga');
-            contenedor.style.visibility = 'hidden';
-            contenedor.style.opacity = '0';
-        };
-    </script>-->
-<ui:insert name="scripts-grafricos"></ui:insert>
+    <!--    <script type="text/javascript">
+            window.onload = function () {
+                var contenedor = document.getElementById('contenedor-carga');
+                contenedor.style.visibility = 'hidden';
+                contenedor.style.opacity = '0';
+            };
+        </script>-->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var $videoSrc;
+            $('.video-btn').click(function () {
+                $videoSrc = $(this).data("src");
+            });
+            console.log($videoSrc);
+            $('#modalVideo').on('shown.bs.modal', function (e) {
+                $("#video").attr('src', $videoSrc + "?rel=0&amp;showinfo=0&amp;modestbranding=1&amp;autoplay=1");
+            });           
+            $('#modalVideo').on('hide.bs.modal', function (e) {
+                $("#video").attr('src', $videoSrc);
+            });
+        });
+    </script>
+
+
+    <ui:insert name="scripts-grafricos"></ui:insert>
 </ui:fragment>
 

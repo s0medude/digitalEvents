@@ -49,18 +49,16 @@
         <!--HOLA ESTE ES UN TEXTO DE PRUEBA REPOSITORIO-->
         
         <!--HEMOS ENTENDIDO REPOSITORIOS GIT-->
-
-        
         <h:panelGroup layout="block" rendered="#{sessionController.user.rol.id eq 1}">            
             <ui:include src="/WEB-INF/includes/dashboard/administrador.xhtml"/>
         </h:panelGroup>
-        <h:panelGroup layout="block" rendered="#{sessionController.user.rol.id eq 2}">
+        <h:panelGroup layout="block" rendered="#{sessionController.user.rol.id eq 4}">
             <ui:include src="/WEB-INF/includes/dashboard/coordinador.xhtml"/>
         </h:panelGroup>
-        <h:panelGroup layout="block" rendered="#{sessionController.user.rol.id eq 3}">
+        <h:panelGroup layout="block" rendered="#{sessionController.user.rol.id eq 2}">
             <ui:include src="/WEB-INF/includes/dashboard/recreador.xhtml"/>
         </h:panelGroup>         
-        <h:panelGroup layout="block" rendered="#{sessionController.user.rol.id eq 4}">
+        <h:panelGroup layout="block" rendered="#{sessionController.user.rol.id eq 3}">
             <ui:include src="/WEB-INF/includes/dashboard/cliente.xhtml"/>
         </h:panelGroup> 
     </ui:define>

@@ -73,13 +73,15 @@ public class SessionController implements Serializable {
         this.rol = rol;
     }
 
-    public String startSession() {
+    public String startSession() throws IOException {
         String url = "";
         if (email != null && password != null && password.length() > 0) {
             user = uDAO.findByCorreoAndContra(email, password);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("session", user);
+            ExternalContext ex = FacesContext.getCurrentInstance().getExternalContext();
             if (user != null) {
                 if (user.getRol() != null) {
+                    ex.redirect(ex.getRequestContextPath() + "/SI/index.xhtml");
                     url = "/SI/index.xhtml";
                 } else {
                     user = null;

@@ -34,7 +34,6 @@ public class GraficoReservasController implements  Serializable{
     private IEventoReservadoViewDAO IER;
     @EJB
     private ISolicitudDAO solicituadDao;
-    
     private ArrayList<String> fechaReserva = new ArrayList<String>();
     private ArrayList<Integer> numeroEventos = new ArrayList<Integer>();
     private ArrayList<EventoReservadoView> eventoreserva;

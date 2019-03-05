@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/includes/template/main.xhtml"
+                 xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                 xmlns:p="http://primefaces.org/ui">
+    <ui:define name="styles-page">
+        <link href="#{request.contextPath}/resources/libreriasHTML/nprogress/nprogress.css" rel="stylesheet"></link>
+        <link href="#{request.contextPath}/resources/libreriasHTML/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet"></link>
+        <link href="#{request.contextPath}/resources/libreriasHTML/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print"></link>
+        <link href="#{request.contextPath}/resources/css/custom.min.css" rel="stylesheet"></link>
+    </ui:define>
+    <ui:define name="scripts-grafricos">
+        <script src="#{request.contextPath}/resources/libreriasHTML/fastclick/lib/fastclick.js"></script>
+        <script src="#{request.contextPath}/resources/libreriasHTML/nprogress/nprogress.js"></script>
+        <script src="#{request.contextPath}/resources/libreriasHTML/moment/min/moment.min.js"></script>
+        <script src="#{request.contextPath}/resources/libreriasHTML/fullcalendar/dist/fullcalendar.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/custom.min.js"></script>
+    </ui:define>
+    <ui:define name="content">
+         <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Calendar <small>Click to add/edit events</small></h3>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Calendario Eventos <small>Sesiones</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Configuracion 1</a>
+                          </li>
+                          <li><a href="#">Configuracion 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <div id='calendar'></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- calendar modal -->
+        <div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">Nuevo Evento</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="testmodal" style="padding: 5px 20px;">
+                            <form id="antoform" class="form-horizontal calender" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Titulo</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="title" name="title"></input>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Descripcion</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary antosubmit">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel2">Editar Calendario</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div id="testmodal2" style="padding: 5px 20px;">
+                            <form id="antoform2" class="form-horizontal calender" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Titulo</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="title2" name="title2"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Descripcion</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary antosubmit2">Guardar Datos</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
+        <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
+    </ui:define>
+</ui:composition>
+

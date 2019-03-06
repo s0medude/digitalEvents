@@ -92,7 +92,7 @@ public class GrafricoEventosController implements Serializable{
 
     public List<EntityGrafricoGlobal> getDatosGrafricoInfantil() {
         datosGrafricoInfantil =new ArrayList<>();
-        int contador = 1;
+        int contador = eDao.findAllEventosGrafricoEMPRESARIAL().size()+1;
         String mesUsuario = null;
         for (GrafricoEventosView e : eDao.findAllEventosGrafricoINFANTILES()) {
             switch (e.getMeses()) {
@@ -143,7 +143,7 @@ public class GrafricoEventosController implements Serializable{
 
     public List<EntityGrafricoGlobal> getDatosGrafricoFiestaTematica() {
         datosGrafricoFiestaTematica =new ArrayList<>();
-        int contador = 1;
+        int contador = eDao.findAllEventosGrafricoINFANTILES().size()+eDao.findAllEventosGrafricoEMPRESARIAL().size()+1;
         String mesUsuario = null;
         for (GrafricoEventosView e : eDao.findAllEventosGrafrico()) {
             switch (e.getMeses()) {

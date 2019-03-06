@@ -92,7 +92,7 @@ public class GrafricoUsuariosController implements Serializable {
 
     public List<EntityGrafricoGlobal> getDatosGrafricoEstadoBloqueado() {
         datosGrafricoEstadoBloqueado = new ArrayList<>();
-        int contador = uDao.findAllUsuarios().size();
+        int contador = uDao.findAllUsuarios().size()+1;
         String mesUsuario = null;
        
         for (UsuarioEstadoView e : uDao.findAllUsuariosBloqueados()) {

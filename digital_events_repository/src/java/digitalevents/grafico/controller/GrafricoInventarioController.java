@@ -50,7 +50,7 @@ public class GrafricoInventarioController implements Serializable {
 
     public List<EntityGrafricoGlobal> getDatosMaterialesMalaCalidad() {
         datosMaterialesMalaCalidad = new ArrayList<>();
-        int contador = 1;
+        int contador = mDao.findAllInventarioGrafrico().size()+1;
         for (GrafricoInventarioView e : mDao.findAllInventarioMalEstadoGrafrico()) {
             EntityGrafricoGlobal cuen = new EntityGrafricoGlobal(contador++, e.getCantidad(), e.getEstadoMaterial(), e.getTipoMaterial());
             datosMaterialesMalaCalidad.add(cuen);

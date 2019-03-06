@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <ol class="breadcrumb">
-                        <li><a href="inventario.xhtml">Materiales /</a></li>
+                        <li><a href="inventario.xhtml">#{administrador_inventario.lbl_materiales_1} /</a></li>
                         <li class="active">/ Nuevo Material</li>
                     </ol>
                 </div>
@@ -33,7 +33,7 @@
                                 <div class="card-header card-header-success colorc">
                                     <div class="row">
                                         <div class="col-12">
-                                            <h4 class="card-title">Formulario Nuevo Material</h4>
+                                            <h4 class="card-title">#{administrador_inventario.lbl_nuevo_form_nuevo}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -41,30 +41,30 @@
                                     <h:panelGroup layout="block">
                                         <div class="form-group row">
                                             <div class="col-6">
-                                                <label class="control-label mb-1">Tipo Material:</label>
+                                                <label class="control-label mb-1">#{administrador_inventario.lbl_tipo_material}</label>
                                                 <h:inputText id="tipoMaterial" value="#{inventarioController.nuevoMaterial.tipoMaterial}"
                                                              class="form-control" a:type="text"/>
                                             </div>
                                             <div class="col-6">
-                                                <label class="control-label mb-1">Cantidad:</label>
+                                                <label class="control-label mb-1">#{administrador_inventario.lbl_cantidad}</label>
                                                 <h:inputText id="cantidad" value="#{inventarioController.nuevoMaterial.cantidad}"
                                                              class="form-control" a:type="number" maxlength="100" />
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-6">
-                                                <label class="control-label mb-1">Estado:</label>
+                                                <label class="control-label mb-1">]#{administrador_inventario.lbl_estado_material}</label>
                                                 <h:selectOneRadio id="estado" value="#{inventarioController.nuevoMaterial.estado}"
                                                                   class="form-control">
-                                                    <f:selectItem itemValue="BUENO" itemLabel="Bueno&nbsp;&nbsp;"/>
-                                                    <f:selectItem itemValue="MALO" itemLabel="Malo&nbsp;&nbsp;"/>
+                                                    <f:selectItem itemValue="BUENO" itemLabel="#{administrador_inventario.lbl_bueno}&nbsp;&nbsp;"/>
+                                                    <f:selectItem itemValue="MALO" itemLabel="#{administrador_inventario.lbl_malo}&nbsp;&nbsp;"/>
                                                 </h:selectOneRadio>
                                             </div>
                                             <div class="col-6">
-                                                <label for="disponilidad" class="control-label mb-1">Disponibilidad:</label>
+                                                <label for="disponilidad" class="control-label mb-1">#{administrador_inventario.lbl_disponibilidad}</label>
                                                 <h:selectOneMenu id="disponilidad" value="#{inventarioController.nuevoMaterial.disponilidad}"
                                                                  class="form-control">
-                                                    <f:selectItem itemValue="" itemLabel="Seleccione si se encuentra disponible"/>
+                                                    <f:selectItem itemValue="" itemLabel="#{administrador_inventario.lbl_seleccionar}"/>
                                                     <f:selectItems value="#{inventarioController.estadoMaterialList}" var="t" itemLabel="#{t.estado}"/>                                            
                                                 </h:selectOneMenu>  
                                             </div>
@@ -83,7 +83,7 @@
                                     </h:panelGroup>
                                 </div>
                                 <div class="card-footer">                            
-                                    <h:commandLink value="Añadir Material"                                                     
+                                    <h:commandLink value="#{administrador_inventario.lbl_anadir_material}"                                                     
                                                    action="#{inventarioController.registrar()}"
                                                    hreflang="inventario.xhmtl"
                                                    class="btn btn-primary btn-block"/>                                    

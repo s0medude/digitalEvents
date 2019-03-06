@@ -137,12 +137,12 @@
                                     <div class="table-responsive">
                                         <h:form prependId="false">
                                             <h:dataTable class="table table-striped text-center" value="#{inventarioController.materialList}" var="m">
-                                                <h:column><f:facet name="header">ID</f:facet>#{m.id}</h:column>
-                                                <h:column><f:facet name="header">TIPO MATERIAL</f:facet>#{m.tipoMaterial}</h:column>                                                
-                                                <h:column><f:facet name="header">CANTIDAD</f:facet>#{m.cantidad}</h:column>                                                
-                                                <h:column><f:facet name="header">ESTADO</f:facet>#{m.estado}</h:column>                                                 
-                                                <h:column><f:facet name="header">DISPONIBILIDAD</f:facet>#{m.disponilidad.estado}</h:column>                                                 
-                                                <h:column><f:facet name="header">OPCIONES</f:facet>
+                                                <h:column><f:facet name="header">#{administrador_inventario.lbl_id}</f:facet>#{m.id}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_inventario.lbl_tipo_material}</f:facet>#{m.tipoMaterial}</h:column>                                                
+                                                <h:column><f:facet name="header">#{administrador_inventario.lbl_cantidad}</f:facet>#{m.cantidad}</h:column>                                                
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_estado}</f:facet>#{m.estado}</h:column>                                                 
+                                                <h:column><f:facet name="header">#{administrador_inventario.lbl_disponibilidad}</f:facet>#{m.disponilidad.estado}</h:column>                                                 
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_options}</f:facet>
                                                     <h:commandLink class="td-actions text-right btn btn-success" actionListener="#{inventarioController.materialSeleccionado(m)}"
                                                                    a:data-toggle="modal" a:data-target="#modalEditarMaterial" rel="tooltip" >
                                                         <f:ajax render=":modalEditarMaterialContent"/>
@@ -181,7 +181,7 @@
                     <h:panelGroup id="modalEditarMaterialContent" class="modal-content" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title titulom" id="exampleModalLabel">Actualizar Solicitud</h5>
+                                <h5 class="modal-title titulom" id="exampleModalLabel">#{administrador_inventario.lbl_actualizar_imagen_material}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -190,23 +190,23 @@
                                 <h:form prependId="false">
                                     <div class="form-group row">
                                         <div class="col-3">
-                                            <label class="control-label mb-1">ID Material:</label>
+                                            <label class="control-label mb-1">#{administrador_inventario.lbl_id_material}</label>
                                             <div class="form-control">#{inventarioController.materialSeleccionado.id}</div>
                                         </div>
                                         <div class="col-3">
-                                            <label class="control-label mb-1">Tipo Material:</label>
+                                            <label class="control-label mb-1">#{administrador_inventario.lbl_tipo_material}</label>
                                             <h:inputText id="tipoMaterial" value="#{inventarioController.materialSeleccionado.tipoMaterial}"
                                                          class="form-control" a:type="text"/>
                                         </div>
                                         <div class="col-3">
-                                            <label class="control-label mb-1">Cantidad:</label>
+                                            <label class="control-label mb-1">#{administrador_inventario.lbl_cantidad}</label>
                                             <h:inputText id="cantidad" value="#{inventarioController.materialSeleccionado.cantidad}"
                                                          class="form-control" a:type="number" maxlength="100" />
                                         </div>
                                     </div>
                                     <div class="form-group row">                                        
                                         <div class="col-6">
-                                            <label class="control-label mb-1">Estado:</label>
+                                            <label class="control-label mb-1">#{administrador_inventario.lbl_estado}</label>
                                             <h:selectOneRadio id="genero" value="#{inventarioController.materialSeleccionado.estado}"
                                                               class="form-control">
                                                 <f:selectItem itemValue="BUENO" itemLabel="Bueno&nbsp;&nbsp;"/>
@@ -214,10 +214,10 @@
                                             </h:selectOneRadio>
                                         </div>
                                         <div class="col-6">
-                                            <label class="control-label mb-1">Disponibilidad:</label>
+                                            <label class="control-label mb-1">#{administrador_inventario.lbl_disponibilidad}</label>
                                             <h:selectOneMenu id="estado" value="#{inventarioController.materialSeleccionado.disponilidad}"
                                                              class="form-control">
-                                                <f:selectItem itemValue="" itemLabel="Seleccione si se encuentra disponible"/>
+                                                <f:selectItem itemValue="" itemLabel="#{administrador_inventario.lbl_seleccionar}"/>
                                                 <f:selectItems value="#{inventarioController.estadoMaterialList}" var="t" itemLabel="#{t.estado}"/>                                            
                                             </h:selectOneMenu>  
                                         </div>
@@ -225,8 +225,8 @@
                                 </h:form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">Cerrar</button>
-                                <h:commandLink actionListener="#{inventarioController.actualizar()}" class="btn btn-primary">Actualizar</h:commandLink> 
+                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">#{administrador_inventario.lbl_cerrar}</button>
+                                <h:commandLink actionListener="#{inventarioController.actualizar()}" class="btn btn-primary">#{administrador_inventario.lbl_actualizar}</h:commandLink> 
                             </div>
                         </div>
                     </h:panelGroup>
@@ -241,17 +241,17 @@
                 <h:form prependId="false">
                     <h:panelGroup id="modalEliminarMaterialContent" class="modal-content" layout="block" >
                         <div class="modal-header">
-                            <h5 class="modal-title" id="mediumModalLabel">Eliminar el material seleccionado</h5>
+                            <h5 class="modal-title" id="mediumModalLabel">#{administrador_inventario.lbl_seleccionar}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>¿Está seguro de eliminar la solictiud #{inventarioController.materialSeleccionado.tipoMaterial} definitivamente del sistema?</p>                                                             
+                            <p>#{administrador_inventario.lbl_esta_seguro} #{inventarioController.materialSeleccionado.tipoMaterial} #{administrador_inventario.lbl_esta_seguro_e}</p>                                                             
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                            <h:commandLink class="btn btn-danger" actionListener="#{inventarioController.eliminar()}">Si</h:commandLink>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">#{administrador_inventario.lbl_no}</button>
+                            <h:commandLink class="btn btn-danger" actionListener="#{inventarioController.eliminar()}">#{administrador_inventario.lbl_eliminar}</h:commandLink>
                         </div>
                     </h:panelGroup>
                 </h:form>
@@ -266,7 +266,7 @@
                     <h:panelGroup id="modaImagenContent" class="modal-content" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title titulom" id="exampleModalLabel">Actualizar Imagen Material</h5>
+                                <h5 class="modal-title titulom" id="exampleModalLabel">#{administrador_inventario.lbl_actualizar_imagen_material}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -281,7 +281,7 @@
                                 <p:growl id="messages" showDetail="true"/>                                
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">#{administrador_inventario.lbl_cerrar}</button>
                                 <p:commandButton class="btn btn-success letra-boton" value="Subir" ajax="false" actionListener="#{inventarioController.uploadFile()}"/>
                             </div>
                         </div>
@@ -298,20 +298,20 @@
                     <h:panelGroup id="modalCSVContent" class="modal-content" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title titulom" id="exampleModalLabel">Cargar Archivos Masivamente</h5>
+                                <h5 class="modal-title titulom" id="exampleModalLabel">#{administrador_inventario.lbl_carga_archivos}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="fileS" class="subir">Cargar CSV <i  style="font-size: 15px" class="fas fa-upload"></i></label>
+                                    <label for="fileS" class="subir">#{administrador_inventario.lbl_cargar_csv} <i  style="font-size: 15px" class="fas fa-upload"></i></label>
                                     <h:inputFile id="fileS" value="#{cargaMasivaInventarioCSVController.multiPartInventario}"> </h:inputFile>
                                     <div id="info"></div>
                                 </div>                               
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">#{administrador_inventario.lbl_cerrar}</button>
                                 <h:commandLink style="font-size: 12px" class="btn btn-primary letra-boton" value="Cargar" action="#{cargaMasivaInventarioCSVController.fileUploadCsvInventario()}">
                                     <f:ajax render="mesagescsv" execute="fileS"/>
                                     <i class="fas fa-save"></i>

@@ -18,7 +18,7 @@
         </resource-bundle>
         <resource-bundle>
              <base-name>digitalevents.languaje.administrador.adminsitrador_perfil</base-name>
-             <var>administrador_usuarios</var>
+             <var>administrador_perfil</var>
         </resource-bundle>
          <resource-bundle>
              <base-name>digitalevents.languaje.principal.head</base-name>

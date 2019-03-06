@@ -1,0 +1,149 @@
+label.error{
+    float: none;
+    color: red;
+
+}
+#nombreE.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+
+#direccion.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+#pNombre.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+#sNombre.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+#pApellido.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+#tDocumento.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+#nI.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+#correo.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+#contrasenia.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+
+#interrogante{
+    color: rgb(14, 110, 255);
+}
+#interrogante:hover{
+    color:red;
+}
+
+/*Modal Solicitud*/
+#selectEmpresa.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+
+}
+#selectTipoM.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+
+}
+
+/*Editar Usuario Modal*/
+#editNombre.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+#editSNombre.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+
+#editTelefono.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+
+/*Registro de Usuario*/
+#rPNombre.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+#rPApellido.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);  
+};
+
+#rSNombre.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+
+#rTelefono.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+
+#rTDocumento.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+#rNumeroId.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+#rFecha.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+
+
+/*Datos de Inicio de Sesión*/
+#rCorreo.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+#rContrasenia.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+#rNombreC.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+#rTelefonoE.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+
+/*Antecedentes*/
+#rFuma.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+
+#rDominancia.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+
+/*Registro Pagos*/
+#uPago.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}
+#fPago.error{
+    border-color: red;
+    box-shadow: 0 0 0 0.1rem rgba(255,110,0,0.25);
+}

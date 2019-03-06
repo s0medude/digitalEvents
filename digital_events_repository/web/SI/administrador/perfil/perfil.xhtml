@@ -29,7 +29,7 @@
                                 <div class="card-header card-header-success colorc">
                                     <div class="row">
                                         <div class="col-12">
-                                            <h4 class="card-title">Formulario Actualizar Perfil</h4>
+                                            <h4 class="card-title">#{administrador_perfil.lbl_actaulizar_perfil}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -41,48 +41,48 @@
                                                 <h:outputText id="id" value="#{u.id}" a:type="number" class="form-control" />
                                             </div>
                                             <div class="form-group">
-                                                <label for="tipoDocumento" class="control-label mb-1">Tipo Documento</label>
+                                                <label for="tipoDocumento" class="control-label mb-1">#{administrador_usuarios.lbl_tipo_documento}</label>
                                                 <h:selectOneMenu id="tiposDocumento" value="#{u.tiposDocumento}" class="form-control">
-                                                    <f:selectItem itemValue="" itemLabel="Seleccione un tipo de documento"/>
+                                                    <f:selectItem itemValue="" itemLabel="#{administrador_perfil.lbl_seleccione_documento}"/>
                                                     <f:selectItems value="#{tipoDocumentoController.tiposDocumentoList}" var="t" itemLabel="#{t.nombre}"/>                                            
                                                 </h:selectOneMenu> 
                                             </div>
                                             <div class="form-group">
-                                                <label for="documento" class="control-label mb-1">Numero Documento</label>
+                                                <label for="documento" class="control-label mb-1">#{administrador_perfil.lbl_numero_documento}</label>
                                                 <h:inputText id="documento" value="#{u.documento}" class="form-control" a:type="number" />
                                             </div>
                                             <div class="form-group">
-                                                <label for="nombres" class="control-label mb-1">Nombres</label>
+                                                <label for="nombres" class="control-label mb-1">#{administrador_perfil.lbl_nombre}</label>
                                                 <h:inputText id="nombres" value="#{u.nombres}" class="form-control" a:type="text" a:required=""/>                                                
                                             </div>
                                             <div class="form-group">
-                                                <label for="apellidos" class="control-label mb-1">Apellidos</label>                                                
+                                                <label for="apellidos" class="control-label mb-1">#{administrador_perfil.lbl_apellidos}</label>                                                
                                                 <h:inputText id="apellidos" value="#{u.apellidos}" class="form-control" a:type="text" a:required=""/>                                                   
                                             </div>
                                             <div class="form-group">
-                                                <label for="direccion" class="control-label mb-1">Direccion</label>                                                
+                                                <label for="direccion" class="control-label mb-1">#{administrador_perfil.lbl_direccion}</label>                                                
                                                 <h:inputText id="direccion" value="#{u.direccion}" class="form-control" a:type="text" a:required=""/>   
                                             </div>
                                             <div class="form-group">
-                                                <label for="fechaNacimiento" class="control-label mb-1">FEcha Nacimiento</label>
+                                                <label for="fechaNacimiento" class="control-label mb-1">#{administrador_perfil.lbl_fecha_nacimiento}</label>
                                                 <h:inputText id="fechaNacimiento" value="#{u.fechaNacimiento}" class="form-control" a:type="date" a:required="">
                                                     <f:convertDateTime pattern="yyyy-MM-dd"/>
                                                 </h:inputText>
                                             </div>
                                             <div class="form-group">
-                                                <label for="correo" class="control-label mb-1">Correo</label>                                                             
+                                                <label for="correo" class="control-label mb-1">#{administrador_perfil.lbl_correo}</label>                                                             
                                                 <h:inputText id="correo" value="#{u.correo}" class="form-control" a:type="email" a:required=""/> 
                                             </div>
                                             <div class="form-group">
-                                                <label for="contrasena" class="control-label mb-1">Contrasena</label>                                                                                
+                                                <label for="contrasena" class="control-label mb-1">#{administrador_perfil.lbl_contrasenia}</label>                                                                                
                                                 <h:inputSecret id="contrasena" value="#{u.contrasena}" class="form-control" a:required=""/> 
                                             </div>
                                             <div class="form-group">
-                                                <label for="telefonos" class="control-label mb-1">Telefonos</label>                                                                                
+                                                <label for="telefonos" class="control-label mb-1">#{administrador_perfil.lbl_telefono}</label>                                                                                
                                                 <h:inputText id="telefonos" value="#{u.telefonos}" class="form-control" a:type="number" a:required=""/> 
                                             </div>                                            
                                             <div class="form-group">
-                                                <label for="genero" class="control-label mb-1">Genero</label>
+                                                <label for="genero" class="control-label mb-1">#{administrador_perfil.lbl_genero}</label>
                                                 <h:selectOneRadio id="genero" value="#{u.genero}" class="form-control">
                                                     <f:selectItem itemValue="1" itemLabel="Masculino&nbsp;&nbsp;"/>
                                                     <f:selectItem itemValue="2" itemLabel="Femenino&nbsp;&nbsp;"/>
@@ -90,9 +90,9 @@
                                                 </h:selectOneRadio>
                                             </div>                                            
                                             <div class="form-group">
-                                                <label for="estado" class="control-label mb-1">Estado</label>
+                                                <label for="estado" class="control-label mb-1">#{administrador_perfil.lbl_estado}</label>
                                                 <h:selectOneMenu id="estado" value="#{u.estado}" class="form-control">
-                                                    <f:selectItem itemValue="" itemLabel="Seleccione un nuevo estado"/>
+                                                    <f:selectItem itemValue="" itemLabel="#{administrador_perfil.lbl_seleccione_estado}"/>
                                                     <f:selectItems value="#{usuarioController.estadosUsuarioList}" var="e" itemLabel="#{e.estado}"/> 
                                                 </h:selectOneMenu>
                                             </div>                                            
@@ -100,7 +100,7 @@
                                     </h:form>
                                 </div>
                                 <div class="card-footer">                            
-                                    <h:commandLink action="#{usuarioController.actualizar()}" class="btn btn-primary btn-block">Actualizar Informacion</h:commandLink> 
+                                    <h:commandLink action="#{usuarioController.actualizar()}" class="btn btn-primary btn-block">#{administrador_usuarios.lbl_actualizar_usuario}</h:commandLink> 
                                 </div>
                             </h:form>
                         </div>

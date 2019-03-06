@@ -50,12 +50,16 @@
             <div class="col-sm-12 text-center">
                 <div class="card text-center" style="width: 64.2rem;">
                     <div class="card-body">
-                        <h4 class="card-title"><strong class="text-info">¿Quieres tener alguno de nuestros Personajes en la Fiesta de Tus Hijos?</strong></h4>
-                        <p class="card-text">COCO, PAW PATROL, ANGRY BIRDS, SOY LUNA, MARIO BROSS, PEPPA PIG, TOY STORY, KUNG FU PANDA, POKEMON, MONSTERS, SUPER HEROES, TOPA, PIRATAS, DISNEY, ENTRE OTROS...</p>
-                        <a href="#0" class="btn btn-danger">
-                            <i class="material-icons movericon">event</i>
-                            <span>Reservar Tu Evento</span>
-                        </a>
+                        <h:form>
+                            <h4 class="card-title"><strong class="text-info">¿Quieres tener alguno de nuestros Personajes en la Fiesta de Tus Hijos?</strong></h4>
+                            <p class="card-text">COCO, PAW PATROL, ANGRY BIRDS, SOY LUNA, MARIO BROSS, PEPPA PIG, TOY STORY, KUNG FU PANDA, POKEMON, MONSTERS, SUPER HEROES, TOPA, PIRATAS, DISNEY, ENTRE OTROS...</p>
+                            <h:commandLink class="td-actions text-right btn btn-danger" actionListener="#"
+                                           a:data-toggle="modal" a:data-target="#modalFormSolicitud" rel="tooltip" >
+                                <f:ajax render=":modalFormSolicitudContent"/>
+                                <i class="material-icons movericon">event</i>
+                                <span>RESERVA TU EVENTO AQUI</span>
+                            </h:commandLink>
+                        </h:form>
                     </div>
                 </div>
             </div>
@@ -258,10 +262,6 @@
         <!--modal infantil-->
 
         <!--modal galeria-->
-
-        <style>
-            .modalXL {width: 1250px;}
-        </style>
         <div class="modal fade" id="modalGaleria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class= "modal-dialog modal-xl" role="document">
                 <h:form prependId="false">
@@ -282,6 +282,29 @@
             </div>
         </div>
         <!--modal galeria-->
+
+        <!--modal form solicitud-->
+        <div class="modal fade" id="modalFormSolicitud" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class= "modal-dialog modal-lg" role="document">
+                <h:form prependId="false">
+                    <h:panelGroup id="modalFormSolicitudContent" class="modal-content" layout="block">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title titulom" id="exampleModalLabel">FORMULARIO DE SOLICITUD NUEVO EVENTO</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+        </div>
+        <!--modal form solicitud-->
+
 
 
     </ui:define>

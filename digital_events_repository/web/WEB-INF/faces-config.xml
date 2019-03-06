@@ -20,5 +20,13 @@
              <base-name>digitalevents.languaje.administrador.adminsitrador_perfil</base-name>
              <var>administrador_usuarios</var>
         </resource-bundle>
+         <resource-bundle>
+             <base-name>digitalevents.languaje.principal.head</base-name>
+             <var>head</var>
+        </resource-bundle>
+         <resource-bundle>
+             <base-name>digitalevents.languaje.principal.header</base-name>
+             <var>header</var>
+        </resource-bundle>
     </application>
 </faces-config>

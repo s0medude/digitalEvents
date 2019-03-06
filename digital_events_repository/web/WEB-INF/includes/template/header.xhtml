@@ -12,11 +12,11 @@
                             <i class="material-icons">dashboard</i>
                         </button>-->
             <div class="navbar-wrapper">
-                <a class="navbar-brand" href="#">Dashboard</a>
+                <a class="navbar-brand" href="#{header.lbl_dashboard1}"></a>
             </div>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only">#{header.lbl_toggle_navigation}</span>
                 <span class="navbar-toggler-icon icon-bar"></span>
                 <span class="navbar-toggler-icon icon-bar"></span>
                 <span class="navbar-toggler-icon icon-bar"></span>
@@ -36,7 +36,7 @@
                         <a class="nav-link" href="#">
                             <i class="material-icons">dashboard</i>
                             <p class="d-lg-none d-md-block">
-                                Stats
+                                #{header.lbl_status}
                             </p>
                         </a>
                     </li>
@@ -70,14 +70,14 @@
                         <a class="nav-link" href="http://example.com" id="cuenta" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="material-icons">person</i>
                             <p class="d-lg-none d-md-block">
-                                Account
+                                #{header.lbl_cuenta}
                             </p>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cuenta">
                             <h:form>
                                 <h:commandLink class="dropdown-item" actionListener="#{sessionController.closeSession()}">
                                     <i class="fa fa-power -off"></i>
-                                    <span>Cerrar Sesion</span>
+                                    <span>#{header.lbl_cerar_session}</span>
                                 </h:commandLink>
                             </h:form>
                         </div>

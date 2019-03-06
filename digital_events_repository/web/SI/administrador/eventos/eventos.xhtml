@@ -111,8 +111,8 @@
                                 <div class="card-header card-header-success colorc">
                                     <div class="row">
                                         <div class="col-9">
-                                            <h4 class="card-title">Grafrico Eventos</h4>
-                                            <p class="card-category">Aquí encontraras un reporte grafrico de los eventos sin importar el estado ordenados por meses</p>
+                                            <h4 class="card-title">#{administrador_eventos.lbl_grafico_eventos}</h4>
+                                            <p class="card-category">#{administrador_eventos.lbl_aqui_encontraras_grafrico}s</p>
                                         </div>
                                         
                                     </div>
@@ -135,13 +135,13 @@
                                 <div class="card-header card-header-success colorc">
                                     <div class="row">
                                         <div class="col-9">
-                                            <h4 class="card-title">Eventos Reservados</h4>
-                                            <p class="card-category">Aquí encontraras los eventos aprobados</p>
+                                            <h4 class="card-title">#{administrador_eventos.lbl_eventos_reservados}</h4>
+                                            <p class="card-category">#{administrador_eventos.lbl_aqui_encontraras_aventos_approbnados}</p>
                                         </div>
                                         <div class="col-3">
                                             <a class="btn btn-info" href="#{request.contextPath}/SI/administrador/ventas/registrar.xhtml">
                                                 <i class="far fa-calendar-plus movericon"></i>
-                                                <span>Añadir Solicitud</span>
+                                                <span>#{administrador_eventos.btn_anadir_solicitud}</span>
                                             </a>
                                         </div>
                                     </div>
@@ -150,19 +150,19 @@
                                     <div class="table-responsive">
                                         <h:form prependId="false">
                                             <h:dataTable class="table table-striped text-center" value="#{eventoController.eventosList}" var="s">
-                                                <h:column><f:facet name="header">ID</f:facet>#{s.id}</h:column>
-                                                <h:column><f:facet name="header">USUARIO</f:facet>#{s.usuario}</h:column>                                                
-                                                <h:column><f:facet name="header">CONTACTO</f:facet>#{s.contacto}</h:column>                                                
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_id_event}</f:facet>#{s.id}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_usuario_evento}</f:facet>#{s.usuario}</h:column>                                                
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_contacto}</f:facet>#{s.contacto}</h:column>                                                
                                                 <h:column>
-                                                    <f:facet name="header">FECHA RESERVA</f:facet>
+                                                    <f:facet name="header">#{administrador_eventos.lbl_fecha_reserva}</f:facet>
                                                     <h:outputText value="#{s.fecha}">
                                                         <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
                                                     </h:outputText>
                                                 </h:column>                                                
-                                                <h:column><f:facet name="header">DIRECCION</f:facet>#{s.direccion}</h:column>                                                
-                                                <h:column><f:facet name="header">ESTADO</f:facet>#{s.estado}</h:column>                                                 
-                                                <h:column><f:facet name="header">SALDO</f:facet>#{s.saldo}</h:column>                                                 
-                                                <h:column><f:facet name="header">OPCIONES</f:facet>
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_direccion}</f:facet>#{s.direccion}</h:column>                                                
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_estado}</f:facet>#{s.estado}</h:column>                                                 
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_saldo}</f:facet>#{s.saldo}</h:column>                                                 
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_options}</f:facet>
                                                     <h:commandLink class="td-actions text-right btn btn-info" rel="tooltip" >
                                                         <f:ajax render=":modalVisualizarSolicitudContent"/>
                                                         <i class="material-icons">event</i>

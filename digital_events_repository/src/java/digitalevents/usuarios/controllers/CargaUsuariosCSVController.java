@@ -86,8 +86,8 @@ public class CargaUsuariosCSVController implements Serializable {
         if (props == null) {
             props = new Properties();
             props.put(KEY_SMTP_SERVER, "smtp.gmail.com");
-            props.put(KEY_FROM, "digital.events.soft@gmail.com");
-            props.put(KEY_PASSWORD, "digital12345");
+            props.put(KEY_FROM, "digitaleventssystem@gmail.com");
+            props.put(KEY_PASSWORD, "gaesevents");
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.starttls.enable", "true");
             props.put("mail.smtp.port", "587");
@@ -210,7 +210,7 @@ public class CargaUsuariosCSVController implements Serializable {
                 linea = bf.readLine();
                 MessageUtil.addInfoMessage(null, "Carga de datos exitosa", "Los datos del usuario se han cargado correctamente,", false);
                 loadConfig();
-                sendMail(val[6], "Sus datos han cargado correctamente desde el sistema DigitalEvents", "Se ha realizado la carga con los datos:\n id:" + "\n Tipo de Identificacion:" + val[1] + "\n Numero de Idntificacion: " + val[2] + "\n Fecha:" + val[4] + "En la fecha de hoy: " + new Date().toString());
+                sendMail(uCsv.getCorreo(), "Sus datos han cargado correctamente desde el sistema DigitalEvents", "Se ha realizado la carga con los datos:\n id:" + "\n Tipo de Identificacion:" + val[1] + "\n Numero de Idntificacion: " + val[2] + "\n Fecha:" + val[4] + "En la fecha de hoy: " + new Date().toString());
                 System.out.println("Carga de datos exitosa con los datos");
             }
 

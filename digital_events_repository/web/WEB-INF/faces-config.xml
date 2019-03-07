@@ -5,48 +5,48 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <application>
         <resource-bundle>
-             <base-name>digitalevents.languaje.administrador.administrador_eventos</base-name>
-             <var>administrador_eventos</var>
+            <base-name>digitalevents.languaje.administrador.administrador_eventos</base-name>
+            <var>administrador_eventos</var>
         </resource-bundle>
         <resource-bundle>
-             <base-name>digitalevents.languaje.administrador.administrador_inventario</base-name>
-             <var>administrador_inventario</var>
+            <base-name>digitalevents.languaje.administrador.administrador_inventario</base-name>
+            <var>administrador_inventario</var>
         </resource-bundle>
         <resource-bundle>
-             <base-name>digitalevents.languaje.administrador.administrador_usuarios</base-name>
-             <var>administrador_usuarios</var>
+            <base-name>digitalevents.languaje.administrador.administrador_usuarios</base-name>
+            <var>administrador_usuarios</var>
         </resource-bundle>
         <resource-bundle>
-             <base-name>digitalevents.languaje.administrador.adminsitrador_perfil</base-name>
-             <var>administrador_perfil</var>
-        </resource-bundle>
-         <resource-bundle>
-             <base-name>digitalevents.languaje.principal.head</base-name>
-             <var>head</var>
-        </resource-bundle>
-         <resource-bundle>
-             <base-name>digitalevents.languaje.principal.header</base-name>
-             <var>header</var>
+            <base-name>digitalevents.languaje.administrador.adminsitrador_perfil</base-name>
+            <var>administrador_perfil</var>
         </resource-bundle>
         <resource-bundle>
-             <base-name>digitalevents.languaje.principal.index</base-name>
-             <var>index</var>
+            <base-name>digitalevents.languaje.principal.head</base-name>
+            <var>head</var>
         </resource-bundle>
         <resource-bundle>
-             <base-name>digitalevents.languaje.principal.menuadministrador</base-name>
-             <var>menuadmin</var>
+            <base-name>digitalevents.languaje.principal.header</base-name>
+            <var>header</var>
         </resource-bundle>
         <resource-bundle>
-             <base-name>digitalevents.languaje.principal.menucliente</base-name>
-             <var>menucliente</var>
+            <base-name>digitalevents.languaje.principal.index</base-name>
+            <var>index</var>
         </resource-bundle>
         <resource-bundle>
-             <base-name>digitalevents.languaje.principal.menucoordinador</base-name>
-             <var>menucoordinador</var>
+            <base-name>digitalevents.languaje.principal.menuadministrador</base-name>
+            <var>menuadmin</var>
         </resource-bundle>
         <resource-bundle>
-             <base-name>digitalevents.languaje.principal.menurecreacisnista</base-name>
-             <var>menurecreacionista</var>
+            <base-name>digitalevents.languaje.principal.menucliente</base-name>
+            <var>menucliente</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>digitalevents.languaje.principal.menucoordinador</base-name>
+            <var>menucoordinador</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>digitalevents.languaje.principal.menurecreacisnista</base-name>
+            <var>menurecreacionista</var>
         </resource-bundle>
     </application>
 </faces-config>

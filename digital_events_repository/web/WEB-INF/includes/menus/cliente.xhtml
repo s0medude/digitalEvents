@@ -9,13 +9,13 @@
     <li class="nav-item ">
         <a class="nav-link" href="#{request.contextPath}/SI/cliente/perfil/perfil.xhtml">
             <i class="material-icons">person</i>
-            <p>Perfil de Usuario</p>
+            <p>#{menucliente.lbl_perfil_usuario}</p>
         </a>
     </li>
     <li class="nav-item ">
         <a class="nav-link collapsed" data-toggle="collapse" href="#pagesExamples" aria-expanded="false" data-target="#ventas">
             <i class="material-icons">attach_money</i>
-            <p>Ventas 
+            <p>#{menucliente.lbl_ventas}
                 <b class="caret"></b>
             </p>
         </a>
@@ -24,7 +24,7 @@
                 <li class="nav-item ">
                     <a class="nav-link l" href="#{request.contextPath}/SI/cliente/ventas/solicitud.xhtml">
                         <i class="far fa-calendar-plus"></i>
-                        <span class="sidebar-normal">Nueva solicitud</span>
+                        <span class="sidebar-normal">#{menucliente.lbl_nuevas_solicitud}</span>
                     </a>
                 </li>
             </ul>
@@ -33,7 +33,7 @@
     <li class="nav-item ">
         <a class="nav-link collapsed" data-toggle="collapse" href="#pagesExamples" aria-expanded="false" data-target="#controlEventos">
             <i class="material-icons">event_available</i>
-            <p> Control Eventos
+            <p> #{menucliente.lbl_control_events}
                 <b class="caret"></b>
             </p>
         </a>
@@ -42,15 +42,15 @@
                 <li class="nav-item">
                     <a class="nav-link l" href="#{request.contextPath}/SI/cliente/eventos/eventos.xhtml">
                         <i class="fas fa-clipboard-check"></i>
-                        <span class="sidebar-normal">Eventos Realizados</span>
+                        <span class="sidebar-normal">#{menucliente.lbl_eventos_realizados}</span>
                     </a>
                 </li>
-                <li class="nav-item">
+<!--                <li class="nav-item">
                     <a class="nav-link l" href="#{request.contextPath}/SI/cliente/eventos/calendarioEventos.xhtml">
                         <i class="fas fa-clipboard-check"></i>
                         <span class="sidebar-normal">Calendario Eventos</span>
                     </a>
-                </li>
+                </li>-->
             </ul>
         </div>
     </li>

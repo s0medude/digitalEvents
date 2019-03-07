@@ -9,19 +9,19 @@
     <li class="nav-item ">
         <a class="nav-link" href="#{request.contextPath}/SI/coordinador/perfil/perfil.xhtml">
             <i class="material-icons">person</i>
-            <p>Perfil de Usuario</p>
+            <p>#{menucoordinador.lbl_perfil_usuario}</p>
         </a>
     </li>
     <li class="nav-item ">
         <a class="nav-link" href="#{request.contextPath}/SI/coordinador/usuarios/index.xhtml">
             <i class="material-icons">content_paste</i>
-            <p>Gestion de Usuarios</p>
+            <p>#{menucoordinador.lbl_gestion_de_usuario}</p>
         </a>
     </li>
     <li class="nav-item ">
         <a class="nav-link collapsed" data-toggle="collapse" href="#pagesExamples" aria-expanded="false" data-target="#controlEventos">
             <i class="material-icons">event_available</i>
-            <p> Control Eventos
+            <p> #{menucoordinador.lbl_control_events}
                 <b class="caret"></b>
             </p>
         </a>
@@ -30,13 +30,13 @@
                 <li class="nav-item ">
                     <a class="nav-link l" href="#{request.contextPath}/SI/coordinador/eventos/eventos.xhtml">
                         <i class="material-icons">library_books</i>
-                        <span class="sidebar-normal">Eventos Reservados</span>
+                        <span class="sidebar-normal">#{menucoordinador.lbl_eventos_reservador}</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link l" href="#">
                         <i class="fas fa-clipboard-check"></i>
-                        <span class="sidebar-normal">Eventos Realizados</span>
+                        <span class="sidebar-normal">#{menucoordinador.lbl_eventos_realizados}</span>
                     </a>
                 </li>
             </ul>
@@ -45,7 +45,7 @@
     <li class="nav-item ">
         <a class="nav-link" href="#{request.contextPath}/SI/coordinador/inventario/inventario.xhtml">
             <i class="material-icons">inventory</i>
-            <p>Inventario</p>
+            <p>#{menucoordinador.lbl_inventario}</p>
         </a>
     </li>
 </ui:fragment>

@@ -53,12 +53,10 @@
                         <h:form>
                             <h4 class="card-title"><strong class="text-info">¿Quieres tener alguno de nuestros Personajes en la Fiesta de Tus Hijos?</strong></h4>
                             <p class="card-text">COCO, PAW PATROL, ANGRY BIRDS, SOY LUNA, MARIO BROSS, PEPPA PIG, TOY STORY, KUNG FU PANDA, POKEMON, MONSTERS, SUPER HEROES, TOPA, PIRATAS, DISNEY, ENTRE OTROS...</p>
-                            <h:commandLink class="td-actions text-right btn btn-danger" actionListener="#"
-                                           a:data-toggle="modal" a:data-target="#modalFormSolicitud" rel="tooltip" >
-                                <f:ajax render=":modalFormSolicitudContent"/>
+                            <a class="td-actions text-right btn btn-danger" href="#{request.contextPath}/SI/administrador/ventas/registrar.xhtml">
                                 <i class="material-icons movericon">event</i>
                                 <span>RESERVA TU EVENTO AQUI</span>
-                            </h:commandLink>
+                            </a>
                         </h:form>
                     </div>
                 </div>
@@ -285,7 +283,7 @@
 
         <!--modal form solicitud-->
         <div class="modal fade" id="modalFormSolicitud" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class= "modal-dialog modal-lg" role="document">
+            <div class= "modal-dialog modal-xl" role="document">
                 <h:form prependId="false">
                     <h:panelGroup id="modalFormSolicitudContent" class="modal-content" layout="block">
                         <div class="modal-content">
@@ -296,7 +294,6 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                
                             </div>
                         </div>
                     </h:panelGroup>

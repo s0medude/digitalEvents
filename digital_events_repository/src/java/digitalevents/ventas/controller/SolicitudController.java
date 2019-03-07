@@ -128,12 +128,10 @@ public class SolicitudController implements Serializable {
         }
     }
 
-    public String registrar() {
-        String rta = "";
+    public void registrar() {
         try {
-            if (nuevaSolicitud.getId() != null || nuevaSolicitud.getUsuariosId() != null) {
+            if (nuevaSolicitud.getId() != null) {
                 sDAO.register(nuevaSolicitud);
-                nuevaSolicitud.setEstado(esDAO.findByPK(1));
                 MessageUtil.addInfoMessage(null, "REGISTRO EXITOSO", "", false);
             } else {
                 MessageUtil.addErrorMessage(null, "Error de validación", "", false);
@@ -141,7 +139,6 @@ public class SolicitudController implements Serializable {
         } catch (Exception e) {
             MessageUtil.addErrorMessage(null, "Error al registrar la Solicitud", e.getMessage(), false);
         }
-        return rta;
     }
 
     public void eliminar() {

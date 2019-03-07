@@ -24,6 +24,9 @@
     <script src="#{request.contextPath}/resources/js/scripts.js"></script>
     <script src="#{request.contextPath}/resources/js/zingchart.min.js"></script>
     <script src="#{request.contextPath}/resources/canvasjs/canvasjs.min.js"></script>
+    <script src="#{request.contextPath}/resources/js/jquery.steps.js"></script>
+    <script src="#{request.contextPath}/resources/js/main.js"></script>
+
     <script>
         $(document).ready(function () {
             // Javascript method's body can be found in assets/js/demos.js
@@ -62,7 +65,7 @@
             console.log($videoSrc);
             $('#modalVideo').on('shown.bs.modal', function (e) {
                 $("#video").attr('src', $videoSrc + "?rel=0&amp;showinfo=0&amp;modestbranding=1&amp;autoplay=1");
-            });           
+            });
             $('#modalVideo').on('hide.bs.modal', function (e) {
                 $("#video").attr('src', $videoSrc);
             });

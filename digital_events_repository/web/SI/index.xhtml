@@ -172,25 +172,18 @@
             <div class="card-header card-header-primary">
                 <h4 class="card-title"><strong>TENEMOS LOS MEJORES SHOWS Y PERSONAJES PARA CADA OCASIÓN</strong></h4>
             </div>
-            <div class="card-body text-center">
+            <div class="card-body">
                 <h:form>
                     <p class="card-text">Diseñados especialmente para eventos infantiles de integración y final de año, día del niño, fiestas temáticas infantiles, atracciones mecánicas, show´s musicales, mundoIinflable, eventos navideños entre otros.</p>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <h:commandLink class="col-md-4" actionListener="#" a:data-toggle="modal" a:data-target="#modalEventoEmpresa" rel="tooltip">
-                                <f:ajax render=":modalEventoEmpresaContent"/>
-                                <h:graphicImage value="#{request.contextPath}/resources/img/eventos-empresariales.png"/>
-                            </h:commandLink>    
-                        </div>
-                        <div class="row">
-
-                        </div>
-                    </div>
+                    <h:commandLink class="td-actions text-right btn btn-danger" actionListener="#"
+                                   a:data-toggle="modal" a:data-target="#modalGaleria" rel="tooltip" >
+                        <f:ajax render=":modalGaleriaContent"/>
+                        <i class="material-icons movericon">collections</i>
+                        <span>VER GALERIA</span>
+                    </h:commandLink>
                 </h:form>
             </div>
         </div>
-
-
 
 
 
@@ -225,11 +218,6 @@
                             <div class="modal-body">
                                 <div class="embed-responsive embed-responsive-16by9">
                                     <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always">></iframe>
-                                    <div id="myModal" class="modal">
-                                        <span class="close">&times;</span>
-                                        <img class="modal-content" id="img01"/>
-                                        <div id="caption"></div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">

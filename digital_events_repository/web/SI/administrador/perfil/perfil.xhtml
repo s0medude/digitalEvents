@@ -37,11 +37,11 @@
                                     <h:form id="formPerfilUsuario" prependId="false" a:novalidate="novalidate" class="row">
                                         <ui:repeat value="#{usuarioController.getUsuarioSessionList(u)}" var="u">
                                             <div class="form-group">
-                                                <label for="id" class="control-label mb-1">ID Usuario</label>
+                                                <label for="id" class="control-label mb-1">#{administrador_perfil.lbl_id_usuario}</label>
                                                 <h:outputText id="id" value="#{u.id}" a:type="number" class="form-control" />
                                             </div>
                                             <div class="form-group">
-                                                <label for="tipoDocumento" class="control-label mb-1">#{administrador_usuarios.lbl_tipo_documento}</label>
+                                                <label for="tipoDocumento" class="control-label mb-1">#{administrador_usuarios.lbl_tipos_documento}</label>
                                                 <h:selectOneMenu id="tiposDocumento" value="#{u.tiposDocumento}" class="form-control">
                                                     <f:selectItem itemValue="" itemLabel="#{administrador_perfil.lbl_seleccione_documento}"/>
                                                     <f:selectItems value="#{tipoDocumentoController.tiposDocumentoList}" var="t" itemLabel="#{t.nombre}"/>                                            
@@ -56,7 +56,7 @@
                                                 <h:inputText id="nombres" value="#{u.nombres}" class="form-control" a:type="text" a:required=""/>                                                
                                             </div>
                                             <div class="form-group">
-                                                <label for="apellidos" class="control-label mb-1">#{administrador_perfil.lbl_apellidos}</label>                                                
+                                                <label for="apellidos" class="control-label mb-1">#{administrador_perfil.lbl_apellido}</label>                                                
                                                 <h:inputText id="apellidos" value="#{u.apellidos}" class="form-control" a:type="text" a:required=""/>                                                   
                                             </div>
                                             <div class="form-group">
@@ -70,7 +70,7 @@
                                                 </h:inputText>
                                             </div>
                                             <div class="form-group">
-                                                <label for="correo" class="control-label mb-1">#{administrador_perfil.lbl_correo}</label>                                                             
+                                                <label for="correo" class="control-label mb-1">#{administrador_perfil.lbl_correoElectronico}</label>                                                             
                                                 <h:inputText id="correo" value="#{u.correo}" class="form-control" a:type="email" a:required=""/> 
                                             </div>
                                             <div class="form-group">

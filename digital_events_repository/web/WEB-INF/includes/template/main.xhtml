@@ -3,8 +3,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       lang="en">
-
-    <h:head>
+    <f:view locale="#{lenguajeController.locale}">
+        <h:head>
         <ui:include src="/WEB-INF/includes/template/head.xhtml"/>
         <f:metadata>
             <f:event type="preRenderView" listener="#{sessionController.validateSession()}"/>
@@ -27,6 +27,8 @@
         </div>
         <ui:include src="/WEB-INF/includes/template/scripts.xhtml"/>
     </h:body>
+    </f:view>
+    
 
     
 </html>

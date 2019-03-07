@@ -41,7 +41,7 @@
                         </a>
                     </li>
                     <h:form prependId="false">
-                        <h:selectOneMenu class="btn btn-outline-info d-lg-inline-block mb-3 mb-md-3" value="#{languajeController.lenguaje}" onchange="submit()">
+                        <h:selectOneMenu class="btn btn-outline-info d-lg-inline-block mb-3 mb-md-3" value="#{lenguajeController.languaje}" onchange="submit();">
                             <f:selectItems value="#{languajeController.idiomaPredefinido}" var="l" itemLabel="#{l.language}"></f:selectItems>
                         </h:selectOneMenu>
                     </h:form>

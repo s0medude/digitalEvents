@@ -28,5 +28,25 @@
              <base-name>digitalevents.languaje.principal.header</base-name>
              <var>header</var>
         </resource-bundle>
+        <resource-bundle>
+             <base-name>digitalevents.languaje.principal.index</base-name>
+             <var>index</var>
+        </resource-bundle>
+        <resource-bundle>
+             <base-name>digitalevents.languaje.principal.menuadministrador</base-name>
+             <var>menuadmin</var>
+        </resource-bundle>
+        <resource-bundle>
+             <base-name>digitalevents.languaje.principal.menucliente</base-name>
+             <var>menucliente</var>
+        </resource-bundle>
+        <resource-bundle>
+             <base-name>digitalevents.languaje.principal.menucoordinador</base-name>
+             <var>menucoordinador</var>
+        </resource-bundle>
+        <resource-bundle>
+             <base-name>digitalevents.languaje.principal.menurecreacisnista</base-name>
+             <var>menurecreacionista</var>
+        </resource-bundle>
     </application>
 </faces-config>

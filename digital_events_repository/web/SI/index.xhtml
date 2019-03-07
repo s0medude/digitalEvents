@@ -21,8 +21,8 @@
                     <img class="d-block w-100" src="#{request.contextPath}/resources/img/personajes-transformers.png" style="width: 250px; height: 550px;"/>
                     <div class="carousel-caption d-none d-md-block">
                         <div class="card-title text-light">
-                            <h2><strong>TRANSFORMERS Y LOS VENGADORES</strong></h2>
-                            <h4>Fiestas Infantiles Tematicas: Optimus Prime, BumbleBee, Capitan America y IronMan pueden ser parte de tu fiesta</h4>
+                            <h2><strong>#{index.lbl_transformers_vengadores}</strong></h2>
+                            <h4>#{index.lbl_fiestas_infantiles}</h4>
                         </div>
                     </div>
                 </div>
@@ -32,8 +32,8 @@
                 <div class="carousel-item">
                     <img class="d-block w-100" src="#{request.contextPath}/resources/img/dinosaurios.png" style="width: 250px; height: 550px;"/>
                     <div class="carousel-caption d-none d-md-block">
-                        <h2><strong>¡UN MUNDO INCREIBLE!</strong></h2>
-                        <h4>Las mejores atracciones con tecnologia de punta para que tus celebraciones sean unicas</h4>
+                        <h2><strong>#{index.lbl_un_mundo}</strong></h2>
+                        <h4>#{index.lbl_las_mejores}</h4>
                     </div>
                 </div>
             </div>
@@ -51,11 +51,11 @@
                 <div class="card text-center" style="width: 64.2rem;">
                     <div class="card-body">
                         <h:form>
-                            <h4 class="card-title"><strong class="text-info">¿Quieres tener alguno de nuestros Personajes en la Fiesta de Tus Hijos?</strong></h4>
-                            <p class="card-text">COCO, PAW PATROL, ANGRY BIRDS, SOY LUNA, MARIO BROSS, PEPPA PIG, TOY STORY, KUNG FU PANDA, POKEMON, MONSTERS, SUPER HEROES, TOPA, PIRATAS, DISNEY, ENTRE OTROS...</p>
+                            <h4 class="card-title"><strong class="text-info">#{index.lbl_quieres_tener_alguno}</strong></h4>
+                            <p class="card-text">#{index.lbl_personajes}</p>
                             <a class="td-actions text-right btn btn-danger" href="#{request.contextPath}/SI/administrador/ventas/registrar.xhtml">
                                 <i class="material-icons movericon">event</i>
-                                <span>RESERVA TU EVENTO AQUI</span>
+                                <span>#{index.lbl_reserva_tu}</span>
                             </a>
                         </h:form>
                     </div>
@@ -88,27 +88,27 @@
                             </a>
                         </div>
                         <div class="card-title">
-                            <strong>Este año será asombroso...</strong>
+                            <strong>#{index.lbl_este_anio}</strong>
                         </div>
                     </div>                    
                     <div class="card-body">
-                        <h6 class="card-category text-info">EVENTOS INFANTILES</h6>
+                        <h6 class="card-category text-info">#{index.lbl_eventos_infentiles}</h6>
                         <p class="card-description">
-                            FIESTAS INFANTILES Y RECREACIONISTAS EN BOGOTÁ - SHOW’S MUSICALES Y RECREADORES EN TODO COLOMBIA. Todo en Alquiler de Inflables Infantiles en Bogota.
+                            #{index.lbl_fiestas_infentiles_recreacionistas}
                         </p>
                         <h:form>
                             <h:commandLink class="td-actions btn btn-info pull-right" actionListener="#"
                                            a:data-toggle="modal" a:data-target="#modalEventoInfantil" rel="tooltip">
                                 <f:ajax render=":modalEventoInfantilContent"/>
                                 <i class="material-icons">more</i>&nbsp;
-                                <span>Ver más</span>
+                                <span>#{index.lbl_ver_mas}</span>
                             </h:commandLink>
                             <h:commandLink class="td-actions btn btn-warning pull-right video-btn" actionListener="#"
                                            a:data-toggle="modal" a:data-target="#modalVideo" rel="tooltip" 
                                            a:data-src="https://www.youtube.com/embed/fZduQ1Nyj7M">
                                 <f:ajax render=":modalContentVideo"/>
                                 <i class="material-icons">videocam</i>&nbsp;
-                                <span>Ver Video</span>
+                                <span>#{index.lbl_ver_video}</span>
                             </h:commandLink> 
                         </h:form>
                     </div>
@@ -139,28 +139,27 @@
                             </a>
                         </div>
                         <div class="card-title">
-                            <strong>¡Tenemos los eventos con convertura para tu empresa!</strong>
+                            <strong>#{index.lbl_tenemos_videos_con}</strong>
                         </div>
                     </div>
                     <div class="card-body">
-                        <h6 class="card-category text-success">EVENTOS EMPRESARIALES</h6>
+                        <h6 class="card-category text-success">#{index.lbl_eventos_empresariales}</h6>
                         <p class="card-description">
-                            Somos Especialistas en Eventos de gran Impacto - Tenemos Shows Exclusivos para cada Ocasión.
-                            Personajes Exclusivos en Cada Presentacion.
+                            #{index.lbl_somos}
                         </p>
                         <h:form>
                             <h:commandLink class="td-actions btn btn-success pull-right" actionListener="#"
                                            a:data-toggle="modal" a:data-target="#modalEventoEmpresa" rel="tooltip">
                                 <f:ajax render=":modalEventoEmpresaContent"/>
                                 <i class="material-icons">more</i>&nbsp;
-                                <span>Ver más</span>
+                                <span>#{index.lbl_ver_mas}</span>
                             </h:commandLink> 
                             <h:commandLink class="td-actions btn btn-warning pull-right video-btn" actionListener="#"
                                            a:data-toggle="modal" a:data-target="#modalVideo" rel="tooltip"
                                            a:data-src="https://www.youtube.com/embed/jfnxTMhMKIA">
                                 <f:ajax render=":modalContentVideo"/>
                                 <i class="material-icons">videocam</i>&nbsp;
-                                <span>Ver Video</span>
+                                <span>#{index.lbl_ver_video}</span>
                             </h:commandLink> 
                         </h:form>
                     </div>
@@ -170,11 +169,11 @@
 
         <div class="card card-nav-tabs text-center">
             <div class="card-header card-header-primary">
-                <h4 class="card-title"><strong>TENEMOS LOS MEJORES SHOWS Y PERSONAJES PARA CADA OCASIÓN</strong></h4>
+                <h4 class="card-title"><strong>#{index.lbl_tenemos_personajes}</strong></h4>
             </div>
             <div class="card-body text-center">
                 <h:form>
-                    <p class="card-text">Diseñados especialmente para eventos infantiles de integración y final de año, día del niño, fiestas temáticas infantiles, atracciones mecánicas, show´s musicales, mundoIinflable, eventos navideños entre otros.</p>
+                    <p class="card-text">#{index.lbl_diseñados_especialmente}</p>
                     <div class="container-fluid">
                         <div class="row">
                              
@@ -214,7 +213,7 @@
                     <h:panelGroup id="modalContentVideo" class="modal-content" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title titulom" id="exampleModalLabel">EVENTOS INFANTILES Y EMPRESARIALES</h5>
+                                <h5 class="modal-title titulom" id="exampleModalLabel">#{index.lbl_eventos_empresariales_infantiles}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -230,7 +229,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary letra-boton" data-dismiss="modal">ENTENDIDO</button>
+                                <button type="button" class="btn btn-primary letra-boton" data-dismiss="modal">#{index.lbl_entendido}</button>
                             </div>
                         </div>
                     </h:panelGroup>
@@ -246,7 +245,7 @@
                     <h:panelGroup id="modalEventoInfantilContent" class="modal-content" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title titulom" id="exampleModalLabel">EVENTOS INFANTILES</h5>
+                                <h5 class="modal-title titulom" id="exampleModalLabel">#{index.lbl_eventos_infentiles}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -257,9 +256,9 @@
                             <div class="modal-footer">                                
                                 <a href="#0" class="btn btn-success">
                                     <i class="material-icons movericon">event</i>
-                                    <span>Reservar Tu Evento</span>
+                                    <span>#{index.lbl_reservar_tu_evento}</span>
                                 </a>
-                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">ENTENDIDO</button>
+                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">#{index.lbl_entendido}</button>
                             </div>
                         </div>
                     </h:panelGroup>
@@ -275,8 +274,8 @@
                     <h:panelGroup id="modalGaleriaContent" class="modal-content" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title titulom" id="exampleModalLabel">GALERIA PERSONAJES | SHOWS MUSICALES</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <h5 class="modal-title titulom" id="exampleModalLabel">#{index.lbl_galerias_personajes_shows}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="#{index.lbl_cerrar}>}">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -297,7 +296,7 @@
                     <h:panelGroup id="modalFormSolicitudContent" class="modal-content" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title titulom" id="exampleModalLabel">FORMULARIO DE SOLICITUD NUEVO EVENTO</h5>
+                                <h5 class="modal-title titulom" id="exampleModalLabel">#{index.lbl_form_solicitud_evento}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

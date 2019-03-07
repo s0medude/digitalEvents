@@ -152,9 +152,9 @@
                                         <h:form>
                                             <h:dataTable class="table table-striped text-center" var="u" value="#{usuarioController.usuariosList}" >
                                                 <h:column><f:facet name="header">#{administrador_usuarios.lbl_ID}</f:facet>#{u.id}</h:column>
-                                                <h:column><f:facet name="header">#{administrador_usuarios.lbl_id_tipo}</f:facet>#{u.tiposDocumento.sigla}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_usuarios.btn_tipos_documento}</f:facet>#{u.tiposDocumento.sigla}</h:column>
                                                 <h:column><f:facet name="header">#{administrador_usuarios.lbl_NOMBRE}</f:facet>#{u.nombres}</h:column>
-                                                <h:column><f:facet name="header">#{administrador_usuarios.lbl_apellidos}</f:facet>#{u.apellidos}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_usuarios.btn_apellidos}</f:facet>#{u.apellidos}</h:column>
                                                 <h:column><f:facet name="header">#{administrador_usuarios.lbl_correo}</f:facet>#{u.correo}</h:column>
                                                 <h:column><f:facet name="header">#{administrador_eventos.lbl_options}</f:facet>
                                                     <h:commandLink class="td-actions text-right btn btn-info" actionListener="#{usuarioController.usuarioSeleccionado(u)}"

@@ -9,7 +9,7 @@
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:p="http://primefaces.org/ui">
     <ui:define name="scripts-grafricos">
-       <script type="text/javascript">
+        <script type="text/javascript">
             var chart;
 
             function updateDatos(cuentasCDT) {
@@ -27,7 +27,7 @@
             $(document).ready(function () {
                 chart = new CanvasJS.Chart("myChart", {
                     animationEnabled: true,
-                    exportEnabled: true, 
+                    exportEnabled: true,
                     toolTip: {
                         shared: true
                     },
@@ -54,7 +54,7 @@
 
                 };
                 chart.options.title = {
-                   
+
                 };
                 seriesEstadoActivo = {
                     /*** Change type "column" to "bar", "area", "line" or "pie"***/
@@ -108,7 +108,7 @@
                         <div class="card">
                             <h:form>
                                 <div class="card-header card-chart card-header-success">
-                                     <div class="ct-chart" id="myChart" style="width: 100%; height: 300px;"></div>
+                                    <div class="ct-chart" id="myChart" style="width: 100%; height: 300px;"></div>
                                 </div>
                                 <div class="card-body">
                                     <h4 class="card-title">#{administrador_usuarios.lbl_grafrico_usuarios}</h4>
@@ -279,7 +279,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <h:form prependId="false">
+                               
                                     <div class="form-group row">
                                         <div class="col-6">
                                             <h:inputText id="nombres" value="#{usuarioController.usuarioSeleccionado.nombres}"
@@ -310,7 +310,7 @@
                                                          required="true"/>
                                         </div>
                                         <div class="col-4">
-                                            <h:inputText id="direccion" value="#{usuarioConttoller.usuarioSeleccionado.direccion}" 
+                                            <h:inputText id="direccion" value="#{usuarioController.usuarioSeleccionado.direccion}" 
                                                          a:type="text" 
                                                          class="form-control" 
                                                          a:placeholder="#{administrador_usuarios.lbl_direccion_usuario}" required="true"/>
@@ -326,10 +326,13 @@
                                         </div>
                                         <div class="col-7">
                                             <label for="rol" class="control-label mb-1">#{administrador_usuarios.lbl_roles_usuario}</label>
-                                            <h:selectManyCheckbox id="rol" value="#{usuarioController.usuarioSeleccionado.rol}"
-                                                                  class="form-control">
-                                                <f:selectItems value="#{rolController.rolList}"  var="r" itemLabel="#{r.nombre}&nbsp;&nbsp;"/>
-                                            </h:selectManyCheckbox>
+                                            <h:selectOneRadio id="rol" value="#{usuarioController.usuarioSeleccionado.rol.id}"
+                                                              class="form-control">
+                                                <f:selectItem itemValue="1" itemLabel="Administrador&nbsp;&nbsp;"/>
+                                                <f:selectItem itemValue="2" itemLabel="Cordiandor&nbsp;&nbsp;"/>
+                                                <f:selectItem itemValue="3" itemLabel="Recreador"/>
+                                                <f:selectItem itemValue="3" itemLabel="Cliente"/>
+                                            </h:selectOneRadio>
                                         </div>
                                     </div>                                    
                                     <div class="form-group row">
@@ -355,11 +358,10 @@
                                             </h:selectOneMenu>
                                         </div>
                                     </div>
-                                </h:form>
-                            </div>
+                                </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">#{administrador_usuarios.lbl_actualizar_usuario}</button>
-                                <h:commandLink actionListener="#{usuarioController.actualizar()}" class="btn btn-primary">#{administrador_usuarios.lbl_actualizar}</h:commandLink> 
+                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">Cancelar</button>
+                                <h:commandLink action="#{usuarioController.actualizarUsuarioSeleccionado()}" class="btn btn-primary">#{administrador_usuarios.lbl_actualizar}</h:commandLink> 
                             </div>
                         </div>
                     </h:panelGroup>

@@ -59,7 +59,7 @@ public class UsuarioController implements Serializable {
 
     @PostConstruct
     public void init() {
-
+        nuevoUsuario=new Usuario();
     }
 
     public String getConfirmarClave() {
@@ -71,11 +71,8 @@ public class UsuarioController implements Serializable {
     }
 
     public Usuario getNuevoUsuario() {
-        if (nuevoUsuario == null ) {
-            nuevoUsuario = new Usuario();
-        }
         return nuevoUsuario;
-    }   
+    }
 
     public Usuario getUsuarioSeleccionado() {
         return usuarioSeleccionado;
@@ -87,22 +84,22 @@ public class UsuarioController implements Serializable {
         }
         return usuariosList;
     }
-    
+
     public Usuario sessionUser() {
         session = new SessionController();
         user = session.usuarioSession();
         return user;
     }
-    
+
     public List<Usuario> getUsuarioSessionList(Usuario u) {
         if (usuarioSessionList == null || usuarioSessionList.isEmpty()) {
             usuarioSessionList = uDAO.findById(sessionUser());
         }
         return usuarioSessionList;
     }
-    
+
     public List<EstadoUsuario> getEstadosUsuarioList() {
-        if (estadosUsuarioList ==  null || estadosUsuarioList.isEmpty()) {
+        if (estadosUsuarioList == null || estadosUsuarioList.isEmpty()) {
             estadosUsuarioList = euDAO.findAll();
         }
         return estadosUsuarioList;
@@ -115,24 +112,32 @@ public class UsuarioController implements Serializable {
     }
 
     public void registrar() {
-        session = new SessionController();
+     
         try {
-            if (confirmarClave != null && confirmarClave.trim().length() >= 5 && confirmarClave.equals(nuevoUsuario.getContrasena())) {
-                uDAO.register(nuevoUsuario);
-                String cuerpo = "SE HA REGISTRADO EXITOSAMENTE EN NUESTRO SISTEMA. Ahora puedes ingresar con tu correo: " + nuevoUsuario.getCorreo() + "y contrasena: " + nuevoUsuario.getContrasena() + "Recuerda que estos datos son personales e intrasferibles";
-                Mail.sendMail(nuevoUsuario.getCorreo(), "BIENVENIDO - DIGITAL EVENTS", cuerpo );
-                MessageUtil.addInfoMessage(null, "REGISTRO EXITOSO", "", false);
-            } else {
-                MessageUtil.addErrorMessage(null, "Error de validación", "Las claves no son identicas verifique y vuelva a intentarlo.", false);
-            }
+            confirmarClave=nuevoUsuario.getContrasena();
+            uDAO.register(nuevoUsuario);
+            MessageUtil.addInfoMessage(null, "REGISTRO EXITOSO", "", false);
+           
         } catch (Exception e) {
             MessageUtil.addErrorMessage(null, "Error al registrar el usuario", e.getMessage(), false);
         }
     }
 
-    public void actualizar() {
-        session = new SessionController();
+    public void actualizarUsuarioSeleccionado() {
         try {
+                    uDAO.update(usuarioSeleccionado);
+                    MessageUtil.addInfoMessage(null, "Actualización exitosa", "Los datos del usuario se han actualizaco correctamente,", false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageUtil.addErrorMessage(null, "Error al actualizar el usuario", e.getMessage(), false);
+        }
+    }
+
+    public void actualizar(Usuario u) {
+        usuarioSeleccionado(u);
+        try {
+
             if (usuarioSeleccionado.getDocumento() > 0) {
                 uDAO.update(usuarioSeleccionado);
                 MessageUtil.addInfoMessage(null, "Actualización exitosa", "Los datos del usuario se han actualizaco correctamente,", false);

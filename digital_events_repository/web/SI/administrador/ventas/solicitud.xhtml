@@ -19,13 +19,13 @@
                                 <div class="card-header card-header-success colorc">
                                     <div class="row">
                                         <div class="col-9">
-                                            <h4 class="card-title">Nuevas Solicitudes</h4>
-                                            <p class="card-category">Aquí encontraras las nuevas solicitudes de eventos </p>
+                                            <h4 class="card-title">#{administrador_ventas.lbl_anadir_solicitud}</h4>
+                                            <p class="card-category">#{administrador_ventas.lbl_aqui_encontrarassolictudes_eventos} </p>
                                         </div>
                                         <div class="col-3">
                                             <a class="btn btn-info" href="registrar.xhtml">
                                                 <i class="far fa-calendar-plus movericon"></i>
-                                                <span>Añadir Solicitud</span>
+                                                <span>#{administrador_ventas.lbl_anadir_solicitud}</span>
                                             </a>
                                         </div>
                                     </div>
@@ -34,24 +34,24 @@
                                     <div class="table-responsive">
                                         <h:form>
                                             <h:dataTable class="table table-striped text-center" value="#{solicitudController.solicitudList}" var="s">
-                                                <h:column><f:facet name="header">ID</f:facet>#{s.id}</h:column>
-                                                <h:column><f:facet name="header">USUARIO</f:facet>#{s.usuariosId.nombres}</h:column>                                                
-                                                <h:column><f:facet name="header">TIPO EVENTO</f:facet>#{s.tipoEvento.tipo}</h:column>                                                
+                                                <h:column><f:facet name="header">#{administrador_ventas.lbl_id}</f:facet>#{s.id}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_ventas.lbl_usuario}</f:facet>#{s.usuariosId.nombres}</h:column>                                                
+                                                <h:column><f:facet name="header">#{administrador_ventas.lbl_tipo_eventos}</f:facet>#{s.tipoEvento.tipo}</h:column>                                                
                                                 <h:column>
-                                                    <f:facet name="header">FECHA SOLICITUD</f:facet>
+                                                    <f:facet name="header">#{administrador_ventas.lbl_fecha_solicitud}</f:facet>
                                                     <h:outputText value="#{s.fechaSolicitud}">
                                                         <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
                                                     </h:outputText>
                                                 </h:column>                                                
                                                 <h:column>
-                                                    <f:facet name="header">FECHA RESERVA</f:facet>
+                                                    <f:facet name="header">#{administrador_ventas.lbl_fecha_reserva_1}</f:facet>
                                                     <h:outputText value="#{s.fechaReserva}">
                                                         <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
                                                     </h:outputText>
                                                 </h:column>                                                
-                                                <h:column><f:facet name="header">DIRECCION</f:facet>#{s.direccion}</h:column>                                                
-                                                <h:column><f:facet name="header">ESTADO</f:facet>#{s.estado.estado}</h:column>                                                 
-                                                <h:column><f:facet name="header">OPCIONES</f:facet>
+                                                <h:column><f:facet name="header">#{administrador_ventas.LBL_DIRECCION_1}</f:facet>#{s.direccion}</h:column>                                                
+                                                <h:column><f:facet name="header">#{administrador_ventas.lbl_estado_1}</f:facet>#{s.estado.estado}</h:column>                                                 
+                                                <h:column><f:facet name="header">#{administrador_ventas.lbl_opciones}</f:facet>
                                                     <h:commandLink class="td-actions text-right btn btn-info" actionListener="#{solicitudController.solicitudSeleccionada(s)}"
                                                                    a:data-toggle="modal" a:data-target="#modalVisualizarSolicitud" rel="tooltip" >
                                                         <f:ajax render=":modalVisualizarSolicitudContent"/>
@@ -86,7 +86,7 @@
                 <h:form prependId="false">
                     <h:panelGroup id="modalVisualizarSolicitudContent" class="modal-content" layout="block" >
                         <div class="modal-header">
-                            <h5 class="modal-title" id="mediumModalLabel">Información de la solicitud seleccionada</h5>
+                            <h5 class="modal-title" id="mediumModalLabel">#{administrador_ventas.lbl_informacion_de_la_solicitud}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -94,38 +94,38 @@
                         <div class="modal-body">
                             <h:form>
                                 <div class="modal-body">
-                                    <label class="control-label mb-1">ID Solicitud:</label>
+                                    <label class="control-label mb-1">#{administrador_ventas.lbl_id}</label>
                                     <div class="form-group">#{solicitudController.solicitudSeleccionada.id}</div>
-                                    <label class="control-label mb-1">Nombres Usuario:</label>
+                                    <label class="control-label mb-1">#{administrador_ventas.lbl_nombres_usuario}</label>
                                     <div class="form-group">#{solicitudController.solicitudSeleccionada.usuariosId.nombres}</div>
-                                    <label class="control-label mb-1">Apellidos Usuario:</label>
+                                    <label class="control-label mb-1">#{administrador_ventas.lbl_apellidos_usuario}</label>
                                     <div class="form-group">#{solicitudController.solicitudSeleccionada.usuariosId.apellidos}</div>
-                                    <label class="control-label mb-1">Tipo Evento:</label>
+                                    <label class="control-label mb-1">#{administrador_ventas.lbl_tipo_eventos}</label>
                                     <div class="form-group">#{solicitudController.solicitudSeleccionada.tipoEvento.tipo}</div>
-                                    <label class="control-label mb-1">Fecha Solicitud:</label>
+                                    <label class="control-label mb-1">#{administrador_ventas.lbl_fecha_soliciutd}</label>
                                     <div class="form-group">
                                         <h:outputText  value="#{solicitudController.solicitudSeleccionada.fechaSolicitud}">
                                             <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
                                         </h:outputText> 
                                     </div>
-                                    <label class="control-label mb-1">Fecha Reserva:</label>
+                                    <label class="control-label mb-1">#{administrador_ventas.lbl_fecha_reserva}</label>
                                     <div class="form-group">
                                         <h:outputText  value="#{solicitudController.solicitudSeleccionada.fechaReserva}">
                                             <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
                                         </h:outputText> 
                                     </div>
-                                    <label class="control-label mb-1">Direccion Evento:</label>
+                                    <label class="control-label mb-1">#{administrador_ventas.lbl_direccion}</label>
                                     <div class="form-group">#{solicitudController.solicitudSeleccionada.direccion}</div>
-                                    <label class="control-label mb-1">Espeficaciones:</label>
+                                    <label class="control-label mb-1">#{administrador_ventas.lbl_especificaciones}</label>
                                     <div class="form-group">#{solicitudController.solicitudSeleccionada.especificaciones}</div>
-                                    <label class="control-label mb-1">Estado:</label>
+                                    <label class="control-label mb-1">#{administrador_ventas.lbl_estado}</label>
                                     <div class="form-group">#{solicitudController.solicitudSeleccionada.estado.estado}</div>
                                 </div>
                             </h:form>
                         </div>
                         <div class="modal-footer">
                             <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>-->
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">#{administrador_ventas.lbl_confirmar}</button>
                         </div>
                     </h:panelGroup>
                 </h:form>
@@ -141,7 +141,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title titulom" id="exampleModalLabel">Actualizar Solicitud</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="#{administrador_ventas.lbl_cerrar}">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -149,19 +149,19 @@
                                 <h:form prependId="false">
                                     <div class="form-group row">
                                         <div class="col-3">
-                                            <label class="control-label mb-1">ID Solicitud:</label>
+                                            <label class="control-label mb-1">#{administrador_ventas.lbl_id_solicitud}</label>
                                             <div class="form-control">#{solicitudController.solicitudSeleccionada.id}</div>
                                         </div>
                                         <div class="col-3">
-                                            <label class="control-label mb-1">Tipo Evento:</label>
+                                            <label class="control-label mb-1">#{administrador_ventas.lbl_tipo_eventos}</label>
                                             <h:selectOneMenu id="tipoEvento" value="#{solicitudController.solicitudSeleccionada.tipoEvento}"
                                                              class="form-control">
-                                                <f:selectItem itemValue="" itemLabel="Seleccione un tipo de de evento"/>
+                                                <f:selectItem itemValue="" itemLabel="#{administrador_ventas.lbl_seleccione_nuevo_estado}"/>
                                                 <f:selectItems value="#{solicitudController.tipoEventoList}" var="t" itemLabel="#{t.tipo}"/>                                            
                                             </h:selectOneMenu>  
                                         </div>
                                         <div class="col-3">
-                                            <label class="control-label mb-1">Fecha Reserva:</label>
+                                            <label class="control-label mb-1">#{administrador_ventas.lbl_fecha_reserva}</label>
                                             <h:inputText id="fechaReserva" value="#{solicitudController.solicitudSeleccionada.fechaReserva}"
                                                          class="form-control" a:type="datetime">
                                                 <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>                                                
@@ -170,16 +170,16 @@
                                     </div>
                                     <div class="form-group row">                                        
                                         <div class="col-6">
-                                            <label class="control-label mb-1">Direccion:</label>
+                                            <label class="control-label mb-1">#{administrador_ventas.lbl_direccion}</label>
                                             <h:inputText id="direccion" value="#{solicitudController.solicitudSeleccionada.direccion}"
                                                          class="form-control" a:type="text">                                            
                                             </h:inputText>
                                         </div>
                                         <div class="col-6">
-                                            <label class="control-label mb-1">Estado Solicitud:</label>
+                                            <label class="control-label mb-1">#{administrador_ventas.lbl_estado}</label>
                                             <h:selectOneMenu id="estado" value="#{solicitudController.solicitudSeleccionada.estado}"
                                                              class="form-control">
-                                                <f:selectItem itemValue="" itemLabel="Seleccione un nuevo estado de evento"/>
+                                                <f:selectItem itemValue="" itemLabel="#{administrador_ventas.lbl_seleccione_nuevo_estado}"/>
                                                 <f:selectItems value="#{solicitudController.estadoSolicitudList}" var="t" itemLabel="#{t.estado}"/>                                            
                                             </h:selectOneMenu>  
                                         </div>
@@ -187,8 +187,8 @@
                                 </h:form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">Cerrar</button>
-                                <h:commandLink actionListener="#{solicitudController.actualizar()}" class="btn btn-primary">Actualizar</h:commandLink> 
+                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">#{administrador_ventas.lbl_cerrar}</button>
+                                <h:commandLink actionListener="#{solicitudController.actualizar()}" class="btn btn-primary">#{administrador_ventas.lbl_actualizar_solicitud}</h:commandLink> 
                             </div>
                         </div>
                     </h:panelGroup>
@@ -203,17 +203,17 @@
                 <h:form prependId="false">
                     <h:panelGroup id="modalEliminarSolicitudContent" class="modal-content" layout="block" >
                         <div class="modal-header">
-                            <h5 class="modal-title" id="mediumModalLabel">Eliminar la sucursal seleccionada</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <h5 class="modal-title" id="mediumModalLabel">#{administrador_ventas.lbl_eliminar_sucursal}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="#{administrador_ventas.lbl_cerrar}">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>¿Está seguro de eliminar la solictiud definitivamente del sistema?</p>                                                             
+                            <p>#{administrador_ventas.lbl_esta_seguro_eliminar}</p>                                                             
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                            <h:commandLink class="btn btn-danger" actionListener="#{solicitudController.eliminar()}">Si</h:commandLink>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">#{administrador_ventas.lbl_si}</button>
+                            <h:commandLink class="btn btn-danger" actionListener="#{solicitudController.eliminar()}">#{administrador_ventas.lbl_eliminar_sucursal}</h:commandLink>
                         </div>
                     </h:panelGroup>
                 </h:form>

@@ -17,12 +17,20 @@
             <var>administrador_usuarios</var>
         </resource-bundle>
         <resource-bundle>
+            <base-name>digitalevents.languaje.administrador.administrador_ventas</base-name>
+            <var>administrador_ventas</var>
+        </resource-bundle>
+        <resource-bundle>
             <base-name>digitalevents.languaje.administrador.adminsitrador_perfil</base-name>
             <var>administrador_perfil</var>
         </resource-bundle>
         <resource-bundle>
             <base-name>digitalevents.languaje.principal.head</base-name>
             <var>head</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>digitalevents.languaje.principal.login</base-name>
+            <var>login</var>
         </resource-bundle>
         <resource-bundle>
             <base-name>digitalevents.languaje.principal.header</base-name>

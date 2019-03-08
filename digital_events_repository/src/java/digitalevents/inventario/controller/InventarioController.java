@@ -15,18 +15,28 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.poi.util.IOUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
@@ -81,6 +91,9 @@ public class InventarioController implements Serializable {
     public List<Material> getMaterialList() {
         if (materialList == null || materialList.isEmpty()) {
             materialList = mDAO.findAll();
+            for (Material d : mDAO.findAll()) {
+                System.out.println("Hola" + d.getEstado());
+            }
         }
         return materialList;
     }
@@ -88,6 +101,7 @@ public class InventarioController implements Serializable {
     public List<DisponilidadMaterial> getEstadoMaterialList() {
         if (estadoMaterialList == null || estadoMaterialList.isEmpty()) {
             estadoMaterialList = dmDAO.findAll();
+
         }
         return estadoMaterialList;
     }
@@ -148,6 +162,32 @@ public class InventarioController implements Serializable {
             MessageUtil.addErrorMessage(null, "Error al eliminar el material", e.getMessage(), false);
 
         }
+    }
+
+    public void export() {
+        try {
+            System.out.println("VAMOS A IMPRIMIR EL REPORTE");
+            FacesContext fc = FacesContext.getCurrentInstance();
+            ExternalContext ec = fc.getExternalContext();
+            File jasper = new File(ec.getRealPath("/WEB-INF/classes/reporteInventario/ReporteMateriales.jasper"));
+            //JRBeanCollectionDataSource jasperDS = new JRBeanCollectionDataSource(usuarioList);
+            Map<String, Object> params = new HashMap<>();
+            params.put("logosystem", ec.getRealPath("/resources/img/logo.png"));
+            params.put("grafricoimg", ec.getRealPath("/resources/img/ChartInventario.png"));
+            JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), params, new JRBeanCollectionDataSource(getMaterialList(), false));
+            HttpServletResponse hsr = (HttpServletResponse) ec.getResponse();
+            hsr.addHeader("Content-disposition", "attachment; filename=reporteInventario.pdf");
+            OutputStream os = hsr.getOutputStream();
+            JasperExportManager.exportReportToPdfStream(jp, os);
+            os.flush();
+            os.close();
+            fc.responseComplete();
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
     }
 
     public void upload(FileUploadEvent event) {

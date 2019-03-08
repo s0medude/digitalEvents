@@ -13,79 +13,67 @@
 
     <h:body>
         <div class="page-header header-filter" style="background-image: url('#{request.contextPath}/resources/img/personajes-transformers.png'); background-size: cover; background-position: top center;">
-            <div class="d-flex align-content-center flex-wrap">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 ml-auto mr-auto" id="bajar-login">
-                            <div class="card card-login bg-wh">
-                                <div class=" card-header card-header-image text-center bg-red">
-                                    <a href="index.xhtml">
-                                        <img src="#{request.contextPath}/resources/img/logoNegro.png" style="height: 130px; width: 310px; padding: 5px;"/>
-                                    </a>
-                                    
-                                    
-                                    
-                                </div>
-                                <br/>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <h:messages showDetail="true" styleClass="alert" style="list-style: none; padding: 0px; display: block" infoClass="alert-success" errorClass="alert-danger" />
-                                        </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 ml-auto mr-auto" id="bajar-login">
+                        <div class="card card-login bg-wh">
+                            <div class=" card-header card-header-image text-center bg-red">
+                                <a href="index.xhtml">
+                                    <img src="#{request.contextPath}/resources/img/logoNegro.png" style="height: 130px; width: 310px; padding: 5px;"/>
+                                </a>   
+                            </div>
+                            <br/>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h:messages showDetail="true" styleClass="alert" style="list-style: none; padding: 0px; display: block" infoClass="alert-success" errorClass="alert-danger" />
                                     </div>
-                                    <h:form prependId="false">
-                                        <span class="bmd-form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="material-icons">mail</i>
-                                                    </span>
-                                                </div>
-                                                <h:inputText a:type="email" value="#{sessionController.email}" class="form-control" a:placeholder="Correo Electronico..." a:required=""/>
-                                            </div>
-                                        </span>
-                                        <br/>
-                                        <span class="bmd-form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="material-icons">lock_outline</i>
-                                                    </span>
-                                                </div>
-                                                <h:inputSecret class="form-control" value="#{sessionController.password}" a:placeholder="Contraseña..." a:required=""/>
-                                            </div>
-                                        </span>
-                                        <br/>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox"/> 
-                                                Recordarme
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-
-                                            <label class="pull-right">
-                                                <a href="#">¿Olvido su contraseña?</a>
-                                            </label>
-                                        </div>
-
-                                        <div class="footer-row text-center">
-                                            <h:commandButton class="btn btn-info btn-link btn-wd btn-lg-" value="Registrarse" >
-                                                <div class="ripple-container"></div>
-                                            </h:commandButton> 
-                                            <h:commandButton class="btn btn-success btn-link btn-wd btn-lg-" action="#{sessionController.startSession()}" value="Iniciar Sesion">
-                                                <div class="ripple-container"></div>
-                                            </h:commandButton>
-                                        </div>
-                                    </h:form>
                                 </div>
+                                <h:form prependId="false">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="material-icons">mail</i>
+                                            </span>
+                                        </div>
+                                        <h:inputText a:type="email" value="#{sessionController.email}" class="form-control" a:placeholder="Correo Electronico..." a:required=""/>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="material-icons">lock_outline</i>
+                                            </span>
+                                        </div>
+                                        <h:inputSecret class="form-control" value="#{sessionController.password}" a:placeholder="Contraseña..." a:required=""/>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox"/> 
+                                            Recordarme
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                        <label class="pull-right">
+                                            <a href="#">¿Olvido su contraseña?</a>
+                                        </label>
+                                    </div>
+                                    <div class="footer-row text-center">
+                                        <h:commandButton class="btn btn-info btn-link btn-wd btn-lg-" value="Registrarse" >
+                                            <div class="ripple-container"></div>
+                                        </h:commandButton> 
+                                        <h:commandButton class="btn btn-success btn-link btn-wd btn-lg-" action="#{sessionController.startSession()}" value="Iniciar Sesion">
+                                            <div class="ripple-container"></div>
+                                        </h:commandButton>
+                                    </div>
+                                </h:form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>  
+        </div>
 
         <!--modal registro-->
         <div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

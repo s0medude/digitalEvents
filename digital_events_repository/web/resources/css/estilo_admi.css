@@ -97,7 +97,11 @@ esta clase "movericon" es para mover el icono de añadir usuario
 
 .dropdown-menu a:hover{
 
-    background-color: #72ba68!important;
+    background-color: #f44336!important;
+}
+
+.nav-item a:hover {
+    background-color: #f44336!important;
 }
 
 #contenedor-carga{

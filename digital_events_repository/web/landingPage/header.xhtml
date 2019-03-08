@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:a="http://java.sun.com/jsf/passthrough">
+
+    <nav class="navbar navbar-color-on-scroll fixed-top navbar-expand-lg navbar-transparent" color-on-scroll="100" id="sectionsNav">
+        <div class="container">
+            <div class="navbar-translate">
+                    <h:form>
+                        <h:commandLink class="navbar-brand" action="index.xhtml">
+                            <img src="#{request.contextPath}/resources/img/logoNegro.png" style="height: 65px; width: 115px;"/>
+                        </h:commandLink>
+                        <img class="navbar-brand" src="#{request.contextPath}/resources/img/logo-roca.png"/>
+                    </h:form>
+                    <h:commandButton class="navbar-toggler" a:data-toggle="collapse" a:aria-expanded="false" a:aria-label="Toggle navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
+                    </h:commandButton>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto"> 
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.xhtml">
+                            <i class="material-icons">home</i> Inicio
+                            <div class="ripple-container"></div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="servicios.xhtml">
+                            <i class="material-icons">work</i> Servicios
+                            <div class="ripple-container"></div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="conozcanos.xhtml">
+                            <i class="material-icons">info</i> Conózcanos
+                            <div class="ripple-container"></div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contactenos.xhtml">
+                            <i class="material-icons">contact_support</i> Contactenos
+                            <div class="ripple-container"></div>
+                        </a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a id="ingreso" href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                            <i class="material-icons">person</i> Ingresar
+                            <div class="ripple-container"></div>
+                        </a>
+                        <div class="dropdown-menu dropdown-with-icons" aria-labelledby="ingreso">
+                            <h:form>
+                                <h:commandLink class="dropdown-item">
+                                    <i class="material-icons">person_add</i> Registrarse
+                                </h:commandLink>
+                                <h:commandLink class="dropdown-item">
+                                    <i class="material-icons">power_settings_new</i> Iniciar Sesión
+                                </h:commandLink>
+                            </h:form>
+                        </div>
+                    </li>
+                    <h:form>
+                    </h:form>                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</ui:fragment>
+

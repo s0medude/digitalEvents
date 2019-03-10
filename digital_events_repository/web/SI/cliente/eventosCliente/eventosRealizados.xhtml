@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/includes/template/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">
+            
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <h:form>
+                                <div class="card-header card-header-success colorc">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <h4 class="card-title">#{administrador_eventos.lbl_eventos_realizados}</h4>
+                                            <p class="card-category">#{administrador_eventos.lbl_aqui_encontraras_aventos_realizados}</p>
+                                        </div>
+                                        <div class="col-3">
+                                            <h:commandLink class="card-category btn btn-danger btn-flat m-b-30 m-t-30" action="#{eventoController.exportCliente()}" value="PDF">
+                                                <i class="fas fa-file-pdf"></i>
+                                            </h:commandLink>&nbsp;&nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <h:form prependId="false">
+                                            <h:dataTable class="table table-striped text-center" value="#{eventoController.eventosRealizadosAlClienteList}" var="s">
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_id_event}</f:facet>#{s.id}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_usuario_evento}</f:facet>#{s.usuario}</h:column>                                                
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_contacto}</f:facet>#{s.contacto}</h:column>                                                
+                                                <h:column>
+                                                    <f:facet name="header">#{administrador_eventos.lbl_fecha_reserva}</f:facet>
+                                                    <h:outputText value="#{s.fecha}">
+                                                        <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+                                                    </h:outputText>
+                                                </h:column>                                                
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_direccion}</f:facet>#{s.direccion}</h:column>                                                
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_estado}</f:facet>#{s.estado}</h:column>                                                 
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_saldo}</f:facet>#{s.saldo}</h:column>                                                                                               
+                                            </h:dataTable>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>      
+    </ui:define>
+    
+</ui:composition>
+
+
+

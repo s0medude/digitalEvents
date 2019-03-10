@@ -56,7 +56,11 @@ public class SessionController implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    public String obtenerPath(){
+        ExternalContext ec=FacesContext.getCurrentInstance().getExternalContext();
+        return ec.getRequestPathInfo();
+    }
+    
     public Usuario getUser() {
         return user;
     }

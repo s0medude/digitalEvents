@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/includes/template/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="scripts-grafricos">    
+        <script type="text/javascript">
+            var chart;
+
+            function updateDatos(cuentasCDT) {
+                chart.options.data[0].dataPoints = cuentasCDT;
+                chart.render();
+            }
+            function toggleDataSeries(e) {
+                if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                } else {
+                    e.dataSeries.visible = true;
+                }
+                e.chart.render();
+            }
+            $(document).ready(function () {
+                chart = new CanvasJS.Chart("myChartEventos", {
+                    animationEnabled: true,
+                    exportEnabled: true, 
+                    toolTip: {
+                        shared: true
+                    },
+                    legend: {
+                        cursor: "pointer",
+                        itemclick: toggleDataSeries
+                    }});
+                chart.options.axisY = {
+                    suffix: "",
+                    lineThickness: 2,
+                    title: 'TIPOS EVENTOS',
+
+                    scaleBreaks: {
+                        type: "wavy",
+                        customBreaks: [{
+                                startValue: 3,
+                                endValue: 4
+                            },
+                            {
+                                startValue: 3,
+                                endValue: 4
+                            }
+                        ]}
+
+                };
+                chart.options.title = {
+                   
+                };
+                seriesEmpresarial = {
+                    /*** Change type "column" to "bar", "area", "line" or "pie"***/
+                    type: "column",
+                    showInLegend: true,
+                    name: "{label}",
+                    indexLabel: "{labelDatos}",
+                    isIntermediateSum: true
+                };
+                seriesTematico = {
+                    /*** Change type "column" to "bar", "area", "line" or "pie"***/
+                    type: "column",
+                    showInLegend: true,
+                    name: "{label}",
+                    indexLabel: "{labelDatos}",
+                    isIntermediateSum: true
+                };
+                 seriesFiestaInfantil = {
+                    /*** Change type "column" to "bar", "area", "line" or "pie"***/
+                    type: "column",
+                    showInLegend: true,
+                    name: "{label}",
+                    indexLabel: "{labelDatos}",
+                    isIntermediateSum: true
+                };
+                chart.options.data = [];
+                chart.options.data.push(seriesEmpresarial);
+                chart.options.data.push(seriesTematico);
+                chart.options.data.push(seriesFiestaInfantil);
+                seriesEmpresarial.dataPoints = #{grafricoEventosController.datosJsonEmpresarial};
+                seriesTematico.dataPoints = #{grafricoEventosController.datosJsonTematica};
+                seriesFiestaInfantil.dataPoints = #{grafricoEventosController.datosJsonInfantil};
+                chart.render();
+            });
+            function convertCanvasToImage(canvas) {
+                var $canvas = $("#container-canvas-1 canvas");
+                var data = $canvas[0].toDataURL("image/jpg");
+                console.log(data);
+                alert(data);
+                $("#imgPrb").attr("src", data);
+                var image = new Image();
+                image.src = data;
+                document.body.appendChild(image);
+            }
+        </script>
+    </ui:define>
+    <ui:define name="content">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <h:form>
+                                <div class="card-header card-header-success colorc">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <h4 class="card-title">#{administrador_eventos.lbl_grafico_eventos}</h4>
+                                            <p class="card-category">#{administrador_eventos.lbl_aqui_encontraras_grafrico}</p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="card-body card-header card-chart card-header-success">
+                                    <div class="ct-chart" id="myChartEventos" style="width: 100%; height: 300px;"></div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <h:form>
+                                <div class="card-header card-header-success colorc">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <h4 class="card-title">#{administrador_eventos.lbl_eventos_reservados}</h4>
+                                            <p class="card-category">#{administrador_eventos.lbl_aqui_encontraras_aventos_approbnados}</p>
+                                        </div>
+                                        <div class="col-3">
+                                            <a class="btn btn-info" href="#{request.contextPath}/SI/administrador/ventas/registrar.xhtml">
+                                                <i class="far fa-calendar-plus movericon"></i>
+                                                <span>#{administrador_eventos.btn_anadir_solicitud}</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <h:form prependId="false">
+                                            <h:dataTable class="table table-striped text-center" value="#{eventoController.eventosList}" var="s">
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_id_event}</f:facet>#{s.id}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_usuario_evento}</f:facet>#{s.usuario}</h:column>                                                
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_contacto}</f:facet>#{s.contacto}</h:column>                                                
+                                                <h:column>
+                                                    <f:facet name="header">#{administrador_eventos.lbl_fecha_reserva}</f:facet>
+                                                    <h:outputText value="#{s.fecha}">
+                                                        <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+                                                    </h:outputText>
+                                                </h:column>                                                
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_direccion}</f:facet>#{s.direccion}</h:column>                                                
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_estado}</f:facet>#{s.estado}</h:column>                                                 
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_saldo}</f:facet>#{s.saldo}</h:column>                                                 
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_options}</f:facet>
+                                                    <h:commandLink class="td-actions text-right btn btn-info" rel="tooltip" >
+                                                        <f:ajax render=":modalVisualizarSolicitudContent"/>
+                                                        <i class="material-icons">event</i>
+                                                    </h:commandLink>                                                                                                       
+                                                </h:column>                                                 
+                                            </h:dataTable>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>      
+    </ui:define>
+    <ui:define name="modals-page">
+
+
+
+    </ui:define>
+</ui:composition>
+

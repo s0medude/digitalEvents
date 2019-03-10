@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/includes/template/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="scripts-grafricos">    
+        <script type="text/javascript">
+            var valoracion = [#{grafricoServicioAlClienteController.graficoServicioAlCliente(grafricoServicioAlClienteController.calificacion, ",")}];
+            var numeroEventos = [#{grafricoServicioAlClienteController.graficoServicioAlCliente(grafricoServicioAlClienteController.total, ",")}];
+            window.onload = function ()
+            {
+                zingchart.render
+                        ({
+                            id: "myChartServicio",
+                            width: "100%",
+                            height: 300,
+                            data:
+                                    {
+                                        "type": "bar",
+                                        "title":
+                                                {
+                                                    "text": "Grafico Servicio Al  Cliente"
+                                                },
+                                        "scale-x":
+                                                {
+                                                    "labels": valoracion
+                                                },
+                                        "plot":
+                                                {
+                                                    "line-width": 1
+                                                },
+                                        "series":
+                                                [
+                                                    {
+                                                        "values": numeroEventos
+                                                    }
+                                                ]
+                                    }
+                        });
+            };
+        </script>
+    </ui:define>
+    <ui:define name="content">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <h:form>
+                                <div class="card-header card-header-success colorc">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <h4 class="card-title">#{administrador_eventos.lbl_grafico_eventos}</h4>
+                                            <p class="card-category">#{administrador_eventos.lbl_aqui_encontraras_grafrico}</p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="card-body card-header card-chart card-header-success">
+                                    <div class="ct-chart" id="myChartServicio" style="width: 100%; height: 300px;"></div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>         
+    </ui:define>
+    <ui:define name="modals-page">
+
+
+
+    </ui:define>
+</ui:composition>
+
+
+

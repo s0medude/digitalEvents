@@ -56,5 +56,29 @@
             <base-name>digitalevents.languaje.principal.menurecreacisnista</base-name>
             <var>menurecreacionista</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>digitalevents.languaje.pagina.Conocenos</base-name>
+            <var>conocenos</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>digitalevents.languaje.pagina.Contactenos</base-name>
+            <var>contactenos</var>
+        </resource-bundle>
+         <resource-bundle>
+            <base-name>digitalevents.languaje.pagina.Footer</base-name>
+            <var>footer_landign</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>digitalevents.languaje.pagina.Header</base-name>
+            <var>header_landign</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>digitalevents.languaje.pagina.Main</base-name>
+            <var>main_landign</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>digitalevents.languaje.pagina.Servicios</base-name>
+            <var>servicios_landign</var>
+        </resource-bundle>
     </application>
 </faces-config>

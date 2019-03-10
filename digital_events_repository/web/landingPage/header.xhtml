@@ -16,7 +16,7 @@
                         <img class="navbar-brand" src="#{request.contextPath}/resources/img/logo-roca.png"/>
                     </h:form>
                     <h:commandButton class="navbar-toggler" a:data-toggle="collapse" a:aria-expanded="false" a:aria-label="Toggle navigation">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only">#{header.lbl_toggle_navigation}</span>
                         <span class="navbar-toggler-icon"></span>
                         <span class="navbar-toggler-icon"></span>
                         <span class="navbar-toggler-icon"></span>
@@ -26,34 +26,46 @@
                 <ul class="navbar-nav ml-auto"> 
                     <li class="nav-item active">
                         <a class="nav-link" href="#{request.contextPath}/index.xhtml">
-                            <i class="material-icons">home</i> Inicio
+                            <i class="material-icons">home</i> #{footer_landign.lbl_inicio}
                             <div class="ripple-container"></div>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#{request.contextPath}/landingPage/servicios.xhtml">
-                            <i class="material-icons">work</i> Servicios
+                            <i class="material-icons">work</i> #{header.lbl_servicios}
                             <div class="ripple-container"></div>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#{request.contextPath}/landingPage/conozcanos.xhtml">
-                            <i class="material-icons">info</i> Conózcanos
+                            <i class="material-icons">info</i> #{footer_landign.lbl_conocenos}
                             <div class="ripple-container"></div>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#{request.contextPath}/landingPage/contactenos.xhtml">
-                            <i class="material-icons">contact_support</i> Contáctenos
+                            <i class="material-icons">contact_support</i> #{footer_landign.lbl_contactenos}
                             <div class="ripple-container"></div>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#{request.contextPath}/SI/index.xhtml">
-                            <i class="material-icons">dashboard</i> Dashboard
+                            <i class="material-icons">dashboard</i> #{footer_landign.lbl_inicio}
                             <div class="ripple-container"></div>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <h:form prependId="false">
+                            <h:selectOneMenu class="btn btn-outline-info d-lg-inline-block mb-3 mb-md-3" value="#{lenguajeController.languaje}" onchange="submit();">
+                                <f:selectItems value="#{languajeController.idiomaPredefinido}" var="l" itemLabel="#{l.language}"></f:selectItems>
+                            </h:selectOneMenu>
+                        </h:form>
+                    </li>
+                    <div id="google_translate_element" style="margin: 5px; "></div><script type="text/javascript">
+                        function googleTranslateElementInit() {
+                            new google.translate.TranslateElement({pageLanguage: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
+                        }
+                    </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
                     <li class="dropdown nav-item">
                         <a id="ingreso" href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                             <i class="material-icons">person</i> Ingresar
@@ -62,10 +74,10 @@
                         <div class="dropdown-menu dropdown-with-icons" aria-labelledby="ingreso">
                             <h:form>
                                 <h:commandLink class="dropdown-item">
-                                    <i class="material-icons">person_add</i> Registrarse
+                                    <i class="material-icons">person_add</i> #{footer_landign.lbl_registrarse}
                                 </h:commandLink>
-                                <a  href="login.xhtml" class="dropdown-item">
-                                    <i class="material-icons">power_settings_new</i> Iniciar Sesión
+                                <a  href="#{request.contextPath}/login.xhtml" class="dropdown-item">
+                                    <i class="material-icons">power_settings_new</i> #{footer_landign.lbl_iniciar_session}
                                 </a>
                             </h:form>
                         </div>

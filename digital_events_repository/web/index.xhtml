@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://java.sun.com/jsf/passthrough">
-
+    <f:view locale="#{lenguajeController.locale}">
     <h:head>
         <ui:include src="/WEB-INF/includes/template/head.xhtml"/>        
     </h:head>
@@ -19,5 +19,8 @@
         <ui:insert name="modals-page"></ui:insert>
         <ui:include src="/WEB-INF/includes/template/scripts.xhtml"/>
     </h:body>
+    </f:view>
+    
+    
 </html>
 

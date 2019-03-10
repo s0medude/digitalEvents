@@ -40,31 +40,22 @@
                             </p>
                         </a>
                     </li>
-                    <h:form prependId="false">
-                        <h:selectOneMenu class="btn btn-outline-info d-lg-inline-block mb-3 mb-md-3" value="#{lenguajeController.languaje}" onchange="submit();">
-                            <f:selectItems value="#{languajeController.idiomaPredefinido}" var="l" itemLabel="#{l.language}"></f:selectItems>
-                        </h:selectOneMenu>
-                    </h:form>
+                    <li class="nav-item">
+                        <h:form prependId="false">
+                            <h:selectOneMenu class="btn btn-outline-info d-lg-inline-block mb-3 mb-md-3" value="#{lenguajeController.languaje}" onchange="submit();">
+                                <f:selectItems value="#{languajeController.idiomaPredefinido}" var="l" itemLabel="#{l.language}"></f:selectItems>
+                            </h:selectOneMenu>
+                        </h:form>
+                    </li>
                     <div id="google_translate_element" style="margin: 5px; "></div><script type="text/javascript">
                         function googleTranslateElementInit() {
-                            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
+                            new google.translate.TranslateElement({pageLanguage: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
                         }
                     </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="http://example.com" id="notificaciones" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="material-icons">notifications</i>
-                            <span class="notification">5</span>
-                            <p class="d-lg-none d-md-block">
-                                Some Actions
-                            </p>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#{request.contextPath}/index.xhtml">
+                            <i class="material-icons">home</i>                            
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificaciones">
-                            <a class="dropdown-item" href="#"></a>
-                            <a class="dropdown-item" href="#"></a>
-                            <a class="dropdown-item" href="#"></a>
-                            <a class="dropdown-item" href="#"></a>
-                            <a class="dropdown-item" href="#"></a>
-                        </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="http://example.com" id="cuenta" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

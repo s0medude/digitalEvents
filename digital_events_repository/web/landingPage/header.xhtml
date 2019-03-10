@@ -10,7 +10,7 @@
         <div class="container">
             <div class="navbar-translate">
                     <h:form>
-                        <h:commandLink class="navbar-brand" action="index.xhtml">
+                        <h:commandLink class="navbar-brand" action="/index.xhtml">
                             <img src="#{request.contextPath}/resources/img/logoNegro.png" style="height: 65px; width: 115px;"/>
                         </h:commandLink>
                         <img class="navbar-brand" src="#{request.contextPath}/resources/img/logo-roca.png"/>
@@ -25,26 +25,32 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto"> 
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.xhtml">
+                        <a class="nav-link" href="#{request.contextPath}/index.xhtml">
                             <i class="material-icons">home</i> Inicio
                             <div class="ripple-container"></div>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="servicios.xhtml">
+                        <a class="nav-link" href="#{request.contextPath}/landingPage/servicios.xhtml">
                             <i class="material-icons">work</i> Servicios
                             <div class="ripple-container"></div>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="conozcanos.xhtml">
+                        <a class="nav-link" href="#{request.contextPath}/landingPage/conozcanos.xhtml">
                             <i class="material-icons">info</i> Conózcanos
                             <div class="ripple-container"></div>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contactenos.xhtml">
-                            <i class="material-icons">contact_support</i> Contactenos
+                        <a class="nav-link" href="#{request.contextPath}/landingPage/contactenos.xhtml">
+                            <i class="material-icons">contact_support</i> Contáctenos
+                            <div class="ripple-container"></div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#{request.contextPath}/SI/index.xhtml">
+                            <i class="material-icons">dashboard</i> Dashboard
                             <div class="ripple-container"></div>
                         </a>
                     </li>
@@ -58,9 +64,9 @@
                                 <h:commandLink class="dropdown-item">
                                     <i class="material-icons">person_add</i> Registrarse
                                 </h:commandLink>
-                                <h:commandLink class="dropdown-item">
+                                <a  href="login.xhtml" class="dropdown-item">
                                     <i class="material-icons">power_settings_new</i> Iniciar Sesión
-                                </h:commandLink>
+                                </a>
                             </h:form>
                         </div>
                     </li>

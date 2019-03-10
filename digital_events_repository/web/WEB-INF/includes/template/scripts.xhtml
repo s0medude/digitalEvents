@@ -31,7 +31,7 @@
     <script src="#{request.contextPath}/resources/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
     <script src="#{request.contextPath}/resources/js/plugins/nouislider.min.js" type="text/javascript"></script>
     <script src="#{request.contextPath}/resources/js/material-kit.js?v=2.0.5" type="text/javascript"></script>
-    
+
 
     <script>
         $(document).ready(function () {
@@ -84,6 +84,26 @@
             $(this).ekkoLightbox();
         });
     </script>
+
+    <script type="text/javascript">
+        var btn = $('#button');
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 300) {
+                btn.addClass('show');
+            } else {
+                btn.removeClass('show');
+            }
+        });
+
+        btn.on('click', function (e) {
+            e.preventDefault();
+            $('html, body').animate({scrollTop: 0}, '300');
+        });
+
+    </script>
+
+
 
 
     <ui:insert name="scripts-grafricos"></ui:insert>

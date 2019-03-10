@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition template="/landingPage/index.xhtml"
+<ui:composition template="/index.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -10,7 +10,70 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="content-landing">
-        
+        <br/>
+        <div class="container-fluid">
+            <div class="main main-raised" style="background-image: url('#{request.contextPath}/resources/img/background6.png'); background-size: cover; background-position: top center;">
+                <br/>
+                <br/><br/><br/>
+                <div class="container" >
+                    <div class="section text-center">
+                        <div class="row">
+                            <div class="col-md-12 ml-auto mr-auto">                         
+                                <h2 class="card-title text-white">CONTÁCTANOS</h2>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-6 text-center">
+                                <iframe 
+                                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7952.739786230018!2d-74.09658200000001!3d4.705642!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x17bc5bd6c063b266!2sFiestas+Infantiles%2C+Recreaci%C3%B3n+Eventos+La+Roca!5e0!3m2!1ses-419!2ses!4v1511753279699" 
+                                    style="border: 0px none; pointer-events: none;" 
+                                    allowfullscreen="" width="450" height="450" frameborder="0">                                        
+                                </iframe>
+                            </div>
+                            <div class="col-md-6 ml-auto mr-auto">
+                                <h3 class="card-title text-white">Envianos Tus Peticiones</h3>
+                                <h4 class="card-category text-white text-left">
+                                    ¡Gracias por contactarnos!. Estaremos encantados de responder a cualquier pregunta sobre recreacion, fiesta tematica infantil, show musical y evento empresarial.<br/>
+                                    <strong>Dirección:</strong> Transversal 82 A Bis # 83 B – 46<br/>
+                                    Barrio La Española, Bogotá D.C. – Colombia<br/>
+                                    <strong>Teléfono:</strong> +57 (1) 436 3030<br/>
+                                    <strong>Fax:</strong> +57 (1) 276 7016<br/>
+                                    <strong>Móvil:</strong> +57 315 353 3950
+                                </h4>
+                                <h:form class="contact-form">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating text-white">Your Name</label>
+                                                <input type="email" class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating text-white">Your Email</label>
+                                                <input type="email" class="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleMessage" class="bmd-label-floating text-white">Your Message</label>
+                                        <textarea type="email" class="form-control" rows="4" id="exampleMessage"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 ml-auto mr-auto text-center">
+                                            <button class="btn btn-primary btn-raised">
+                                                Send Message
+                                            </button>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ui:define>
 
 

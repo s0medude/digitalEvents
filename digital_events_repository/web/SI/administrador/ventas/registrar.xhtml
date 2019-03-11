@@ -98,7 +98,7 @@
                                                         <i class="material-icons text-white">date_range</i>
                                                     </span>
                                                 </div>
-                                                <p:calendar value="#{solicitudController.nuevaSolicitud.fechaReserva}" pattern="yyyy-MM-dd HH:mm" showOn="button" />
+                                                <p:calendar value="#{solicitudController.nuevaSolicitud.fechaReserva}" pattern="yyyy-MM-dd HH:mm:ss"/>
                                             </div>
                                         </div>
                                     </div>
@@ -108,7 +108,7 @@
                             <div class="row">
                                 <div id="material" class="col-md-8">
                                     <div class="form-group row text-white">
-                                        <p:selectManyCheckbox value="#{solicitudController.nuevaSolicitud.materialList}" layout="grid" columns="3">
+                                        <p:selectManyCheckbox value="#{solicitudController.nuevaSolicitud.materialList}" layout="grid" columns="4">
                                             <f:selectItems value="#{solicitudController.materialList}" var="m" itemLabel="#{m.tipoMaterial}" itemValue="#{m.id}" />
                                         </p:selectManyCheckbox>                                            
                                     </div>

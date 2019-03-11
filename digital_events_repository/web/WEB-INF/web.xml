@@ -21,6 +21,14 @@
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>ruta...</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>ruta...</location>
+    </error-page>
     <filter>
         <filter-name>primeFacesFileUploadFilter</filter-name>
         <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>

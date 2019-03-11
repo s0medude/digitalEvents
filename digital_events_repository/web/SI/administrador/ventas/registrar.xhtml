@@ -22,120 +22,108 @@
                 <div class="col-md-6"> 
                     <h:messages showDetail="true" styleClass="alert" style="list-style: none; padding: 0px; display: block" infoClass="alert-success" errorClass="alert-danger"/>
                 </div>
-                <div class="container-fluid">
-                    <div class="card">
-                        <div class="wrapper1">
-                            <div class="image-holder">
-                                <img class="img1" src="#{request.contextPath}/resources/img/form-wizard.jpg" alt=""/>
-                            </div>
-                            <div class="form-content">
-                                <h:form id="formNuevaSolicitud" prependId="false" a:novalidate="novalidate">
-                                    <div id="wizard">
-                                        <h4></h4>
-                                        <section>
-                                            <h3>Event Information</h3>
-                                            <div class="info">
-                                                <div class="info-item">
-                                                    <span class="lnr lnr-calendar-full"></span>
-                                                    <span class="unit">Date:</span>
-                                                    August 1 @ 8:00 am
+            </div>
+            <br/><br/><br/>
+            <div class="container-fluid">
+                <div class="main main-raised" style="background-image: url('#{request.contextPath}/resources/img/form-wizard-bg.jpg'); background-size: cover; background-position: top center;">
+                    <div class="container" style="padding: 30px;">
+                        <h:form id="formNuevaSolicitud" prependId="false" a:novalidate="novalidate">
+                            <h3 class="card-title text-white text-center">Información General de Solicitud</h3>
+                            <div class="row">                                    
+                                <div id="general" class="col-md-8">                                        
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="material-icons text-white">person</i>
+                                                    </span>
                                                 </div>
-                                                <div class="info-item">
-                                                    <span class="lnr lnr-clock"></span>
-                                                    <span class="unit">Time:</span>
-                                                    8:00 am - 5:00 pm
-                                                </div>
-                                                <div class="info-item">
-                                                    <span class="lnr lnr-apartment"></span>
-                                                    <span class="unit">Venue:</span>
-                                                    National Conference
-                                                </div>
-                                                <div class="info-item">
-                                                    <span class="lnr lnr-map"></span>
-                                                    <span class="unit">Address:</span>
-                                                    No 40 Baria Sreet 133/2
-                                                </div>
-                                                <div class="info-item">
-                                                    <span class="lnr lnr-earth"></span>
-                                                    <span class="unit">Website: </span>
-                                                    Info@yourwev.com
-                                                </div>
+                                                <h:selectOneMenu class="form-control selectpicker text-white" a:required="" a:data-style="btn btn-link" value="#{solicitudController.nuevaSolicitud.usuariosId}">
+                                                    <f:selectItem itemValue="" itemLabel="Seleccione el usuario de la solicitud..."/>
+                                                    <f:selectItems value="#{usuarioController.usuariosList}" var="t" itemValue="#{t.id}" itemLabel="#{t.id} - #{t.nombres} #{t.apellidos}"/>                                            
+                                                </h:selectOneMenu>   
                                             </div>
-                                        </section>
-                                        <h4></h4>
-                                        <section>
-                                            <h3>Set The Event</h3>
-                                            <div class="form-group">
-                                                <div class="form-price">
-                                                    <label for="">Price:</label>
-                                                    <span>$270</span>
-                                                </div>
-                                                <div class="form-select">
-                                                    <label for="">People:</label>
-                                                    <div class="form-holder">
-                                                        <select name="" id="" class="form-control">
-                                                            <option value="1" class="option">1</option>
-                                                            <option value="2" class="option">2</option>
-                                                            <option value="3" class="option">3</option>
-                                                            <option value="4" class="option">4</option>
-                                                            <option value="5" class="option">5</option>
-                                                            <option value="6" class="option">6</option>
-                                                            <option value="7" class="option">7</option>
-                                                            <option value="8" class="option">8</option>
-                                                            <option value="9" class="option">9</option>
-                                                            <option value="10" class="option">10</option>
-                                                        </select>
-                                                        <i class="zmdi zmdi-chevron-down"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-wrapper">
-                                                <label for="">Name:</label>
-                                                <input type="text" class="form-control"/>
-                                            </div>
-                                            <div class="form-wrapper">
-                                                <label for="" class="label-input">E-mail:</label>
-                                                <input type="text" class="form-control"/>
-                                            </div>
-                                            <div class="form-wrapper">
-                                                <label for="" class="label-input">Phone:</label>
-                                                <input type="text" class="form-control"/>
-                                            </div>
-                                            <div class="form-wrapper last">
-                                                <label for="" class="label-input">Address:</label>
-                                                <input type="text" class="form-control"/>
-                                            </div>
-                                        </section>
-                                        <h4></h4>
-                                        <section>
-                                            <h3 style="margin-bottom: 50px;">Request from You</h3>
-                                            <div class="request">
-                                                <div class="special-request">
-                                                    <label for="">Special Request:</label>
-                                                    <input type="text" class="form-control"/>
-                                                </div>
-                                                <input type="text" class="form-control" style="width: 100%;"/>
-                                                <div class="question-request"><span>Would you like your event staffed? </span>
-                                                    <input type="text" class="form-control" style="display: inline-block;"/>
-                                                    <span>How many associates? </span>
-                                                    <input type="text" class="form-control" style="display: inline-block;"/>
-                                                    <span>(Adiditional rates will apply for events requiring staff)</span>
-                                                </div>
-                                            </div>
-                                            <div class="checkbox1">
-                                                <label>
-                                                    <input type="checkbox" checked=""> Please accept terms and conditions ?</input>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </div>
-                                        </section>
+                                        </div>
                                     </div>
-                                </h:form>
+                                    <div class="form-group row">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="material-icons text-white">card_giftcard</i>
+                                                    </span>
+                                                </div>
+                                                <h:selectOneMenu class="form-control selectpicker text-white" a:required="" 
+                                                                 a:data-style="btn btn-link" value="#{solicitudController.nuevaSolicitud.tipoEvento}">
+                                                    <f:selectItem itemValue="" itemLabel="Seleccione el tipo de evento..."/>
+                                                    <f:selectItems value="#{solicitudController.tipoEventoList}" var="t" itemValue="#{t.id}" itemLabel="#{t.id} - #{t.tipo}"/>                                            
+                                                </h:selectOneMenu>   
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 text-white">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="material-icons text-white">add_location</i>
+                                                    </span>
+                                                </div>
+                                                <h:inputText class="form-control text-white" a:type="text" a:required="" a:placeholder="Direccion de Evento..."  
+                                                             value="#{solicitudController.nuevaSolicitud.direccion}"
+                                                             a:aria-invalid="false" >
+                                                </h:inputText>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-12 text-white">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="material-icons text-white">info</i>
+                                                    </span>
+                                                </div>
+                                                <h:inputTextarea a:type="text" a:required="" a:placeholder="Escriba los detalles de su evento (sea tan especifico como desee)..."                                                                 
+                                                                 a:aria-invalid="false" class="form-control text-white datetimepicker" 
+                                                                 value="#{solicitudController.nuevaSolicitud.especificaciones}">
+                                                </h:inputTextarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-9 text-white">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="material-icons text-white">date_range</i>
+                                                    </span>
+                                                </div>
+                                                <p:calendar value="#{solicitudController.nuevaSolicitud.fechaReserva}" pattern="yyyy-MM-dd HH:mm" showOn="button" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <h3 class="card-title text-white text-center">Materiales de la Solicitud</h3>
+                            <div class="row">
+                                <div id="material" class="col-md-8">
+                                    <div class="form-group row text-white">
+                                        <p:selectManyCheckbox value="#{solicitudController.nuevaSolicitud.materialList}" layout="grid" columns="3">
+                                            <f:selectItems value="#{solicitudController.materialList}" var="m" itemLabel="#{m.tipoMaterial}" itemValue="#{m.id}" />
+                                        </p:selectManyCheckbox>                                            
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer-row text-center">
+                                <a class="btn btn-danger btn-flat btn-wd btn-lg-" href="#{request.contextPath}/SI/index.xhtml">Cancelar</a>
+                                &nbsp;&nbsp;
+                                <h:commandButton class="btn btn-primary btn-flat btn-wd btn-lg-" value="Enviar Solicitud" action="#{solicitudController.registrar()}"/>
+                            </div>
+                        </h:form>
                     </div>
                 </div>
             </div>
+
         </div>
     </ui:define>
 </ui:composition>

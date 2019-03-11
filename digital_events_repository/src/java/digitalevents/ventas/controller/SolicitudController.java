@@ -8,10 +8,12 @@ package digitalevents.ventas.controller;
 import digitalevents.utils.MessageUtil;
 import edu.digitalEvents.modelo.dao.IEstadoSolicitudDAO;
 import edu.digitalEvents.modelo.dao.IEventoReservadoViewDAO;
+import edu.digitalEvents.modelo.dao.IMaterialDAO;
 import edu.digitalEvents.modelo.dao.ISolicitudDAO;
 import edu.digitalEvents.modelo.dao.ITipoEventoDAO;
 import edu.digitalEvents.modelo.entities.EstadoSolicitud;
 import edu.digitalEvents.modelo.entities.EventoReservadoView;
+import edu.digitalEvents.modelo.entities.Material;
 import edu.digitalEvents.modelo.entities.Solicitud;
 import edu.digitalEvents.modelo.entities.TipoEvento;
 import java.io.Serializable;
@@ -38,18 +40,19 @@ public class SolicitudController implements Serializable {
     private IEstadoSolicitudDAO esDAO;
     @EJB
     private ITipoEventoDAO teDAO;
+    @EJB
+    private IMaterialDAO mDAO;
 
     private Solicitud nuevaSolicitud;
     private Solicitud solicitudSeleccionada;
     private List<Solicitud> solicitudList;
     private List<Solicitud> solicitudEstadoList;
-    
-    private List<EstadoSolicitud> estadoSolicitudList;    
-    
-    private List<TipoEvento> tipoEventoList;
-    
-    //private static DateFormat sdf; 
 
+    private List<EstadoSolicitud> estadoSolicitudList;
+    private List<Material> materialList;
+    private List<TipoEvento> tipoEventoList;
+
+    //private static DateFormat sdf; 
     /**
      * Creates a new instance of SolicitudController
      */
@@ -89,8 +92,7 @@ public class SolicitudController implements Serializable {
             solicitudEstadoList = (List<Solicitud>) sDAO.findByEstado();
         }
         return solicitudEstadoList;
-    }    
-    
+    }
 
     public List<EstadoSolicitud> getEstadoSolicitudList() {
         if (estadoSolicitudList == null || solicitudList.isEmpty()) {
@@ -105,7 +107,13 @@ public class SolicitudController implements Serializable {
         }
         return tipoEventoList;
     }
-        
+
+    public List<Material> getMaterialList() {
+        if (materialList == null || materialList.isEmpty()) {
+            materialList = mDAO.findAllByDisponilidad();
+        }
+        return materialList;
+    }
 
     public void solicitudSeleccionada(Solicitud s) {
         System.out.println("Se selecciono la solicitud");
@@ -130,12 +138,9 @@ public class SolicitudController implements Serializable {
 
     public void registrar() {
         try {
-            if (nuevaSolicitud.getId() != null) {
-                sDAO.register(nuevaSolicitud);
-                MessageUtil.addInfoMessage(null, "REGISTRO EXITOSO", "", false);
-            } else {
-                MessageUtil.addErrorMessage(null, "Error de validación", "", false);
-            }
+            sDAO.register(nuevaSolicitud);
+            MessageUtil.addInfoMessage(null, "REGISTRO EXITOSO", "", false);
+
         } catch (Exception e) {
             MessageUtil.addErrorMessage(null, "Error al registrar la Solicitud", e.getMessage(), false);
         }

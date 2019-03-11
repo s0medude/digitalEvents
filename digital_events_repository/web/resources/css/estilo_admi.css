@@ -141,6 +141,15 @@ esta clase "movericon" es para mover el icono de añadir usuario
     top: 70px;
 }
 
+#general {
+    position: relative;
+    left: 135px;
+}
+#material {
+    position: relative;
+    left: 200px;
+}
+
 #contactenos {
     position: relative;
     top: 80px;
@@ -216,7 +225,7 @@ esta clase "movericon" es para mover el icono de añadir usuario
     position: relative; }
 
 .wizard {
-    height: 509px; }
+    min-height: 750px; }
 
 .steps .current-info, .steps .number {
     display: none; }
@@ -240,11 +249,12 @@ esta clase "movericon" es para mover el icono de añadir usuario
     background-size: cover; }
 
 .image-holder img {
-    display: none; }
+    }
 
-.form-content {
+/*.form-content {
     background: url("../img/form-wizard-bg.jpg") center center;
-    background-size: cover; }
+    background-size: cover; 
+    display: none; }*/
 
 .info {
     margin-bottom: 50px; }
@@ -476,3 +486,14 @@ select.form-control {
     .social {
         position: static;
         margin-top: 30px; } }
+
+.grid td {
+    display: block;
+    float: left;
+    white-space: ;
+    width: 33.333333333%;
+    box-sizing: border-box;
+}
+.grid td:nth-child(3n+4) {
+    clear: left;
+}

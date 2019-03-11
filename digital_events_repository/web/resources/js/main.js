@@ -2,14 +2,15 @@ $(function(){
 	$("#wizard").steps({
         headerTag: "h4",
         bodyTag: "section",
-        transitionEffect: "fade",
+        transitionEffect: "slide",
+        stepsOrientation: "horizontal",
         enableAllSteps: true,
         titleTemplate :'<span class="number">#index#</span>',
         labels: {
             current: "",
-            finish: "Submit",
-            next: "Next",
-            previous: "Previous"
+            finish: "Enviar",
+            next: "Siguiente",
+            previous: "Anterior"
         },
         onStepChanging: function (event, currentIndex, newIndex) { 
             if ( newIndex >= 1 ) {

@@ -23,11 +23,11 @@
     </welcome-file-list>
     <error-page>
         <error-code>404</error-code>
-        <location>ruta...</location>
+        <location>/SI/errorPages/404.xhtml</location>
     </error-page>
     <error-page>
         <error-code>500</error-code>
-        <location>ruta...</location>
+        <location>/SI/errorPages/500.xhtml</location>
     </error-page>
     <filter>
         <filter-name>primeFacesFileUploadFilter</filter-name>

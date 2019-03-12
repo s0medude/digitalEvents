@@ -228,7 +228,7 @@ public class InventarioController implements Serializable {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                MessageUtil.addInfoMessage(null, "ERROR", "INTENTALO D ENUEVO PENDEJO", false);
+                MessageUtil.addInfoMessage(null, "ERROR", "INTENTALO DE NUEVO", false);
             }
         }
     }

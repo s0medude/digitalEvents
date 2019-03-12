@@ -6,21 +6,21 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://java.sun.com/jsf/passthrough">
     <f:view locale="#{lenguajeController.locale}">
-    <h:head>
-        <ui:include src="/WEB-INF/includes/template/head.xhtml"/>        
-    </h:head>
-    <h:body class="landing-page sidebar-collapse">
-        <ui:include src="/landingPage/header.xhtml"/> 
-        <a id="button">
-            <i class="material-icons bottom">keyboard_arrow_up</i>
-        </a>
-        <ui:include src="/landingPage/main.xhtml"/>
-        <ui:include src="/landingPage/footer.xhtml"/>
-        <ui:insert name="modals-page"></ui:insert>
-        <ui:include src="/WEB-INF/includes/template/scripts.xhtml"/>
-    </h:body>
+        <h:head>
+            <ui:include src="/WEB-INF/includes/template/head.xhtml"/>        
+        </h:head>
+        <h:body class="landing-page sidebar-collapse">
+            <ui:include src="/landingPage/header.xhtml"/> 
+            <a id="button">
+                <i class="material-icons bottom">keyboard_arrow_up</i>
+            </a>
+            <ui:include src="/landingPage/main.xhtml"/>
+            <ui:include src="/landingPage/footer.xhtml"/>
+            <ui:insert name="modals-page"></ui:insert>
+            <ui:include src="/WEB-INF/includes/template/scripts.xhtml"/>
+        </h:body>
     </f:view>
-    
-    
+
+
 </html>
 

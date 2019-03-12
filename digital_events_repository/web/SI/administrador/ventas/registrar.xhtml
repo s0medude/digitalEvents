@@ -27,103 +27,163 @@
             <div class="container-fluid">
                 <div class="main main-raised" style="background-image: url('#{request.contextPath}/resources/img/form-wizard-bg.jpg'); background-size: cover; background-position: top center;">
                     <div class="container" style="padding: 30px;">
-                        <h:form id="formNuevaSolicitud" prependId="false" a:novalidate="novalidate">
-                            <h3 class="card-title text-white text-center">Información General de Solicitud</h3>
-                            <div class="row">                                    
-                                <div id="general" class="col-md-8">                                        
-                                    <div class="form-group row">
-                                        <div class="col-md-12">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="material-icons text-white">person</i>
-                                                    </span>
+                        <h:panelGroup id="exam">
+                            <h:form id="formNuevaSolicitud" prependId="false" a:novalidate="novalidate">
+                                <h3 class="card-title text-white text-center">Información General de Solicitud</h3>
+                                <div class="row">                                    
+                                    <div id="general" class="col-md-8">                                        
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="material-icons text-white">person</i>
+                                                        </span>
+                                                        <h4 class="card-title text-white">#{sessionController.usuarioSession().id} - #{sessionController.usuarioSession().nombres} #{sessionController.usuarioSession().apellidos}</h4>
+                                                    </div>  
                                                 </div>
-                                                <h:selectOneMenu class="form-control selectpicker text-white" a:required="" a:data-style="btn btn-link" value="#{solicitudController.nuevaSolicitud.usuariosId}">
-                                                    <f:selectItem itemValue="" itemLabel="Seleccione el usuario de la solicitud..."/>
-                                                    <f:selectItems value="#{usuarioController.usuariosList}" var="t" itemValue="#{t.id}" itemLabel="#{t.id} - #{t.nombres} #{t.apellidos}"/>                                            
-                                                </h:selectOneMenu>   
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="material-icons text-white">card_giftcard</i>
-                                                    </span>
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="material-icons text-white">card_giftcard</i>
+                                                        </span>
+                                                    </div>
+                                                    <h:selectOneMenu class="form-control selectpicker text-white" a:required="" 
+                                                                     a:data-style="btn btn-link" value="#{solicitudController.nuevaSolicitud.tipoEvento}">
+                                                        <f:selectItem itemValue="" itemLabel="Seleccione el tipo de evento..."/>
+                                                        <f:selectItems value="#{solicitudController.tipoEventoList}" var="t" itemValue="#{t.id}" itemLabel="#{t.id} - #{t.tipo}"/>                                            
+                                                    </h:selectOneMenu>   
                                                 </div>
-                                                <h:selectOneMenu class="form-control selectpicker text-white" a:required="" 
-                                                                 a:data-style="btn btn-link" value="#{solicitudController.nuevaSolicitud.tipoEvento}">
-                                                    <f:selectItem itemValue="" itemLabel="Seleccione el tipo de evento..."/>
-                                                    <f:selectItems value="#{solicitudController.tipoEventoList}" var="t" itemValue="#{t.id}" itemLabel="#{t.id} - #{t.tipo}"/>                                            
-                                                </h:selectOneMenu>   
+                                            </div>
+                                            <div class="col-md-6 text-white">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="material-icons text-white">add_location</i>
+                                                        </span>
+                                                    </div>
+                                                    <h:inputText class="form-control text-white" a:type="text" a:required="" a:placeholder="Direccion de Evento..."  
+                                                                 value="#{solicitudController.nuevaSolicitud.direccion}"
+                                                                 a:aria-invalid="false" >
+                                                    </h:inputText>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 text-white">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="material-icons text-white">add_location</i>
-                                                    </span>
+                                        <div class="form-group row">
+                                            <div class="col-md-12 text-white">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="material-icons text-white">info</i>
+                                                        </span>
+                                                    </div>
+                                                    <h:inputTextarea a:type="text" a:required="" a:placeholder="Escriba los detalles de su evento (sea tan especifico como desee)..."                                                                 
+                                                                     a:aria-invalid="false" class="form-control text-white " 
+                                                                     value="#{solicitudController.nuevaSolicitud.especificaciones}">
+                                                    </h:inputTextarea>
                                                 </div>
-                                                <h:inputText class="form-control text-white" a:type="text" a:required="" a:placeholder="Direccion de Evento..."  
-                                                             value="#{solicitudController.nuevaSolicitud.direccion}"
-                                                             a:aria-invalid="false" >
-                                                </h:inputText>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-md-12 text-white">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="material-icons text-white">info</i>
-                                                    </span>
+                                        <div class="form-group row">
+                                            <div class="col-md-9 text-white">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="material-icons text-white">date_range</i>
+                                                        </span>
+                                                    </div>
+                                                    <h:inputText a:type="datetime" a:required="" a:placeholder="Escriba Fecha y hora (aaaa-MM-dd HH:mm)" 
+                                                                 class="form-control text-white"
+                                                                 value="#{solicitudController.nuevaSolicitud.fechaReserva}" a:aria-invalid="false">
+                                                        <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+                                                    </h:inputText>
                                                 </div>
-                                                <h:inputTextarea a:type="text" a:required="" a:placeholder="Escriba los detalles de su evento (sea tan especifico como desee)..."                                                                 
-                                                                 a:aria-invalid="false" class="form-control text-white datetimepicker" 
-                                                                 value="#{solicitudController.nuevaSolicitud.especificaciones}">
-                                                </h:inputTextarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-md-9 text-white">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="material-icons text-white">date_range</i>
-                                                    </span>
-                                                </div>
-                                                <p:calendar value="#{solicitudController.nuevaSolicitud.fechaReserva}" pattern="yyyy-MM-dd HH:mm:ss"/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <h3 class="card-title text-white text-center">Materiales de la Solicitud</h3>
-                            <div class="row">
-                                <div id="material" class="col-md-8">
-                                    <div class="form-group row text-white">
-                                        <p:selectManyCheckbox value="#{solicitudController.nuevaSolicitud.materialList}" layout="grid" columns="4">
-                                            <f:selectItems value="#{solicitudController.materialList}" var="m" itemLabel="#{m.tipoMaterial}" itemValue="#{m.id}" />
-                                        </p:selectManyCheckbox>                                            
+                                <h3 class="card-title text-white text-center">Materiales de la Solicitud</h3>
+                                <div class="row">
+                                    <div id="general" class="col-md-6">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="material-icons text-white">card_giftcard</i>
+                                                </span>
+                                            </div>
+                                            <h:selectOneMenu class="form-control selectpicker text-white" a:required="" 
+                                                             a:data-style="btn btn-link" value="#{solicitudController.idMaterial}">
+                                                <f:selectItem itemValue="" itemLabel="Seleccione el material que desea..."/>
+                                                <f:selectItems value="#{solicitudController.materialList}" var="t" itemValue="#{t.id}" itemLabel="#{t.tipoMaterial}"/>                                            
+                                            </h:selectOneMenu>   
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="footer-row text-center">
-                                <a class="btn btn-danger btn-flat btn-wd btn-lg-" href="#{request.contextPath}/SI/index.xhtml">Cancelar</a>
-                                &nbsp;&nbsp;
-                                <h:commandButton class="btn btn-primary btn-flat btn-wd btn-lg-" value="Enviar Solicitud" action="#{solicitudController.registrar()}"/>
-                            </div>
-                        </h:form>
+                                <div class="row justify-content-center">
+                                    <div id="general" class="col-md-6 text-center">
+                                        <h:commandButton a:update="exam"  value="Agregar Material" 
+                                                         action="#{solicitudController.agregarMaterial()}" class="btn btn-warning btn-lg- pull-right">
+                                        </h:commandButton>
+                                    </div>
+                                </div>
+                                <br/><br/>
+
+                                <f:view>
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="group scroll col-lg-11 col-md-11 text-white">
+                                            <h:form prependId="false">
+                                                <h:dataTable value="#{solicitudController.listCarrito}" var="item" class="table"  >
+                                                    <h:column>
+                                                        <f:facet name="header">
+                                                            <h:outputText value="ID Material"/>
+                                                        </f:facet>
+                                                        <h:outputText value="#{item.id}"/>
+                                                    </h:column>
+                                                    <h:column>
+                                                        <f:facet name="header">
+                                                            <h:outputText value="Tipo Material"/>
+                                                        </f:facet>
+                                                        <h:outputText value="#{item.tipoMaterial}"/>
+                                                    </h:column>
+                                                    <h:column>
+                                                        <f:facet name="header">
+                                                            <h:outputText value="Estado"/>
+                                                        </f:facet>
+                                                        <h:outputText value="#{item.estado}"/>
+                                                    </h:column>
+                                                    <h:column>
+                                                        <f:facet name="header">
+                                                            <h:outputText value="Disponibilidad"/>
+                                                        </f:facet>
+                                                        <h:outputText value="#{item.disponilidad}"/>
+                                                    </h:column>
+                                                    <h:column>
+                                                        <f:facet name="header">
+                                                            <h:outputText value="Eliminar"/>
+                                                        </f:facet>
+                                                        <h:commandButton value="Cancelar" action="#{solicitudController.limpiarCarrito(item)}">
+                                                        </h:commandButton>
+                                                    </h:column>
+                                                </h:dataTable>
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                    <div class="footer-row text-center">
+                                        <a class="btn btn-danger btn-flat btn-wd btn-lg-" href="#{request.contextPath}/SI/index.xhtml">Cancelar</a>
+                                        &nbsp;&nbsp;
+                                        <h:commandButton class="btn btn-primary btn-flat btn-wd btn-lg-" value="Enviar Solicitud" action="#{solicitudController.registrarSolicitud()}">
+                                        </h:commandButton>
+                                    </div>
+                                </f:view>
+                            </h:form>
+                        </h:panelGroup>
                     </div>
                 </div>
             </div>
-
         </div>
     </ui:define>
 </ui:composition>

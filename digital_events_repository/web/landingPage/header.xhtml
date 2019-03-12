@@ -9,18 +9,18 @@
     <nav class="navbar navbar-color-on-scroll fixed-top navbar-expand-lg navbar-transparent" color-on-scroll="100" id="sectionsNav">
         <div class="container">
             <div class="navbar-translate">
-                    <h:form>
-                        <h:commandLink class="navbar-brand" action="/index.xhtml">
-                            <img src="#{request.contextPath}/resources/img/logoNegro.png" style="height: 65px; width: 115px;"/>
-                        </h:commandLink>
-                        <img class="navbar-brand" src="#{request.contextPath}/resources/img/logo-roca.png"/>
-                    </h:form>
-                    <h:commandButton class="navbar-toggler" a:data-toggle="collapse" a:aria-expanded="false" a:aria-label="Toggle navigation">
-                        <span class="sr-only">#{header.lbl_toggle_navigation}</span>
-                        <span class="navbar-toggler-icon"></span>
-                        <span class="navbar-toggler-icon"></span>
-                        <span class="navbar-toggler-icon"></span>
-                    </h:commandButton>
+                <h:form>
+                    <h:commandLink class="navbar-brand" action="/index.xhtml">
+                        <img src="#{request.contextPath}/resources/img/logoNegro.png" style="height: 65px; width: 115px;"/>
+                    </h:commandLink>
+                    <img class="navbar-brand" src="#{request.contextPath}/resources/img/logo-roca.png"/>
+                </h:form>
+                <h:commandButton class="navbar-toggler" a:data-toggle="collapse" a:aria-expanded="false" a:aria-label="Toggle navigation">
+                    <span class="sr-only">#{header.lbl_toggle_navigation}</span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                </h:commandButton>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto"> 
@@ -67,10 +67,10 @@
                             <div class="ripple-container"></div>
                         </a>
                         <div class="dropdown-menu dropdown-with-icons" aria-labelledby="ingreso">
-                            <h:form>
-                                <h:commandLink class="dropdown-item">
-                                    <i class="material-icons">person_add</i> #{login.lbl_registrar}
-                                </h:commandLink>
+                            <h:form>                                                                
+                                <a  href="#{request.contextPath}/register.xhtml" class="dropdown-item">
+                                    <i class="material-icons">person_add</i>#{login.lbl_registrar}
+                                </a>
                                 <a  href="#{request.contextPath}/login.xhtml" class="dropdown-item">
                                     <i class="material-icons">power_settings_new</i> #{login.lbl_iniciar_session}
                                 </a>
@@ -83,6 +83,8 @@
             </div>
         </div>
     </nav>
+
+    
 
 </ui:fragment>
 

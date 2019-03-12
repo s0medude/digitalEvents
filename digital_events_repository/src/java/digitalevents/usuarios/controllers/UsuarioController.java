@@ -371,6 +371,7 @@ public class UsuarioController implements Serializable {
             uDAO.register(nuevoUsuario);
             MessageUtil.addInfoMessage(null, "REGISTRO EXITOSO", "", false);
             Mail.sendMailHtml(nuevoUsuario.getCorreo(), "REGISTRO USUARIO", cuerpoHtml);
+            ec.redirect(ec.getRequestContextPath() + "/SI/index.xhtml");
         } catch (Exception e) {
             MessageUtil.addErrorMessage(null, "Error al registrar el usuario", e.getMessage(), false);
         }

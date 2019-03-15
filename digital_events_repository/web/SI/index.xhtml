@@ -7,7 +7,22 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+    <ui:define name="scripts-grafricos">
+        <h:panelGroup rendered="#{sessionController.user.rol.nombre eq 'Administrador'}">
+            <script src="#{request.contextPath}/resources/js/alertasAdmin.js" type="text/javascript"></script>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{sessionController.user.rol.nombre eq 'Coordinador'}">
+            <script src="#{request.contextPath}/resources/js/alertasCordinador.js" type="text/javascript"></script>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{sessionController.user.rol.nombre eq 'Recreador'}">
+            <script src="#{request.contextPath}/resources/js/alertasRecreador.js" type="text/javascript"></script>
+        </h:panelGroup>
+         <h:panelGroup rendered="#{sessionController.user.rol.nombre eq 'Cliente'}">
+            <script src="#{request.contextPath}/resources/js/alertasCliente.js" type="text/javascript"></script>
+        </h:panelGroup>
+        
+        
+    </ui:define>
     <ui:define name="content">      
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

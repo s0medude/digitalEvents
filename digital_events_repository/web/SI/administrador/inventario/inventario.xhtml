@@ -75,8 +75,8 @@
                 chart.options.data = [];
                 chart.options.data.push(seriesBuena);
                 chart.options.data.push(seriesMala);
-                   seriesBuena.dataPoints = #{grafricoInventarioController.datosJsonBuenaCalidad};
-                   seriesMala.dataPoints = #{grafricoInventarioController.datosJsonMalaCalidad};
+                seriesBuena.dataPoints = #{grafricoInventarioController.datosJsonBuenaCalidad};
+                seriesMala.dataPoints = #{grafricoInventarioController.datosJsonMalaCalidad};
                 chart.render();
             });
 
@@ -187,42 +187,42 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                               
-                                    <div class="form-group row">
-                                        <div class="col-3">
-                                            <label class="control-label mb-1">#{administrador_inventario.lbl_id_material}</label>
-                                            <div class="form-control">#{inventarioController.materialSeleccionado.id}</div>
-                                        </div>
-                                        <div class="col-3">
-                                            <label class="control-label mb-1">#{administrador_inventario.lbl_tipo_material}</label>
-                                            <h:inputText id="tipoMaterial" value="#{inventarioController.materialSeleccionado.tipoMaterial}"
-                                                         class="form-control" a:type="text"/>
-                                        </div>
-                                        <div class="col-3">
-                                            <label class="control-label mb-1">#{administrador_inventario.lbl_cantidad}</label>
-                                            <h:inputText id="cantidad" value="#{inventarioController.materialSeleccionado.cantidad}"
-                                                         class="form-control" a:type="number" maxlength="100" />
-                                        </div>
+
+                                <div class="form-group row">
+                                    <div class="col-3">
+                                        <label class="control-label mb-1">#{administrador_inventario.lbl_id_material}</label>
+                                        <div class="form-control">#{inventarioController.materialSeleccionado.id}</div>
                                     </div>
-                                    <div class="form-group row">                                        
-                                        <div class="col-6">
-                                            <label class="control-label mb-1">#{administrador_inventario.lbl_estado}</label>
-                                            <h:selectOneRadio id="genero" value="#{inventarioController.materialSeleccionado.estado}"
-                                                              class="form-control">
-                                                <f:selectItem itemValue="BUENO" itemLabel="Bueno&nbsp;&nbsp;"/>
-                                                <f:selectItem itemValue="MALO" itemLabel="Malo&nbsp;&nbsp;"/>
-                                            </h:selectOneRadio>
-                                        </div>
-                                        <div class="col-6">
-                                            <label class="control-label mb-1">#{administrador_inventario.lbl_disponibilidad}</label>
-                                            <h:selectOneMenu id="estado" value="#{inventarioController.materialSeleccionado.disponilidad}"
-                                                             class="form-control">
-                                                <f:selectItem itemValue="" itemLabel="#{administrador_inventario.lbl_seleccionar}"/>
-                                                <f:selectItems value="#{inventarioController.estadoMaterialList}" var="t" itemLabel="#{t.estado}"/>                                            
-                                            </h:selectOneMenu>  
-                                        </div>
-                                    </div>                                    
-              
+                                    <div class="col-3">
+                                        <label class="control-label mb-1">#{administrador_inventario.lbl_tipo_material}</label>
+                                        <h:inputText id="tipoMaterial" value="#{inventarioController.materialSeleccionado.tipoMaterial}"
+                                                     class="form-control" a:type="text"/>
+                                    </div>
+                                    <div class="col-3">
+                                        <label class="control-label mb-1">#{administrador_inventario.lbl_cantidad}</label>
+                                        <h:inputText id="cantidad" value="#{inventarioController.materialSeleccionado.cantidad}"
+                                                     class="form-control" a:type="number" maxlength="100" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">                                        
+                                    <div class="col-6">
+                                        <label class="control-label mb-1">#{administrador_inventario.lbl_estado}</label>
+                                        <h:selectOneRadio id="genero" value="#{inventarioController.materialSeleccionado.estado}"
+                                                          class="form-control">
+                                            <f:selectItem itemValue="BUENO" itemLabel="Bueno&nbsp;&nbsp;"/>
+                                            <f:selectItem itemValue="MALO" itemLabel="Malo&nbsp;&nbsp;"/>
+                                        </h:selectOneRadio>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="control-label mb-1">#{administrador_inventario.lbl_disponibilidad}</label>
+                                        <h:selectOneMenu id="estado" value="#{inventarioController.materialSeleccionado.disponilidad}"
+                                                         class="form-control">
+                                            <f:selectItem itemValue="" itemLabel="#{administrador_inventario.lbl_seleccionar}"/>
+                                            <f:selectItems value="#{inventarioController.estadoMaterialList}" var="t" itemLabel="#{t.estado}"/>                                            
+                                        </h:selectOneMenu>  
+                                    </div>
+                                </div>                                    
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">#{administrador_inventario.lbl_cerrar}</button>
@@ -294,6 +294,13 @@
         <!--modal CSV-->
         <div class="modal fade" id="modalCSV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
+                <h:panelGroup id="mesagescsv">
+                    <h:messages showDetail="true" layout="table" style="display: block; padding: 5px; border-radius:5px; box-shadow: 0px 0px 10px; border-bottom: 10px solid black" warnStyle="color:yellow" infoStyle="color:blue" errorStyle="color:red"/>
+                </h:panelGroup>
+                <div id="nav">
+                        <ul>
+                        </ul>
+                    </div>
                 <h:form prependId="false" enctype="multipart/form-data">
                     <h:panelGroup id="modalCSVContent" class="modal-content" layout="block">
                         <div class="modal-content">

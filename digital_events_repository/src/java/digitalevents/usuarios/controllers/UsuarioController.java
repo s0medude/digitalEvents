@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.PostConstruct;
@@ -27,6 +28,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -37,6 +39,8 @@ import javax.inject.Named;
 @ViewScoped
 public class UsuarioController implements Serializable {
 
+    @Inject
+    private SessionController se;
     @EJB
     private IUsuarioDAO uDAO;
     @EJB
@@ -71,6 +75,10 @@ public class UsuarioController implements Serializable {
         return correo;
     }
 
+    public SessionController getSe() {
+        return se;
+    }
+
     public void setCorreo(String correo) {
         this.correo = correo;
     }
@@ -95,9 +103,10 @@ public class UsuarioController implements Serializable {
         if (usuariosList == null || usuariosList.isEmpty()) {
             usuariosList = uDAO.findAll();
         }
+       
         return usuariosList;
     }
-
+    
     public Usuario sessionUser() {
         session = new SessionController();
         user = session.usuarioSession();
@@ -208,7 +217,7 @@ public class UsuarioController implements Serializable {
                     + "		}\n"
                     + "	</style>\n"
                     + "</head>\n"
-                    + "<body class=\"body\" style=\"background-image: url(" + ec.getRequestContextPath() + "/resources/img/personajes-transformers.png); padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; -webkit-text-size-adjust:none;>\n"
+                    + "<body class=\"body\" style=\"background-image: url('" + ec.getRequestContextPath() + "/resources/img/personajes-transformers.png'); padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; -webkit-text-size-adjust:none;>\n"
                     + "<!--*|IF:MC_PREVIEW_TEXT|*-->\n"
                     + "		<!--[if !gte mso 9]><!-->\n"
                     + "		<span class=\"mcnPreviewText\" style=\"display:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; visibility:hidden; mso-hide:all;\"></span>\n"
@@ -403,11 +412,24 @@ public class UsuarioController implements Serializable {
             MessageUtil.addErrorMessage(null, "Error al actualizar el usuario", e.getMessage(), false);
         }
     }
-
+    public  boolean renderedBooton(Usuario u){
+        System.out.println(u.getId().toString());
+        //System.out.println(se.getUser().getId());
+        return true;
+    }
     public void eliminar() {
+        System.out.println("Usuario Seleccionado:"+this.usuarioSeleccionado.getId());
+        System.out.println("Incio Session"+se.getUser().getId());
         try {
-            uDAO.delete(usuarioSeleccionado);
-            MessageUtil.addInfoMessage(null, "Eliminación exitosa", "Los datos del usuario se han eliminado correctamente,", false);
+             
+            if (this.usuarioSeleccionado.getId() == se.getUser().getId()) {
+                MessageUtil.addErrorMessage(null, "No es posible eliminar el usuario en sesion", "No es posible eliminar el usuario en sesion", false);
+                System.out.println(usuarioSeleccionado==session.getUser());
+            } else {
+                uDAO.delete(usuarioSeleccionado);
+                MessageUtil.addInfoMessage(null, "Eliminación exitosa", "Los datos del usuario se han eliminado correctamente,", false);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             MessageUtil.addErrorMessage(null, "Error al eliminar el usuario", e.getMessage(), false);

@@ -15,8 +15,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <ol class="breadcrumb">
-                        <li><a href="index.xhtml">Usuarios /</a></li>
-                        <li class="active">/ Nuevo Usuario</li>
+                        <li><a href="index.xhtml">#{administrador_usuarios.lbl_usuarios_otro} /</a></li>
+                        <li class="active">/ #{administrador_usuarios.lbl_nuevo_usuario}</li>
                     </ol>
                 </div>
                 <div class="col-md-6"> 
@@ -31,7 +31,7 @@
                                 <div class="card-header card-header-success colorc">
                                     <div class="row">
                                         <div class="col-12">
-                                            <h4 class="card-title">Formulario Nuevo Usuario</h4>
+                                            <h4 class="card-title">#{administrador_usuarios.lbl_form_nuevo_usuario}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -43,13 +43,13 @@
                                                     <h:inputText id="nombres" value="#{usuarioController.nuevoUsuario.nombres}"
                                                                  a:type="text" 
                                                                  class="form-control"  
-                                                                 a:placeholder="Nombres" a:required="s"/>
+                                                                 a:placeholder="#{administrador_usuarios.lbl_username}" a:required=""/>
                                                 </div>
                                                 <div class="col-6">
                                                     <h:inputText id="apellidos" value="#{usuarioController.nuevoUsuario.apellidos}" 
                                                                  a:type="text" 
                                                                  class="form-control"  
-                                                                 a:placeholder="Apellidos" a:required=""/>
+                                                                 a:placeholder="#{administrador_usuarios.lbl_apellido}" a:required=""/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -58,7 +58,7 @@
                                                                  class="form-control" a:required=""
                                                                  a:type="date"
                                                                  a:aria-invalid="false"
-                                                                 a:placeholder="Ingrese su fecha de Nacimiento">
+                                                                 a:placeholder="#{administrador_usuarios.lbl_ingrese_su_fecha}">
                                                         <f:convertDateTime pattern="yyyy-MM-dd"/>
                                                     </h:inputText>                                                     
                                                 </div>
@@ -66,38 +66,39 @@
                                                     <h:inputText id="direccion" value="#{usuarioController.nuevoUsuario.direccion}" 
                                                                  a:type="text" 
                                                                  class="form-control" 
-                                                                 a:placeholder="Direccion" a:required=""/>
+                                                                 a:placeholder="#{administrador_usuarios.lbl_direccion_usuario}" a:required=""/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-6">
                                                     <h:selectOneMenu id="tiposDocumento" value="#{usuarioController.nuevoUsuario.tiposDocumento}"
                                                                      class="form-control">
-                                                        <f:selectItem itemValue="" itemLabel="Seleccione un tipo de documento"/>
+                                                        <f:selectItem itemValue="" itemLabel="#{administrador_usuarios.lbl_seleccione_tipos}"/>
                                                         <f:selectItems value="#{tipoDocumentoController.tiposDocumentoList}" var="t" itemLabel="#{t.nombre}"/>                                            
                                                     </h:selectOneMenu>                                         
                                                 </div>
                                                 <div class="col-6">
                                                     <h:inputText id="documento" value="#{usuarioController.nuevoUsuario.documento}" 
-                                                                 a:type="text"
+                                                                 a:type="number"
                                                                  class="form-control" 
-                                                                 a:placeholder="Numero de documento" 
+                                                                 a:placeholder="#{administrador_usuarios.lbl_documento}" 
                                                                  a:required=""/>
                                                 </div>                                                
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-6">
-                                                    <label for="correo" class="control-label mb-1">Correo</label>
+                                                    <label for="correo" class="control-label mb-1">#{administrador_usuarios.lbl_correo}</label>
                                                     <h:inputText id="correo" value="#{usuarioController.nuevoUsuario.correo}"  
                                                                  a:type="email" 
                                                                  class="form-control" 
                                                                  a:placeholder="usuario@correo.com" a:required=""/>
                                                 </div>
                                                 <div class="col-6">
-                                                    <label for="rolList" class="control-label mb-1">Roles</label>
-                                                    <h:selectManyCheckbox id="rolList" value="#{usuarioController.nuevoUsuario.setRolList(rolList)}" class="form-control" converter="rolConverter">
-                                                        <f:selectItems value="#{rolController.rolList}"  var="r" itemLabel="#{r.nombre}&nbsp;&nbsp;"/>
-                                                    </h:selectManyCheckbox>
+                                                    <label for="rol" class="control-label mb-1">Roles</label>
+                                                    <h:selectOneMenu id="rol" value="#{usuarioController.nuevoUsuario.rol}" class="form-control">
+                                                        <f:selectItem itemValue="" itemLabel="#{administrador_usuarios.lbl_seleccione_rol}"/>
+                                                        <f:selectItems value="#{rolController.rolList}"  var="r" itemLabel="#{r.nombre}"/>
+                                                    </h:selectOneMenu>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -105,13 +106,13 @@
                                                     <h:inputText id="contrasena" value="#{usuarioController.nuevoUsuario.contrasena}" 
                                                                  a:type="password" 
                                                                  class="form-control" 
-                                                                 a:placeholder="Contraseña" a:required=""/>
+                                                                 a:placeholder="#{administrador_usuarios.lbl_contresenia}" a:required=""/>
                                                 </div>
                                                 <div class="col-6">
                                                     <h:inputText id="confirmarClave" value="#{usuarioController.confirmarClave}"
                                                                  a:type="password" 
                                                                  class="form-control"  
-                                                                 a:placeholder="Confirmar Contraseña" a:required=""/>
+                                                                 a:placeholder="#{administrador_usuarios.lbl_confirm_password}" />
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -119,20 +120,20 @@
                                                     <h:inputText id="telefonos" value="#{usuarioController.nuevoUsuario.telefonos}"
                                                                  a:type="text" 
                                                                  class="form-control"  
-                                                                 a:placeholder="Ingrese un telefono" a:required=""/>
+                                                                 a:placeholder="#{administrador_usuarios.lbl_ingrese_telefono}" a:required=""/>
                                                 </div>
                                                 <div class="col-4">
                                                     <h:selectOneRadio id="genero" value="#{usuarioController.nuevoUsuario.genero}"
                                                                       class="form-control">
-                                                        <f:selectItem itemValue="1" itemLabel="Masculino&nbsp;&nbsp;"/>
-                                                        <f:selectItem itemValue="2" itemLabel="Femenino&nbsp;&nbsp;"/>
-                                                        <f:selectItem itemValue="3" itemLabel="Otro"/>
+                                                        <f:selectItem itemValue="1" itemLabel="#{administrador_usuarios.lbl_masculino}&nbsp;&nbsp;"/>
+                                                        <f:selectItem itemValue="2" itemLabel="#{administrador_usuarios.lbl_femenino}&nbsp;&nbsp;"/>
+                                                        <f:selectItem itemValue="3" itemLabel="#{administrador_usuarios.lbl_otro}"/>
                                                     </h:selectOneRadio>
                                                 </div>
                                                 <div class="col-4">
                                                     <h:selectOneMenu id="estado" value="#{usuarioController.nuevoUsuario.estado}"
                                                                      class="form-control">
-                                                        <f:selectItem itemValue="" itemLabel="Seleccione estado"/>
+                                                        <f:selectItem itemValue="" itemLabel="#{administrador_usuarios.lbl_seleccione_estado}"/>
                                                         <f:selectItems value="#{usuarioController.estadosUsuarioList}" var="e" itemLabel="#{e.estado}"/> 
                                                     </h:selectOneMenu>
                                                 </div>
@@ -141,7 +142,7 @@
                                     </h:form>
                                 </div>
                                 <div class="card-footer">                            
-                                    <h:commandLink action="#{usuarioController.registrar()}" class="btn btn-primary btn-block">Añadir Usuario</h:commandLink> 
+                                    <h:commandLink action="#{usuarioController.registrar()}" class="btn btn-primary btn-block">#{administrador_usuarios.lbl_anadir_usuario}</h:commandLink> 
                                 </div>
                             </h:form>
                         </div>

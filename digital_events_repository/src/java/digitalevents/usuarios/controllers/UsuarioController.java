@@ -59,6 +59,7 @@ public class UsuarioController implements Serializable {
     private Usuario user;
     private SessionController session;
     private Mail mail;
+    private String id;
 
     /**
      * Creates a new instance of UsuarioController
@@ -95,8 +96,22 @@ public class UsuarioController implements Serializable {
         return nuevoUsuario;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+   
+
     public Usuario getUsuarioSeleccionado() {
         return usuarioSeleccionado;
+    }
+
+    public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
+        this.usuarioSeleccionado = usuarioSeleccionado;
     }
 
     public List<Usuario> getUsuariosList() {
@@ -130,7 +145,12 @@ public class UsuarioController implements Serializable {
     public void usuarioSeleccionado(Usuario u) {
         System.out.println("Se seleccionó el usuario");
         System.out.println(u);
-        usuarioSeleccionado = u;
+        this.usuarioSeleccionado = u;
+        System.out.println(u.getId());
+        
+    }
+    public  boolean renderedBooton(Usuario u){
+        return (u==se.getUser());
     }
 
     public void registrar() {
@@ -412,11 +432,7 @@ public class UsuarioController implements Serializable {
             MessageUtil.addErrorMessage(null, "Error al actualizar el usuario", e.getMessage(), false);
         }
     }
-    public  boolean renderedBooton(Usuario u){
-        System.out.println(u.getId().toString());
-        //System.out.println(se.getUser().getId());
-        return true;
-    }
+    
     public void eliminar() {
         System.out.println("Usuario Seleccionado:"+this.usuarioSeleccionado.getId());
         System.out.println("Incio Session"+se.getUser().getId());

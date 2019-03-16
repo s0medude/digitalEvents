@@ -27,7 +27,7 @@
             $(document).ready(function () {
                 chart = new CanvasJS.Chart("myChart", {
                     animationEnabled: true,
-                    exportEnabled: true, 
+                    exportEnabled: true,
                     toolTip: {
                         shared: true
                     },
@@ -54,7 +54,7 @@
 
                 };
                 chart.options.title = {
-                   
+
                 };
                 seriesEstadoActivo = {
                     /*** Change type "column" to "bar", "area", "line" or "pie"***/
@@ -93,7 +93,7 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:form> 
+        <h:form>
             <h:panelGroup>
                 <h:messages showDetail="true" styleClass="alert" style="list-style: none; padding: 0px; display: block" infoClass="alert-success" errorClass="alert-danger"/>
             </h:panelGroup>
@@ -108,8 +108,8 @@
                                     <div class="ct-chart" id="myChart" style="width: 100%; height: 300px;"></div>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="card-title">Gráfico Estadistico Usuarios</h4>
-                                    <p class="card-category">Aqui encontraras el reporte de la fecha en que fue modificada ordenada por el mes.</p>                                                                 
+                                    <h4 class="card-title">#{administrador_usuarios.lbl_grafrico_usuarios}</h4>
+                                    <p class="card-category">#{administrador_usuarios.lbl_aqui_grafico_usuarios}</p>                                                                 
                                 </div>
                             </h:form>
                         </div>
@@ -121,36 +121,40 @@
                     <div class="col-md-12">
                         <div class="card">
                             <h:form>
+
                                 <div class="card-header card-header-success colorc">
                                     <div class="row">
-                                        <div class="col-9">
-                                            <h4 class="card-title">Usuarios del Sistema</h4>
-                                            <p class="card-category">Aquí encontraras todos los usuarios registrados en el sistema.</p>
-                                            <h:commandLink class="card-category btn btn-danger btn-flat m-b-30 m-t-30" action="#{reportesController.exportPDF()}" value="PDF">
+                                        <div class="col-6">
+                                            <h4 class="card-title">#{administrador_usuarios.lbl_usuarios_sistema}</h4>
+                                            <p class="card-category">#{administrador_usuarios.lbl_aqui_encontraras_usuarios}</p>
+                                        </div>
+                                        <div class="col-6">                                          
+                                            <h:commandLink class="card-category btn btn-danger btn-flat m-b-30 m-t-30" action="#{reportesController.export()}" value="PDF" >
                                                 <i class="fas fa-file-pdf"></i>
                                             </h:commandLink>&nbsp;&nbsp;
-                                            <h:commandLink class="card-category btn btn-success btn-flat m-b-30 m-t-30" action="#{reportesController.exportarPDF()}" value="EXCEL">
-                                                <i class="fas fa-file-excel"></i>
-                                            </h:commandLink>
-                                        </div>
-                                        <div class="col-3">
+                                            <h:commandLink class="card-category btn btn-primary btn-flat m-b-30 m-t-30" action="#" 
+                                                           a:data-toggle="modal" a:data-target="#modalCSV" value="#{administrador_inventario.lbl_cargar_csv}">
+                                                <f:ajax render=":modalCSVContent"/>
+                                                <i class="fas fa-upload"></i>
+                                            </h:commandLink>&nbsp;&nbsp;
                                             <a class="btn btn-info" href="registrar.xhtml" >                                                     
                                                 <i class="material-icons movericon">person_add</i>
-                                                <span>Añadir Usuario</span>
+                                                <span>#{administrador_usuarios.lbl_anadir_usuario}</span>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body">
+                                    
                                     <div class="table-responsive">
                                         <h:form>
                                             <h:dataTable class="table table-striped text-center" var="u" value="#{usuarioController.usuariosList}" >
-                                                <h:column><f:facet name="header">ID</f:facet>#{u.id}</h:column>
-                                                <h:column><f:facet name="header">TD</f:facet>#{u.tiposDocumento.sigla}</h:column>
-                                                <h:column><f:facet name="header">NOMBRES</f:facet>#{u.nombres}</h:column>
-                                                <h:column><f:facet name="header">APELLIDOS</f:facet>#{u.apellidos}</h:column>
-                                                <h:column><f:facet name="header">CORREO</f:facet>#{u.correo}</h:column>
-                                                <h:column><f:facet name="header">OPCIONES</f:facet>
+                                                <h:column><f:facet name="header">#{administrador_usuarios.lbl_ID}</f:facet>#{u.id}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_usuarios.btn_tipos_documento}</f:facet>#{u.tiposDocumento.sigla}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_usuarios.lbl_NOMBRE}</f:facet>#{u.nombres}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_usuarios.btn_apellidos}</f:facet>#{u.apellidos}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_usuarios.lbl_correo}</f:facet>#{u.correo}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_options}</f:facet>
                                                     <h:commandLink class="td-actions text-right btn btn-info" actionListener="#{usuarioController.usuarioSeleccionado(u)}"
                                                                    a:data-toggle="modal" a:data-target="#modalVisualizarUser" a:rel="tooltip" >
                                                         <f:ajax render=":modalVisualizarUserContent"/>
@@ -161,10 +165,10 @@
                                                         <f:ajax render=":modalEditarUserContent"/>
                                                         <i class="material-icons">edit</i>
                                                     </h:commandLink> 
-                                                    <h:commandLink class="td-actions text-right btn btn-danger" actionListener="#{usuarioController.usuarioSeleccionado(u)}"
-                                                                   a:data-toggle="modal" a:data-target="#modalEliminarUser" a:rel="tooltip" >
+                                                    <h:commandLink  class="td-actions text-right btn btn-danger" actionListener="#{usuarioController.usuarioSeleccionado(u)}"
+                                                                   a:data-toggle="modal" a:data-target="#modalEliminarUser" a:rel="tooltip" rendered="#{usuarioController.renderedBooton(u)}">
                                                         <f:ajax render=":modalEliminarUserContent"/>
-                                                        <i class="material-icons">close</i>
+                                                        <i class="material-icons">delete</i>
                                                     </h:commandLink>
                                                 </h:column>
                                             </h:dataTable>
@@ -176,11 +180,89 @@
                     </div>
                 </div>
             </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <h:form>
+                                <div class="card-header card-header-success colorc">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h4 class="card-title">#{administrador_usuarios.lbl_roles_usuario}</h4>                                            
+                                        </div>
+                                        <div class="col-6">
+                                            <a class="btn btn-info" href="registrar.xhtml">                                                     
+                                                <i class="material-icons movericon">person_add</i>
+                                                <span>#{administrador_usuarios.lbl_anadir_rol}</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <h:form>
+                                            <h:dataTable class="table table-striped text-center" var="u" value="#{rolController.rolList}" >
+                                                <h:column><f:facet name="header">#{administrador_usuarios.lbl_ID}</f:facet>#{u.id}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_usuarios.lbl_NOMBRE}</f:facet>#{u.nombre}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_options}</f:facet>                                                    
+                                                    <h:commandLink class="td-actions text-right btn btn-danger" actionListener="#{usuarioController.usuarioSeleccionado(u)}"
+                                                                   a:data-toggle="modal" a:data-target="#modalEliminarUser" a:rel="tooltip" >
+                                                        <f:ajax render=":modalEliminarUserContent"/>
+                                                        <i class="material-icons">delete</i>
+                                                    </h:commandLink>
+                                                </h:column>
+                                            </h:dataTable>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>                        
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <h:form>
+                                <div class="card-header card-header-success colorc">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h4 class="card-title">#{administrador_usuarios.lbl_tipos_documento}</h4>                                            
+                                        </div>
+                                        <div class="col-6">
+                                            <a class="btn btn-info" href="registrar.xhtml">                                                     
+                                                <i class="material-icons movericon">person_add</i>
+                                                <span>#{administrador_usuarios.lbl_anadir_tipos}</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <h:form>
+                                            <h:dataTable class="table table-striped text-center" var="u" value="#{tipoDocumentoController.tiposDocumentoList}" >
+                                                <h:column><f:facet name="header">#{administrador_usuarios.lbl_ID}</f:facet>#{u.id}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_usuarios.lbl_sigla}</f:facet>#{u.sigla}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_usuarios.lbl_NOMBRE}</f:facet>#{u.nombre}</h:column>
+                                                <h:column><f:facet name="header">#{administrador_eventos.lbl_options}</f:facet>                                                    
+                                                    <h:commandLink class="td-actions text-right btn btn-danger" actionListener="#"
+                                                                   a:data-toggle="modal" a:data-target="#modalEliminarUser" a:rel="tooltip" >
+                                                        <f:ajax render=":modalEliminarUserContent"/>
+                                                        <i class="material-icons">delete</i>
+                                                    </h:commandLink>
+                                                </h:column>
+                                            </h:dataTable>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
         </div>
     </ui:define>
     <ui:define name="modals-page">
 
-        
+
 
         <!--modal editar-->
         <div class="modal fade" id="modalEditarUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -189,93 +271,95 @@
                     <h:panelGroup id="modalEditarUserContent" class="modal-content" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title titulom" id="exampleModalLabel">Actualizar Usuario</h5>
+                                <h5 class="modal-title titulom" id="exampleModalLabel">#{administrador_usuarios.lbl_anadir_usuario}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <h:form prependId="false">
-                                    <div class="form-group row">
-                                        <div class="col-6">
-                                            <h:inputText id="nombres" value="#{usuarioController.usuarioSeleccionado.nombres}"
-                                                         a:type="text" 
-                                                         class="form-control"  
-                                                         a:placeholder="Nombres" required="true"/>
-                                        </div>
-                                        <div class="col-6">
-                                            <h:inputText id="apellidos" value="#{usuarioController.usuarioSeleccionado.apellidos}" 
-                                                         a:type="text" 
-                                                         class="form-control"  
-                                                         a:placeholder="Apellidos" required="true"/>
-                                        </div>
+
+                                <div class="form-group row">
+                                    <div class="col-6">
+                                        <h:inputText id="nombres" value="#{usuarioController.usuarioSeleccionado.nombres}"
+                                                     a:type="text" 
+                                                     class="form-control"  
+                                                     a:placeholder="#{administrador_usuarios.lbl_nombre_usuario}" a:required=""/>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-4">
-                                            <h:selectOneMenu id="tiposDocumento" value="#{usuarioController.usuarioSeleccionado.tiposDocumento}"
-                                                             class="form-control">
-                                                <f:selectItem itemValue="" itemLabel="Seleccione un tipo de documento"/>
-                                                <f:selectItems value="#{tipoDocumentoController.tiposDocumentoList}" var="t" itemLabel="#{t.nombre}"/>                                            
-                                            </h:selectOneMenu>                                         
-                                        </div>
-                                        <div class="col-4">
-                                            <h:inputText id="documento" value="#{usuarioController.usuarioSeleccionado.documento}" 
-                                                         a:type="text"
-                                                         class="form-control" 
-                                                         a:placeholder="Numero de documento" 
-                                                         required="true"/>
-                                        </div>
-                                        <div class="col-4">
-                                            <h:inputText id="direccion" value="#{usuarioConttoller.usuarioSeleccionado.direccion}" 
-                                                         a:type="text" 
-                                                         class="form-control" 
-                                                         a:placeholder="Direccion" required="true"/>
-                                        </div>
+                                    <div class="col-6">
+                                        <h:inputText id="apellidos" value="#{usuarioController.usuarioSeleccionado.apellidos}" 
+                                                     a:type="text" 
+                                                     class="form-control"  
+                                                     a:placeholder="#{administrador_usuarios.lbl_apellido}" required="true"/>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-5">
-                                            <label for="correo" class="control-label mb-1">Correo</label>
-                                            <h:inputText id="correo" value="#{usuarioController.usuarioSeleccionado.correo}"  
-                                                         a:type="email" 
-                                                         class="form-control" 
-                                                         a:placeholder="usuario@correo.com" required="true"/>
-                                        </div>
-                                        <div class="col-7">
-                                            <label for="rol" class="control-label mb-1">Roles</label>
-                                            <h:selectManyCheckbox id="rol" value="#{usuarioController.usuarioSeleccionado.rolList}"
-                                                                  class="form-control">
-                                                <f:selectItems value="#{rolController.rolList}"  var="r" itemLabel="#{r.nombre}&nbsp;&nbsp;"/>
-                                            </h:selectManyCheckbox>
-                                        </div>
-                                    </div>                                    
-                                    <div class="form-group row">
-                                        <div class="col-4">
-                                            <h:inputText id="telefonos" value="#{usuarioController.usuarioSeleccionado.telefonos}"
-                                                         a:type="text" 
-                                                         class="form-control"  
-                                                         a:placeholder="Ingrese un telefono" required="true"/>
-                                        </div>
-                                        <div class="col-4">
-                                            <h:selectOneRadio id="genero" value="#{usuarioController.usuarioSeleccionado.genero}"
-                                                              class="form-control">
-                                                <f:selectItem itemValue="1" itemLabel="Masculino&nbsp;&nbsp;"/>
-                                                <f:selectItem itemValue="2" itemLabel="Femenino&nbsp;&nbsp;"/>
-                                                <f:selectItem itemValue="3" itemLabel="Otro"/>
-                                            </h:selectOneRadio>
-                                        </div>
-                                        <div class="col-4">
-                                            <h:selectOneMenu id="estado" value="#{usuarioController.usuarioSeleccionado.estado}"
-                                                             class="form-control">
-                                                <f:selectItem itemValue="" itemLabel="Seleccione un nuevo estado"/>
-                                                <f:selectItems value="#{usuarioController.estadosUsuarioList}" var="e" itemLabel="#{e.estado}"/> 
-                                            </h:selectOneMenu>
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <h:selectOneMenu id="tiposDocumento" value="#{usuarioController.usuarioSeleccionado.tiposDocumento}"
+                                                         class="form-control">
+                                            <f:selectItem itemValue="" itemLabel="#{administrador_usuarios.lbl_seleccione_tipos}"/>
+                                            <f:selectItems value="#{tipoDocumentoController.tiposDocumentoList}" var="t" itemLabel="#{t.nombre}"/>                                            
+                                        </h:selectOneMenu>                                         
                                     </div>
-                                </h:form>
+                                    <div class="col-4">
+                                        <h:inputText id="documento" value="#{usuarioController.usuarioSeleccionado.documento}" 
+                                                     a:type="text"
+                                                     class="form-control" 
+                                                     a:placeholder="#{administrador_usuarios.lbl_documento}" 
+                                                     required="true"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <h:inputText id="direccion" value="#{usuarioController.usuarioSeleccionado.direccion}" 
+                                                     a:type="text" 
+                                                     class="form-control" 
+                                                     a:placeholder="#{administrador_usuarios.lbl_direccion_usuario}" required="true"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-5">
+                                        <label for="correo" class="control-label mb-1">#{administrador_usuarios.lbl_correo}</label>
+                                        <h:inputText id="correo" value="#{usuarioController.usuarioSeleccionado.correo}"  
+                                                     a:type="email" 
+                                                     class="form-control" 
+                                                     a:placeholder="usuario@correo.com" required="true"/>
+                                    </div>
+                                    <div class="col-7">
+                                        <label for="rol" class="control-label mb-1">#{administrador_usuarios.lbl_roles_usuario}</label>
+                                        <h:selectOneRadio id="rol" value="#{usuarioController.usuarioSeleccionado.rol.id}"
+                                                          class="form-control">
+                                            <f:selectItem itemValue="1" itemLabel="Administrador&nbsp;&nbsp;"/>
+                                            <f:selectItem itemValue="2" itemLabel="Cordiandor&nbsp;&nbsp;"/>
+                                            <f:selectItem itemValue="3" itemLabel="Recreador"/>
+                                            <f:selectItem itemValue="3" itemLabel="Cliente"/>
+                                        </h:selectOneRadio>
+                                    </div>
+                                </div>                                    
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <h:inputText id="telefonos" value="#{usuarioController.usuarioSeleccionado.telefonos}"
+                                                     a:type="text" 
+                                                     class="form-control"  
+                                                     a:placeholder="#{administrador_usuarios.lbl_ingrese_telefono}" required="true"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <h:selectOneRadio id="genero" value="#{usuarioController.usuarioSeleccionado.genero}"
+                                                          class="form-control">
+                                            <f:selectItem itemValue="1" itemLabel="#{administrador_usuarios.lbl_masculino}&nbsp;&nbsp;"/>
+                                            <f:selectItem itemValue="2" itemLabel="#{administrador_usuarios.lbl_femenino}&nbsp;&nbsp;"/>
+                                            <f:selectItem itemValue="3" itemLabel="#{administrador_usuarios.lbl_otro}"/>
+                                        </h:selectOneRadio>
+                                    </div>
+                                    <div class="col-4">
+                                        <h:selectOneMenu id="estado" value="#{usuarioController.usuarioSeleccionado.estado}"
+                                                         class="form-control">
+                                            <f:selectItem itemValue="" itemLabel="#{administrador_usuarios.lbl_seleccione_nuevo_estado}"/>
+                                            <f:selectItems value="#{usuarioController.estadosUsuarioList}" var="e" itemLabel="#{e.estado}"/> 
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">Cerrar</button>
-                                <h:commandLink actionListener="#{usuarioController.actualizar()}" class="btn btn-primary">Actualizar</h:commandLink> 
+                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">Cancelar</button>
+                                <h:commandLink action="#{usuarioController.actualizarUsuarioSeleccionado()}" class="btn btn-primary">#{administrador_usuarios.lbl_actualizar}</h:commandLink> 
                             </div>
                         </div>
                     </h:panelGroup>
@@ -290,7 +374,7 @@
                 <h:form prependId="false">
                     <h:panelGroup id="modalVisualizarUserContent" class="modal-content" layout="block" >
                         <div class="modal-header">
-                            <h5 class="modal-title" id="mediumModalLabel">Información del usuario seleccionado</h5>
+                            <h5 class="modal-title" id="mediumModalLabel">#{administrador_usuarios.lbl_informacion_estado}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -298,32 +382,34 @@
                         <div class="modal-body">
                             <h:form>
                                 <div class="modal-body">
-                                    <label class="control-label mb-1">Nombre:</label>
+                                    <label class="control-label mb-1">#{administrador_perfil.lbl_nombre}</label>
                                     <div class="form-group">#{usuarioController.usuarioSeleccionado.nombres}</div>
-                                    <label class="control-label mb-1">Apellidos:</label>
+                                    <label class="control-label mb-1">#{administrador_usuarios.lbl_apellido}</label>
                                     <div class="form-group">#{usuarioController.usuarioSeleccionado.apellidos}</div>
-                                    <label class="control-label mb-1">Tipo Documento:</label>
+                                    <label class="control-label mb-1">#{administrador_perfil.lbl_tipoDocumento}</label>
                                     <div class="form-group">#{usuarioController.usuarioSeleccionado.tiposDocumento.nombre}</div>
-                                    <label class="control-label mb-1">Documento:</label>
+                                    <label class="control-label mb-1">#{administrador_usuarios.lbl_documento}</label>
                                     <div class="form-group">#{usuarioController.usuarioSeleccionado.documento}</div>
-                                    <label class="control-label mb-1">Fecha Nacimiento:</label>
+                                    <label class="control-label mb-1">#{administrador_usuarios.lbl_fecha_nacimiento}</label>
                                     <div class="form-group">
                                         <h:outputText  value="#{usuarioController.usuarioSeleccionado.fechaNacimiento}">
                                             <f:convertDateTime pattern="yyyy-MM-dd" />
                                         </h:outputText> 
                                     </div>
-                                    <label class="control-label mb-1">Correo:</label>
+                                    <label class="control-label mb-1">#{administrador_perfil.lbl_correoElectronico}</label>
                                     <div class="form-group">#{usuarioController.usuarioSeleccionado.correo}</div>
-                                    <label class="control-label mb-1">Genero:</label>
+                                    <label class="control-label mb-1">#{administrador_usuarios.lbl_genero}</label>
                                     <div class="form-group">#{usuarioController.usuarioSeleccionado.genero}</div>
-                                    <label class="control-label mb-1">Estado:</label>
+                                    <label class="control-label mb-1">#{administrador_usuarios.lbl_estado}</label>
                                     <div class="form-group">#{usuarioController.usuarioSeleccionado.estado.estado}</div>
+                                    <label class="control-label mb-1">#{administrador_usuarios.lbl_rol}</label>
+                                    <div class="form-group">#{usuarioController.usuarioSeleccionado.rol.nombre}</div>
                                 </div>
                             </h:form>
                         </div>
                         <div class="modal-footer">
                             <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>-->
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">#{administrador_usuarios.lbl_confirmar}</button>
                         </div>
                     </h:panelGroup>
                 </h:form>
@@ -337,25 +423,68 @@
                 <h:form prependId="false">
                     <h:panelGroup id="modalEliminarUserContent" class="modal-content" layout="block" >
                         <div class="modal-header">
-                            <h5 class="modal-title" id="mediumModalLabel">Eliminar el usuario seleccionado</h5>
+                            <h5 class="modal-title" id="mediumModalLabel">#{administrador_usuarios.lbl_eliminar_usuario_seleccionado}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>¿Está seguro de eliminar el usuario #{usuarioController.usuarioSeleccionado.nombres} 
-                                #{usuarioController.usuarioSeleccionado.apellidos} definitivamente del sistema?
+                            <p>#{administrador_usuarios.lbl_estaseguro} #{usuarioController.usuarioSeleccionado.nombres} 
+                                #{usuarioController.usuarioSeleccionado.apellidos} #{administrador_usuarios.lbl_esteaseguro_1}
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                            <h:commandLink class="btn btn-danger" actionListener="#{usuarioController.eliminar()}">Si</h:commandLink>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">#{administrador_usuarios.lbl_no}</button>
+                            <h:commandLink class="btn btn-danger" actionListener="#{usuarioController.eliminar()}">#{administrador_usuarios.lbl_si}</h:commandLink>
                         </div>
                     </h:panelGroup>
                 </h:form>
             </div>
         </div>
         <!--modal eliminar-->
+
+        <!--modal CSV-->
+        <div class="modal fade" id="modalCSV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                    <h:form prependId="false" enctype="multipart/form-data">
+                        <h:panelGroup id="modalCSVContent" class="modal-content" layout="block">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title titulom" id="exampleModalLabel">#{administrador_inventario.lbl_carga_archivos}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h:panelGroup id="mesagescsv">
+                        <h:messages showDetail="true" layout="table" style="display: block; padding: 5px; border-radius:5px; box-shadow: 0px 0px 10px; border-bottom: 10px solid black" warnStyle="color:yellow" infoStyle="color:blue" errorStyle="color:red"/>
+                    </h:panelGroup>
+
+                    <div id="nav">
+                        <ul>
+                        </ul>
+                    </div>
+                                    <div class="form-group">
+                                        <label for="fileS" class="subir">#{administrador_inventario.lbl_cargar_csv} <i  style="font-size: 15px" class="fas fa-upload"></i></label>
+                                        <h:inputFile id="fileS"  value="#{cargaUsuariosCSVController.multipart}"> </h:inputFile>
+                                        <div id="info"></div>
+                                    </div>                               
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">#{administrador_usuarios.lbl_cerrar}</button>
+                                    <h:commandLink style="font-size: 12px" class="btn btn-primary letra-boton" value="#{administrador_inventario.lbl_cargar_csv}" action="#{cargaUsuariosCSVController.fileUploadCsv()}">
+                                        <f:ajax render="mesagescsv" execute="fileS"/>
+                                        <i class="fas fa-save"></i>
+                                    </h:commandLink>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </h:form>
+  
+
+            </div>
+        </div>
+        <!--modal CSV-->
 
     </ui:define>
 </ui:composition>

@@ -49,7 +49,7 @@
                                                                     <i class="material-icons">person</i>
                                                                 </span>
                                                             </div>
-                                                            <h:inputText a:type="text" value="#{usuarioController.nuevoUsuario.nombres}" class="form-control" a:placeholder="Ingrese sus nombres..." a:required=""/>
+                                                            <h:inputText a:type="text" value="#{usuarioController.nuevoUsuario.nombres}" class="form-control" a:placeholder="#{administrador_usuarios.lbl_ingrese_nombres}" a:required=""/>
                                                         </div>
                                                     </div>
                                                     <div class="col-3">
@@ -59,7 +59,7 @@
                                                                     <i class="material-icons">person</i>
                                                                 </span>
                                                             </div>
-                                                            <h:inputText a:type="text" value="#{usuarioController.nuevoUsuario.apellidos}" class="form-control" a:placeholder="Ingrese sus apellidos..." a:required=""/>
+                                                            <h:inputText a:type="text" value="#{usuarioController.nuevoUsuario.apellidos}" class="form-control" a:placeholder="#{administrador_usuarios.lbl_ingrese_apellidos}" a:required=""/>
                                                         </div>
                                                     </div>                                                
                                                     <div class="col-3">
@@ -69,7 +69,7 @@
                                                                     <i class="material-icons">date_range</i>
                                                                 </span>
                                                             </div>
-                                                            <h:inputText a:type="date" value="#{usuarioController.nuevoUsuario.fechaNacimiento}" class="form-control" a:placeholder="Ingrese sus fecha nacimiento..." a:required="">
+                                                            <h:inputText a:type="date" value="#{usuarioController.nuevoUsuario.fechaNacimiento}" class="form-control" a:placeholder="#{administrador_usuarios.lbl_ingrese_su_date}" a:required="">
                                                                 <f:convertDateTime pattern="yyyy-MM-dd"/>                                                        
                                                             </h:inputText>
                                                         </div>
@@ -138,7 +138,7 @@
                                                                 </span>
                                                             </div>
                                                             <h:selectOneMenu id="rol" value="#{usuarioController.nuevoUsuario.rol}" class="form-control selectpicker" a:required="">
-                                                                <f:selectItem itemValue="" itemLabel="Roles"/>
+                                                                <f:selectItem itemValue="" itemLabel="#{administrador_usuarios.lbl_roles_usuario}"/>
                                                                 <f:selectItems value="#{rolController.rolList}"  var="r" itemLabel="#{r.nombre}"/>
                                                             </h:selectOneMenu>
                                                         </div>
@@ -181,7 +181,7 @@
                                                             <h:inputText id="confirmarClave" value="#{usuarioController.confirmarClave}"
                                                                          a:type="password" 
                                                                          class="form-control"  
-                                                                         a:placeholder="Confirmar Contraseña"/>
+                                                                         a:placeholder="#{administrador_usuarios.lbl_confirm_password}"/>
                                                         </div>                                                    
                                                     </div>
                                                     <div class="col-3">

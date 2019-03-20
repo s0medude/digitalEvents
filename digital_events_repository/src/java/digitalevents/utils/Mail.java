@@ -36,8 +36,8 @@ public class Mail {
         if (props == null) {
             props = new Properties();
             props.put(KEY_SMTP_SERVER, "smtp.gmail.com");
-            props.put(KEY_FROM, "digital.events.soft@gmail.com");
-            props.put(KEY_PASSWORD, "digital12345.");
+            props.put(KEY_FROM, "digitaleventssystem@gmail.com");
+            props.put(KEY_PASSWORD, "gaesevents");
             props.put("mail.smtp.auth", true);
             props.put("mail.smtp.starttls.enable", true);
             props.put("mail.smtp.port", "587");

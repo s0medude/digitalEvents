@@ -145,7 +145,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    
+
                                     <div class="table-responsive">
                                         <h:form>
                                             <h:dataTable class="table table-striped text-center" var="u" value="#{usuarioController.usuariosList}" >
@@ -166,7 +166,7 @@
                                                         <i class="material-icons">edit</i>
                                                     </h:commandLink> 
                                                     <h:commandLink  class="td-actions text-right btn btn-danger" actionListener="#{usuarioController.usuarioSeleccionado(u)}"
-                                                                   a:data-toggle="modal" a:data-target="#modalEliminarUser" a:rel="tooltip" rendered="#{usuarioController.renderedBooton(u)}">
+                                                                    a:data-toggle="modal" a:data-target="#modalEliminarUser" a:rel="tooltip" rendered="#{usuarioController.renderedBooton(u)}">
                                                         <f:ajax render=":modalEliminarUserContent"/>
                                                         <i class="material-icons">delete</i>
                                                     </h:commandLink>
@@ -446,41 +446,41 @@
         <!--modal CSV-->
         <div class="modal fade" id="modalCSV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
-                    <h:form prependId="false" enctype="multipart/form-data">
-                        <h:panelGroup id="modalCSVContent" class="modal-content" layout="block">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title titulom" id="exampleModalLabel">#{administrador_inventario.lbl_carga_archivos}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <h:panelGroup id="mesagescsv">
-                        <h:messages showDetail="true" layout="table" style="display: block; padding: 5px; border-radius:5px; box-shadow: 0px 0px 10px; border-bottom: 10px solid black" warnStyle="color:yellow" infoStyle="color:blue" errorStyle="color:red"/>
-                    </h:panelGroup>
-
-                    <div id="nav">
-                        <ul>
-                        </ul>
-                    </div>
-                                    <div class="form-group">
-                                        <label for="fileS" class="subir">#{administrador_inventario.lbl_cargar_csv} <i  style="font-size: 15px" class="fas fa-upload"></i></label>
-                                        <h:inputFile id="fileS"  value="#{cargaUsuariosCSVController.multipart}"> </h:inputFile>
-                                        <div id="info"></div>
-                                    </div>                               
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">#{administrador_usuarios.lbl_cerrar}</button>
-                                    <h:commandLink style="font-size: 12px" class="btn btn-primary letra-boton" value="#{administrador_inventario.lbl_cargar_csv}" action="#{cargaUsuariosCSVController.fileUploadCsv()}">
-                                        <f:ajax render="mesagescsv" execute="fileS"/>
-                                        <i class="fas fa-save"></i>
-                                    </h:commandLink>
-                                </div>
+                <h:form prependId="false" enctype="multipart/form-data">
+                    <h:panelGroup id="modalCSVContent" class="modal-content" layout="block">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title titulom" id="exampleModalLabel">#{administrador_inventario.lbl_carga_archivos}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                        </h:panelGroup>
-                    </h:form>
-  
+                            <div class="modal-body">
+                                <h:panelGroup id="mesagescsv">
+                                    <h:messages showDetail="true" layout="table" style="display: block; padding: 5px; border-radius:5px; box-shadow: 0px 0px 10px; border-bottom: 10px solid black" warnStyle="color:yellow" infoStyle="color:blue" errorStyle="color:red"/>
+                                </h:panelGroup>
+
+                                <div id="nav">
+                                    <ul>
+                                    </ul>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fileS" class="subir">#{administrador_inventario.lbl_cargar_csv} <i  style="font-size: 15px" class="fas fa-upload"></i></label>
+                                    <h:inputFile id="fileS"  value="#{cargaUsuariosCSVController.multipart}"> </h:inputFile>
+                                    <div id="info"></div>
+                                </div>                               
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger letra-boton" data-dismiss="modal">#{administrador_usuarios.lbl_cerrar}</button>
+                                <h:commandLink style="font-size: 12px" class="btn btn-primary letra-boton" value="#{administrador_inventario.lbl_cargar_csv}" action="#{cargaUsuariosCSVController.fileUploadCsv()}">
+                                    <f:ajax render="mesagescsv" execute="fileS"/>
+                                    <i class="fas fa-save"></i>
+                                </h:commandLink>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+
 
             </div>
         </div>
